@@ -20,7 +20,7 @@
   <body>
 		<h1>Index</h1>
 
-    <a href="./loggedin.php">Goto Logged In Page</a>
+    <a href="./login.php">Login</a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

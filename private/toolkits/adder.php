@@ -3,6 +3,12 @@
   require_once '../db/db.php';
 
   class Adder{
+    private $pdo;
+
+    function __construct($pdo){
+      $this->pdo = $pdo;
+    }
+
     private function do_exec($stmt){
 
     }
@@ -31,5 +37,7 @@
 
     }
   }
+
+  $Adder = new Adder($pdo);
 
 ?>

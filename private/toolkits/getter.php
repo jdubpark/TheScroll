@@ -3,10 +3,16 @@
   require_once '../db/db.php';
 
   class Getter{
+    private $pdo;
+
+    function __construct($pdo){
+      $this->pdo = $pdo;
+    }
+
     private function do_query($query, $rowFn){
       $data = [];
-      if (!isset($rowFn) || empty($rowFn)) $rowFn = function($row, $_data){$_data[] = $row;}
-      foreach ($pdo->query($query) as $row) $rowFn($row, $data);
+      if (!isset($rowFn) || empty($rowFn)) $rowFn = function($row, $_data){$_data[] = $row;};
+      foreach ($this->pdo->query($query) as $row) $rowFn($row, $data);
       $row = null;
       return $data;
     }
@@ -25,5 +31,7 @@
       );
     }
   }
+
+  $Getter = new Getter($pdo);
 
 ?>

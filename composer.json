@@ -1,0 +1,16 @@
+{
+    "name": "pjw/the-scroll",
+    "description": "The Scroll",
+    "type": "project",
+    "require": {
+        "symfony/dotenv": "^4.3",
+        "google/apiclient": "^2.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jwparktom",
+            "email": "jwparktom@gmail.com"
+        }
+    ]
+}

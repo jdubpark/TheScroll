@@ -1,4 +1,8 @@
 
+create database if not exists `TheScroll`
+  character set = 'utf8mb4'
+  collate = 'utf8mb4_unicode_ci';
+
 create table if not exists `TheScroll`.`Users`(
   `id` int(5) unsigned not null auto_increment,
   `name_first` varchar(30) not null,
@@ -10,7 +14,7 @@ create table if not exists `TheScroll`.`Users`(
   `time_login_last` datetime,
   primary key (`id`),
   unique key (`email`)
-);
+) ENGINE = InnoDB;
 
 create table if not exists `TheScroll`.`Roles`(
   `id` int(3) unsigned not null auto_increment,
@@ -35,26 +39,77 @@ create table if not exists `TheScroll`.`Roles`(
   `time_updated` datetime not null default current_timestamp on update current_timestamp,
   `assigned` int(4) unsigned not null default 0,
   primary key (`id`)
-);
+) ENGINE = InnoDB;
 
-create table if not exists `TheScroll`.`ArticleNormal`(
+create table if not exists `TheScroll`.`Sections`(
+  `id` int(3) unsigned not null auto_increment,
+  `name` varchar(50) not null,
+  primary key (`id`)
+) ENGINE = InnoDB;
+
+--
+-- Metadata table (T1 = type 1 --> original, normal stuff)
+-- NOTE: allow author, author_display, and category
+--       to change when the same values in parent tables are changed
+create table if not exists `TheScroll`.`ArticleT1`(
   `id` int(5) unsigned not null auto_increment,
-  `author` varchar(50)
+  `author` varchar(50) not null,
+  `author_display` varchar(50) not null,
+  `section` varchar(50) not null,
   `time_created` datetime not null default current_timestamp,
-  `time_created_display` datetime not null default current_timestamp -- displayed (on the article)
+  `time_created_display` datetime not null default current_timestamp, -- displayed (on the article)
   `time_updated` datetime null,
   `show_time_updated` boolean not null default 0,
   primary key (`id`)
-);
+) ENGINE = InnoDB;
 
-create table if not exists `TheScroll`.`ContentNormal`(
+create table if not exists `TheScroll`.`ImageCoverT1`(
   `id` int(5) unsigned not null auto_increment,
-  `article_id` int(5) unsigned not null auto_increment,
+  `article_id` int(5) unsigned not null,
+  `image_link` text not null,
   primary key (`id`),
-  foreign key `ArticleId` (`article_id`)
-    on delete cascade
-);
+  foreign key (`article_id`)
+      references `ArticleT1`(`id`)
+      on delete cascade
+) ENGINE = InnoDB;
+
+create table if not exists `TheScroll`.`SummaryT1`(
+  `id` int(5) unsigned not null auto_increment,
+  `article_id` int(5) unsigned not null,
+  `summary` text not null,
+  primary key (`id`),
+  -- index articlet1_index (`article_id`),
+  foreign key (`article_id`)
+      references `ArticleT1`(`id`)
+      on delete cascade
+) ENGINE = InnoDB;
+
+create table if not exists `TheScroll`.`ContentT1`(
+  `id` int(5) unsigned not null auto_increment,
+  `article_id` int(5) unsigned not null,
+  `content` text not null,
+  primary key (`id`),
+  -- index articlet1_index (`article_id`),
+  foreign key (`article_id`)
+      references `ArticleT1`(`id`)
+      on delete cascade
+) ENGINE = InnoDB;
+
+create table if not exists `TheScroll`.`CommentT1`(
+  `id` int(5) unsigned not null auto_increment,
+  `article_id` int(5) unsigned not null,
+  `name` varchar(50) not null,
+  `email` varchar(50) not null,
+  `comment` text not null,
+  `public` boolean not null default 1,
+  `banned` boolean not null default 0,
+  `time_created` datetime not null default current_timestamp,
+  primary key (`id`),
+  foreign key (`article_id`)
+      references `ArticleT1`(`id`)
+      on delete cascade
+) ENGINE = InnoDB;
 
 create table if not exists `TheScroll`.`Updates`(
 
-);
+) ENGINE = InnoDB;
