@@ -1,8 +1,8 @@
 <?php
 
-  require_once 'adder.php';
-  require_once 'getter.php';
-  require_once 'setter.php';
-  require_once 'verifier.php';
+  require_once __DIR__.'/adder.php';
+  require_once __DIR__.'/getter.php';
+  require_once __DIR__.'/setter.php';
+  require_once __DIR__.'/verifier.php';
 
 ?>

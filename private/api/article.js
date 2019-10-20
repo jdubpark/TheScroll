@@ -69,7 +69,8 @@ app.get('/article/:id', (req, res, next) => {
           metadata: {},
           summary: '',
           content: {},
-          comment: [],
+          comments: [],
+          coverImage: '',
         };
 
         dbcon.query(queryArticle, [articleId], (err, article, fields) => {
@@ -79,8 +80,7 @@ app.get('/article/:id', (req, res, next) => {
           if (article.length === 0){
             response.status = 'article-not-found';
             resolve(response);
-          }
-          else {
+          } else {
             // article is found, save & proceed to the next queries
             response.payload.article.metadata = article[0];
             // bind queries into promise
@@ -94,7 +94,12 @@ app.get('/article/:id', (req, res, next) => {
             });
             // wait for all
             Promise.all(promises).then(results => {
-              console.log(results);
+              // console.log(results);
+              const [summary, content, imageCover, comments] = results;
+              if (summary.length) response.payload.article.summary = summary[0].summary;
+              if (content.length) response.payload.article.content = content[0].content;
+              if (imageCover.length) response.payload.article.coverImage = imageCover[0].image_link;
+              if (comments.length) response.payload.article.comments = comments;
               // return
               resolve(response);
             }).catch(err => next(new Error(err)));

@@ -2,12 +2,13 @@
 
 	if (session_status() == PHP_SESSION_NONE) session_start();
 
-	if (isset($_SESSION['g_user_data'])){
-    header('Location: ./editors/index.php');
+	if (isset($_SESSION['gs_user'])){
+    header('Location: ./bts/');
     exit;
   }
 
 ?>
+<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
@@ -46,13 +47,16 @@
 
       var id_token = googleUser.getAuthResponse().id_token;
       const
-        // will need to move use a public url for production
-        url = 'http://localhost/website/TheScroll/private/access/signin.php',
+        // will need to move to a public url for production
+        urlSignin = 'http://localhost/website/TheScroll/private/access/signin.php',
+				urlRedirect = './bts/',
         payload = {id_token};
 
-      axios.post(url, payload)
+      axios.post(urlSignin, payload)
         .then(res => {
           console.log(res);
+					const {result} = res.data;
+					if (result === 'valid-user') window.location.replace(urlRedirect);
         })
         .catch(err => {
           console.log(err);

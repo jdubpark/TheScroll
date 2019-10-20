@@ -3,6 +3,7 @@
   require_once '../../private/access/control.php';
 
 ?>
+<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
