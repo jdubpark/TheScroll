@@ -14,22 +14,30 @@
     }
 
     function role($data){
-      $params = ['name', 'aa', 'aa_ns', 'ad', 'ad_ns', 'sa', 'sa_ns', 'ra', 'rs', 'sa', 'sa_ns'];
+      $params = ['name', 'iss', 'ara', 'ara_ns', 'ard', 'ard_ns', 'sta', 'sta_ns', 'roa', 'ros', 'hra', 'hrs', 'sea', 'sea_ns'];
       $bindVals = [];
       foreach ($params as $param){$bindVals[":$param"] = $data[$param];}
       $param = null;
       $query = 'INSERT INTO Roles (
-        name,
+        name, is_super,
         article_access, article_access_nonself, article_delete, article_delete_nonself,
         stat_access, stat_access_nonself,
         role_access, role_status,
+        hr_access, hr_super,
         setting_access, setting_access_nonself
-      ) VALUES (:name, :aa, :aa_ns, :ad, :ad_ns, :sa, :sa_ns, :ra, :rs, :sa, :sa_ns)';
-      $stmt = $pdo->prepare($query);
-      if ($stmt->exec($bindVals)){
-        // success
+      ) VALUES (
+        :name, :iss,
+        :ara, :ara_ns, :ard, :ard_ns,
+        :sta, :sta_ns,
+        :roa, :ros,
+        :hra, :hrs,
+        :sea, :sea_ns
+      )';
+      $stmt = $this->pdo->prepare($query);
+      if ($stmt->execute($bindVals)){
+        return 'success';
       } else {
-        // error
+        return 'fail';
       }
     }
 

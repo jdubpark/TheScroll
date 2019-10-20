@@ -52,7 +52,7 @@
         if ($gAction === 'new'):
     ?>
     <textarea id="classic">Hello, World!</textarea>
-    <script src="https://cdn.tiny.cloud/1/6fxsm44tquczno84cpsr0zvbev0fid3vohn11jc9lt3p4ltd/tinymce/5/tinymce.min.js"></script>
+    <!-- <script src="https://cdn.tiny.cloud/1/6fxsm44tquczno84cpsr0zvbev0fid3vohn11jc9lt3p4ltd/tinymce/5/tinymce.min.js"></script>
     <script>
     var demoBaseConfig = {
       selector: "textarea#classic",
@@ -78,7 +78,7 @@
 
     tinymce.init(demoBaseConfig);
 
-    </script>
+    </script> -->
     <?php elseif ($gAction === 'edit'): ?>
     <?php else: ?>
     <?php endif; endif; ?>

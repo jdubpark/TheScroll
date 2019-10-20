@@ -8,14 +8,15 @@
   require_once '../toolkits/getter.php';
 
   // if (isset($_SERVER['HTTP_ORIGIN'])) header('Access-Control-Allow-Origin: '.$_SERVER['HTTP_ORIGIN']);
-  // if (
-  //   $_SERVER["REQUEST_METHOD"] !== "POST" ||
-  //   !isset($_SERVER['HTTP_X_REQUESTED_WITH']) ||
-  //   $_SERVER['HTTP_X_REQUESTED_WITH'] !== 'XMLHttpRequest'
-  // ){
-  //   header('Location: http://deerfieldscroll.com');
-  //   exit;
-  // } else {
+  if (
+    $_SERVER['REQUEST_METHOD'] !== 'POST' ||
+    !isset($_SERVER['HTTP_X_REQUESTED_WITH']) ||
+    $_SERVER['HTTP_X_REQUESTED_WITH'] !== 'XMLHttpRequest'
+  ){
+    header('HTTP/1.0 403 Forbidden', TRUE, 403);
+    die(header('Location: http://deerfieldscroll.com'));
+  }
+  // else {
   //   header('Content-type: application/json', true);
   //   // $endres = new stdClass();
   //   // $endres->{'status'} = 0;
@@ -30,21 +31,21 @@
 
   // Get $id_token via HTTPS POST.
 
-  $POST_DATA = file_get_contents("php://input");
+  $inputData = file_get_contents("php://input");
 
-  if (!isset($POST_DATA)){
+  if (!isset($inputData)){
     echo json_encode(['error' => 'unfound-payload']);
     exit;
   }
 
-  $POST_DATA = json_decode($POST_DATA, true);
+  $inputData = json_decode($inputData, true);
 
-  if (!isset($POST_DATA['id_token'])){
+  if (!isset($inputData['id_token'])){
     echo json_encode(['error' => 'unfound-id-token']);
     exit;
   }
 
-  $id_token = $POST_DATA['id_token'];
+  $id_token = $inputData['id_token'];
 
   // verify token (jwt)
 

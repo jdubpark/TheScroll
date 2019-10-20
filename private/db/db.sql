@@ -25,7 +25,7 @@ create table if not exists `TheScroll`.`Roles`(
   `id` int(3) unsigned not null auto_increment,
   `name` varchar(30) not null,
   -- (nonself 1 => self 1)
-  `is_admin` boolean not null default 0, -- super
+  `is_super` boolean not null default 0, -- super
   -- articles
   `article_access` boolean not null default 1, -- new, edit, see own
   `article_access_nonself` boolean not null default 0, -- edit, see all

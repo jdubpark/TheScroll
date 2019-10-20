@@ -22,8 +22,8 @@
       if (!isset($rowFn) || empty($rowFn)) $rowFn = function($row, $_data){$_data[] = $row;};
       $stmt = $this->pdo->prepare($query);
       if ($stmt->execute($prepared)){
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $data = $rowFn($row, $data);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($rows as $row) $data = $rowFn($row, $data);
       }
       $row = null;
       return $data;
@@ -34,10 +34,10 @@
         'SELECT * FROM Roles WHERE id = ?;',
         [$id],
         function($row, $data){
-          $data[$row['name']] = [];
-          $ignore = ['id', 'is_admin', 'time_updated', 'assigned'];
+          $data[$row['id']] = [];
+          $ignore = ['id', 'is_super', 'time_updated', 'assigned'];
           foreach ($row as $key => $val){
-            if (!in_array($key, $ignore) && $val == 1) $data[$row['name']][] = $key;
+            if (!in_array($key, $ignore) && $val == 1) $data[$row['id']][] = $key;
           }
           return $data;
         }
@@ -48,7 +48,15 @@
       return self::do_query(
         'SELECT * FROM Roles;',
         function($row, $data){
-          $data[$row['name']] = $row;
+          $_data = ['job' => []];
+          $ignore = ['id', 'name', 'is_super', 'time_updated', 'assigned'];
+          foreach ($ignore as $key){
+            $_data[$key] = $row[$key];
+          }
+          foreach ($row as $key => $val){
+            if (!in_array($key, $ignore) && $val == 1) $_data['job'][] = $key;
+          }
+          $data[$row['id']] = $_data;
           return $data;
         }
       );

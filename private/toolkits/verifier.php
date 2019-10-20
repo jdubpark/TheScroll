@@ -9,9 +9,12 @@
   require_once __DIR__.'/getter.php';
 
   class Verifier{
-    public $Getter;
+    public $Adder, $Checker, $Setter, $Getter;
 
     function __construct($Adder, $Checker, $Setter, $Getter){
+      $this->Adder = $Adder;
+      $this->Checker = $Checker;
+      $this->Setter = $Setter;
       $this->Getter = $Getter;
     }
 
@@ -22,10 +25,10 @@
       return $job;
     }
 
-    function grant_wrap($reqJobs, $onGrantedFn){
+    function grant_wrap($reqJobs, $onGrantedFn, $passedVars=[]){
       $isGranted = false;
       $payload = [
-        'granted' => false,
+        // 'granted' => false,
         'status' => 'unauthorized',
       ];
 
@@ -44,9 +47,9 @@
       }
 
       if ($isGranted){
-        $payload['granted'] = true;
+        // $payload['granted'] = true;
         $payload['status'] = 'authorized';
-        $payload['payload'] = $onGrantedFn($this);
+        $payload['payload'] = $onGrantedFn($this, ...$passedVars);
       }
 
       return $payload;

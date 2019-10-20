@@ -37,7 +37,7 @@
     <a href="./articles.php">Articles</a>
 
     <h2>Human Resources</h2>
-    <a href="./humanresources.php">HR</a>
+    <a href="./hr.php">HR</a>
 
     <h2>Settings</h2>
     <a href="./settings.php"></a>
