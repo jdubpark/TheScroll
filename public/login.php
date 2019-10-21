@@ -52,6 +52,7 @@
 				urlRedirect = './bts/',
         payload = {id_token};
 
+			axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       axios.post(urlSignin, payload)
         .then(res => {
           console.log(res);

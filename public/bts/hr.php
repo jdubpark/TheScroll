@@ -88,13 +88,23 @@
         <input id="role-cb14" type="checkbox" name="setting_access_nonself" />
         <span>setting_access_nonself</span>
       </label>
-      <div id="role-add" style="cursor:pointer;">Add</div>
+      <div id="role-add-btn" style="cursor:pointer;">Add</div>
     </div>
 
     <h2>Manage Users</h2>
 
     <h3>Add User</h3>
-    <input type="text" placeholder="User Email (e.g. jsmith20)" />
+    <div id="user-add-form">
+      <input id="user-add-email" type="text" placeholder="User Email (e.g. jsmith20)" value="test<?php echo rand(10, 99999); ?>" />
+      <input id="user-add-name-f" type="text" placeholder="First name" value="John" />
+      <input id="user-add-name-l" type="text" placeholder="Last name" value="Smith" />
+      <input id="user-add-name-m" type="text" placeholder="M.I." />
+      <input id="user-add-name-d" type="text" placeholder="Display name" value="John Smith 21" />
+      <select id="user-add-role">
+        <option value="1">Admin</option>
+      </select>
+      <div id="user-add-btn" style="cursor:pointer;">Add</div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -116,7 +126,10 @@
       });
 
     (function($){
-      $('#role-add').on('click', function(){
+      //
+      // Role: Add
+      //
+      $('#role-add-btn').on('click', function(){
         const
           name = $('#role-name').val().trim(),
           $labels = $('#role-form').children('label'),
@@ -129,6 +142,34 @@
         if (name.length < 3) return;
 
         const postData = {req: 'add_role', name, jobs};
+        console.log(postData);
+
+        axios.post('../actions/hr.php', postData)
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      });
+      //
+      // User: Add
+      //
+      $('#user-add-btn').on('click', function(){
+        const
+          name = {
+            first: $('#user-add-name-f').val().trim(),
+            middle: $('#user-add-name-m').val().trim(),
+            last: $('#user-add-name-l').val().trim(),
+            display: $('#user-add-name-d').val().trim(),
+          },
+          email = $('#user-add-email').val().trim(),
+          role = $('#user-add-role').val();
+
+        console.log(name, email, role);
+        if (name.first.length < 3 || name.last.length < 2) return;
+
+        const postData = {req: 'add_user', name, email, role};
         console.log(postData);
 
         axios.post('../actions/hr.php', postData)

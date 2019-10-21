@@ -65,17 +65,31 @@ create table if not exists `TheScroll`.`ArticleT1`(
   `author` varchar(50) not null,
   `author_display` varchar(191) not null,
   `section` varchar(50) not null,
+  `title` varchar(191) not null,
   `time_created` datetime not null default current_timestamp,
   `time_created_display` datetime not null default current_timestamp, -- displayed (on the article)
   `time_updated` datetime null,
   `show_time_updated` boolean not null default 0,
+  `published` boolean not null default 0,
   primary key (`id`)
 ) ENGINE = InnoDB;
 
 create table if not exists `TheScroll`.`ImageCoverT1`(
   `id` int(5) unsigned not null auto_increment,
   `article_id` int(5) unsigned not null,
-  `image_link` text not null,
+  `link` text not null,
+  `caption` text default null,
+  primary key (`id`),
+  foreign key (`article_id`)
+      references `ArticleT1`(`id`)
+      on delete cascade
+) ENGINE = InnoDB;
+
+create table if not exists `TheScroll`.`VideoCoverT1`(
+  `id` int(5) unsigned not null auto_increment,
+  `article_id` int(5) unsigned not null,
+  `link` text not null,
+  `caption` text not null,
   primary key (`id`),
   foreign key (`article_id`)
       references `ArticleT1`(`id`)

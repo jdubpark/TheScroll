@@ -59,11 +59,12 @@ app.get('/article/:id', (req, res, next) => {
           queryArticle = 'SELECT id, author_display, section, time_created_display FROM ArticleT1 WHERE id = ?',
           querySummary = 'SELECT summary FROM SummaryT1 WHERE article_id = ?',
           queryContent = 'SELECT content FROM ContentT1 WHERE article_id = ?',
-          queryImageCover = 'SELECT image_link FROM ImageCoverT1 WHERE article_id = ?',
+          queryImageCover = 'SELECT link, caption FROM ImageCoverT1 WHERE article_id = ?',
+          queryVideoCover = 'SELECT link, caption FROM VideoCoverT1 WHERE article_id = ?',
           // purpose of public: (later) allow viewers to post anonymous comments
           queryComment = 'SELECT name, email, comment FROM CommentT1 WHERE public = 1 AND banned = 0 AND article_id = ?',
           // executed after queryArticle
-          afterQueries = [querySummary, queryContent, queryImageCover, queryComment];
+          afterQueries = [querySummary, queryContent, queryImageCover, queryVideoCover, queryComment];
 
         response.payload.article = {
           metadata: {},
@@ -71,6 +72,7 @@ app.get('/article/:id', (req, res, next) => {
           content: {},
           comments: [],
           coverImage: '',
+          coverVideo: '',
         };
 
         dbcon.query(queryArticle, [articleId], (err, article, fields) => {
@@ -95,10 +97,11 @@ app.get('/article/:id', (req, res, next) => {
             // wait for all
             Promise.all(promises).then(results => {
               // console.log(results);
-              const [summary, content, imageCover, comments] = results;
+              const [summary, content, imageCover, videoCover, comments] = results;
               if (summary.length) response.payload.article.summary = summary[0].summary;
               if (content.length) response.payload.article.content = content[0].content;
-              if (imageCover.length) response.payload.article.coverImage = imageCover[0].image_link;
+              if (imageCover.length) response.payload.article.coverImage = imageCover[0];
+              if (videoCover.length) response.payload.article.coverVideo = videoCover[0];
               if (comments.length) response.payload.article.comments = comments;
               // return
               resolve(response);

@@ -70,6 +70,30 @@
         );
       }
     }
+  } else if ($idReq == 'add_user'){
+    if (!isset($inputData['name'], $inputData['email'], $inputData['role'])) $response = ['error' => 'missing-general-payload'];
+    else {
+      $name = $inputData['name'];
+      if (!isset($name['first'], $name['last'], $name['display'])) $response = ['error' => 'missing-specific-payload'];
+      else {
+        $userData = [
+          'email' => $inputData['email'],
+          'namef' => $name['first'],
+          'namel' => $name['last'],
+          'namem' => empty($name['middle']) ? null : $name['middle'],
+          'named' => $name['display'],
+          'role' => $inputData['role'],
+        ];
+        $response = $Verifier->grant_wrap(
+          ['hr_super'],
+          function($self, $userData){
+            $status = $self->Adder->user($userData);
+            return $status;
+          },
+          [$userData]
+        );
+      }
+    }
   }
 
   echo json_encode($response);
