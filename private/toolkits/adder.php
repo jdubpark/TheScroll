@@ -69,7 +69,7 @@
       foreach ($paramsArticle as $param){$bindArticle[":$param"] = $data[$param];}
       // query
       $queryArticle = 'INSERT INTO ArticleT1 (
-        title, author, author_display, section, time_created_display
+        title, author, author_display, section, time_published
       ) VALUES (
         :title, :author, :author_display, :section, :pubtime
       );';
@@ -93,12 +93,12 @@
         // cover image
         if (!empty($data['cover_image'])){
           $stmt = $this->pdo->prepare($queryImage);
-          $stmt->execute([$articleID, $data['cover_image'], $data['cover_caption']]);
+          $stmt->execute([$articleID, $data['cover_image'], $data['cover_image_caption']]);
         }
         // cover video
         if (!empty($data['cover_video'])){
           $stmt = $this->pdo->prepare($queryVideo);
-          $stmt->execute([$articleID, $data['cover_video'], $data['cover_caption']]);
+          $stmt->execute([$articleID, $data['cover_video'], $data['cover_video_caption']]);
         }
         // commit
         $this->pdo->commit();

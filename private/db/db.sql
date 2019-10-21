@@ -67,7 +67,7 @@ create table if not exists `TheScroll`.`ArticleT1`(
   `section` varchar(50) not null,
   `title` varchar(191) not null,
   `time_created` datetime not null default current_timestamp,
-  `time_created_display` datetime not null default current_timestamp, -- displayed (on the article)
+  `time_published` datetime not null default current_timestamp, -- displayed (on the article)
   `time_updated` datetime null,
   `show_time_updated` boolean not null default 0,
   `published` boolean not null default 0,

@@ -61,7 +61,8 @@
     <textarea id="article-summary" placeholder="Article Summary">Just some random summary!</textarea>
     <input id="article-cover-image" type="text" value="https://images.pexels.com/photos/2110937/pexels-photo-2110937.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
     <input id="article-cover-video" type="text" />
-    <input id="article-cover-caption" type="text" value="some caption for the cover image/video" />
+    <input id="article-cover-image-caption" type="text" value="some caption for the cover image" />
+    <input id="article-cover-video-caption" type="text" value="some caption for the cover video" />
     <textarea id="article-editor">Hello, World!</textarea>
     <script src="https://cdn.tiny.cloud/1/6fxsm44tquczno84cpsr0zvbev0fid3vohn11jc9lt3p4ltd/tinymce/5/tinymce.min.js"></script>
     <script>
@@ -109,8 +110,9 @@
           content = tinymce.get('article-editor').getContent(),
           cover = {
             image: $('#article-cover-image').val(),
+            image_caption: $('#article-cover-image-caption').val(),
             video: $('#article-cover-video').val(),
-            caption: $('#article-cover-caption').val(),
+            video_caption: $('#article-cover-video-caption').val(),
           };
 
         const postData = {

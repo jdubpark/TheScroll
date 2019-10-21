@@ -42,7 +42,8 @@
         'content' => $payload['content'],
         'cover_image' => $payload['cover']['image'],
         'cover_video' => $payload['cover']['video'],
-        'cover_caption' => $payload['cover']['caption'],
+        'cover_image_caption' => $payload['cover']['image_caption'],
+        'cover_video_caption' => $payload['cover']['video_caption'],
       ];
       $response = $Verifier->grant_wrap(
         ['article_access'],
