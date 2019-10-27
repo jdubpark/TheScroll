@@ -34,7 +34,8 @@ app.get('/article/:id', (req, res, next) => {
 
     Article.find(articleId)
       .then(response => {
-        response.payload = Article.syntaxT1(response.payload);
+        console.log(response);
+        if (response.status === 'article-found') response.payload = Article.syntaxT1(response.payload);
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));
   } catch (err){
@@ -42,19 +43,19 @@ app.get('/article/:id', (req, res, next) => {
   }
 });
 
-app.get('/articles/:limitCount', (req, res, next) => {
+app.get('/articles/:limitCount?/:limitStart?', (req, res, next) => {
   try {
-    const limitCount = Number(req.params.limitCount);
-    // let limitStart = String(req.params.limitStart).trim();
-    // if (limitStart == null) limitStart = 0;
+    const limitCount = req.params.limitCount || 5;
+    let limitStart = String(req.params.limitStart).trim();
+    if (limitStart === 'undefined') limitStart = 0;
 
-    Article.findMany(limitCount, 0)
+    Article.findMany(limitCount, limitStart)
       .then(response => {
-        response.payload.map((article, key) => {
-          console.log(article);
-          return Article.syntaxT1(article);
-        });
-        console.log(response);
+        if (response.status === 'articles-found'){
+          response.payload = response.payload.map((article, key) => {
+            return Article.syntaxT1(article);
+          });
+        }
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));
   } catch (err){

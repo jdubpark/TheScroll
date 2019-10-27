@@ -64,7 +64,6 @@ create table if not exists `TheScroll`.`ArticleT1`(
   `id` int(5) unsigned not null auto_increment,
   `author` varchar(50) not null,
   `author_display` varchar(191) not null,
-  `section` varchar(50) not null,
   `title` varchar(191) not null,
   `time_created` datetime not null default current_timestamp,
   `time_published` datetime not null default current_timestamp, -- displayed (on the article)
@@ -130,6 +129,17 @@ create table if not exists `TheScroll`.`CommentT1`(
   primary key (`id`),
   foreign key (`article_id`)
       references `ArticleT1`(`id`)
+      on delete cascade
+) ENGINE = InnoDB;
+
+create table if not exists `TheScroll`.`SectionT1`(
+  `article_id` int(5) unsigned not null,
+  `section_id` int(3) unsigned not null,
+  foreign key (`article_id`)
+      references `ArticleT1`(`id`)
+      on delete cascade,
+  foreign key (`section_id`)
+      references `Sections`(`id`)
       on delete cascade
 ) ENGINE = InnoDB;
 

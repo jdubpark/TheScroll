@@ -2,8 +2,6 @@
 
   require_once '../../private/access/control.php';
 
-  // session_destroy();
-
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
