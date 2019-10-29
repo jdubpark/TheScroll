@@ -109,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div class="layout-block layout-block-t1 layout-4-12">
+          <div class="layout-block layout-block-t1 layout-3-12">
             <div class="article article-t1b">
               <div class="article-t1b-cover-image"><img src="./lib/img/random-img.jpg" /></div>
               <div class="article-t1b-content">
@@ -119,7 +119,7 @@
               </div>
             </div>
           </div>
-          <div class="layout-block layout-block-t1 layout-5-12">
+          <div class="layout-block layout-block-t1 layout-4-12">
             <div class="article article-t1c">
               <div class="article-t1c-cover-image"><img src="./lib/img/random-img.jpg" /></div>
               <div class="article-t1c-content">
@@ -129,53 +129,287 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="layout-row layout-row-4">
-          <div class="layout-block layout-3-12">
-            <div class="article article-t2">
-              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-              <div class="article-t2-content">
-                <div class="article-t2-section">Opinion</div>
-                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-              </div>
+          <div class="layout-block layout-block-t1 layout-2-12">
+            <div class="specialbox-t1">
+              <div class="specialbox-t1-icon"><img src="./lib/svg/crossword-puzzle.svg" /></div>
+              <div class="specialbox-t1-title">Crossword Puzzles</div>
+              <div class="specialbox-t1-action"></div>
             </div>
-          </div>
-          <div class="layout-block layout-3-12">
-            <div class="article article-t2">
-              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-              <div class="article-t2-content">
-                <div class="article-t2-section">Opinion</div>
-                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-              </div>
-            </div>
-          </div>
-          <div class="layout-block layout-3-12">
-            <div class="article article-t2">
-              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-              <div class="article-t2-content">
-                <div class="article-t2-section">Opinion</div>
-                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-              </div>
-            </div>
-          </div>
-          <div class="layout-block layout-3-12">
-            <div class="article article-t2">
-              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-              <div class="article-t2-content">
-                <div class="article-t2-section">Opinion</div>
-                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-              </div>
+            <div class="specialbox-t1">
+              <div class="specialbox-t1-icon"><img src="./lib/svg/print-edition.svg" /></div>
+              <div class="specialbox-t1-title">Last Print Edition</div>
+              <div class="specialbox-t1-action"></div>
             </div>
           </div>
         </div>
 
-        <div class="layout-row layout-row-4">
+        <div class="layout-row">
+          <div class="layout-block layout-3-12">
+            <div class="article article-t2">
+              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t2-content">
+                <div class="article-t2-section">Opinion</div>
+                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-block layout-3-12">
+            <div class="article article-t2">
+              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t2-content">
+                <div class="article-t2-section">Opinion</div>
+                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-block layout-3-12">
+            <div class="article article-t2">
+              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t2-content">
+                <div class="article-t2-section">Opinion</div>
+                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-block layout-3-12">
+            <div class="article article-t2">
+              <div class="article-t2-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t2-content">
+                <div class="article-t2-section">Opinion</div>
+                <div class="article-t2-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t2-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="layout-row">
+          <div class="layout-block layout-4--5-12">
+            <div class="articlel article-t3a">
+              <div class="article-t3a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t3a-content">
+                <div class="article-t3a-section">Opinion</div>
+                <div class="article-t3a-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t3a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-block layout-2--5-12">
+            <div class="articlel article-t3b">
+              <div class="article-t3b-section">Opinion</div>
+              <div class="article-t3b-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t3b-content">
+                <div class="article-t3b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t3b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-block layout-2--5-12">
+            <div class="articlel article-t3b">
+              <div class="article-t3b-section">Opinion</div>
+              <div class="article-t3b-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t3b-content">
+                <div class="article-t3b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t3b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-block layout-2--5-12">
+            <div class="articlel article-t3b">
+              <div class="article-t3b-section">Opinion</div>
+              <div class="article-t3b-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+              <div class="article-t3b-content">
+                <div class="article-t3b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                <div class="article-t3b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layout-row layout-row-2">
+          <div class="layout-row-wrapper">
+            <div class="layout-meta fluid">
+              <div class="layout-meta-block layout-4-12 colored">
+                <div class="layout-meta-section">News</div>
+              </div>
+              <div class="layout-meta-block layout-4-12"></div>
+              <div class="layout-meta-block layout-4-12"></div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4a">
+                <div class="article-t4a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+                <div class="article-t4a-content">
+                  <div class="article-t4a-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layout-row layout-row-2">
+          <div class="layout-row-wrapper">
+            <div class="layout-meta fluid">
+              <div class="layout-meta-block layout-4-12 colored">
+                <div class="layout-meta-section">Features</div>
+              </div>
+              <div class="layout-meta-block layout-4-12"></div>
+              <div class="layout-meta-block layout-4-12"></div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4a">
+                <div class="article-t4a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+                <div class="article-t4a-content">
+                  <div class="article-t4a-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layout-row layout-row-2">
+          <div class="layout-row-wrapper">
+            <div class="layout-meta fluid">
+              <div class="layout-meta-block layout-4-12 colored">
+                <div class="layout-meta-section">Opinion</div>
+              </div>
+              <div class="layout-meta-block layout-4-12"></div>
+              <div class="layout-meta-block layout-4-12"></div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4a">
+                <div class="article-t4a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+                <div class="article-t4a-content">
+                  <div class="article-t4a-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-block layout-4-12">
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+              <div class="article article-t4b">
+                <div class="article-t4b-content">
+                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
+                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
