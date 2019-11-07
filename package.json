@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "nodemon private/api/article.js",
+    "nodemon": "nodemon private/api/main.js",
     "watch": "gulp watch"
   },
   "repository": {
@@ -54,6 +54,7 @@
     "@babel/polyfill": "^7.4.4",
     "bluebird": "^3.5.5",
     "cors": "^2.8.5",
+    "cron": "^1.7.2",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "helmet": "^3.18.0",

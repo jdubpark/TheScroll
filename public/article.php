@@ -79,24 +79,24 @@
           <div class="arf-container">
             <div class="arv-header arf-header">
               <div class="arf-block">
-                <div class="arf-hd-title">Deerfield Academy Installs All-Gender Bathroom Signage</div>
-                <div class="arf-hd-summary">In recent weeks, all-gender restroom signage has been placed on six single-stall restrooms across campus.</div>
+                <div id="article-title" class="arf-hd-title">Deerfield Academy Installs All-Gender Bathroom Signage</div>
+                <div id="article-summary" class="arf-hd-summary">In recent weeks, all-gender restroom signage has been placed on six single-stall restrooms across campus.</div>
               </div>
               <div class="arf-hd-cover">
-                <div class="arf-hd-cover-image"><img src="./lib/img/random-img.jpg" /></div>
+                <div id="article-cover-image" class="arf-hd-cover-image"><img src="./lib/img/random-img.jpg" /></div>
                 <div class="arf-hd-cover-caption">According to Molly Fischer ’20, a leader of the Gender and Sexuality Alliance, the goal of the bathrooms is “to show the LGBTQ+ community at Deerfield, specifically trans- and non-binary people, that there is a safe place on campus for them to use the bathroom without having to mis-gender themselves.”</div>
               </div>
             </div>
             <div class="arv-body arf-body">
               <div class="arf-meta arf-mt">
                 <div class="arf-mt-row">
-                  <div class="arf-mt-item arf-mt-author">By Camille Glatt '21 <span>Staff Writer</span></div>
-                  <div class="arf-mt-item arf-mt-published">Published <span>May 29, 2019</span></div>
+                  <div id="article-author" class="arf-mt-item arf-mt-author">By Camille Glatt '21 <span>Staff Writer</span></div>
+                  <div class="arf-mt-item arf-mt-published">Published <span id="article-published">May 29, 2019</span></div>
                 </div>
                 <div class="arf-mt-row">
                 </div>
               </div>
-              <div class="arf-content arf-ct">
+              <div id="article-content" class="arf-content arf-ct">
                 <p>
                   In recent weeks, all-gender restroom signage has been placed on six single-stall restrooms across campus.
                 </p>
@@ -191,5 +191,21 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+    axios.get('http://localhost:1289/api/article/22')
+      .then(res => {
+        console.log(res);
+        const article = res.data.payload;
+        $('#article-title').html(article.title);
+        $('#article-summary').html(article.summary);
+        $('#article-content').html(article.content);
+        $('#article-author').html(article.author);
+        $('#article-published').html(article.published);
+        $('#article-cover-image').html(`<img src="${article.coverImage.link}" />`);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+    </script>
 	</body>
 </html>

@@ -9,11 +9,13 @@ const
   Promise = require('bluebird'),
   cors = require('cors'),
   app = express(),
+  // dbcon = require('./helper/mysql'),
   Article = require('./helper/article'),
+  Metadata = require('./helper/metadata'),
   port = env.port.main;
 
 const
-  corsWhitelist = ['http://localhost', 'http://localhost:3000', 'https://thescroll.com'],
+  corsWhitelist = ['http://localhost', 'http://localhost:3000', 'http://localhost:3000/website/TheScroll/public/', 'https://deerfieldscroll.com'],
   corsOptions = {
     origin: (origin, callback) => {
       if (corsWhitelist.indexOf(origin) !== -1) callback(null, true);
@@ -22,12 +24,16 @@ const
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   };
 
+let storedMtdt = {};
+
 app.use(helmet());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.get('/article/:id', (req, res, next) => {
+// Metadata.recurLoad(storedMtdt);
+
+app.get('/api/article/:id', (req, res, next) => {
   try {
     const
       articleId = String(req.params.id).trim();
@@ -43,7 +49,7 @@ app.get('/article/:id', (req, res, next) => {
   }
 });
 
-app.get('/articles/:limitCount?/:limitStart?', (req, res, next) => {
+app.get('/api/articles/:limitCount?/:limitStart?', (req, res, next) => {
   try {
     const limitCount = req.params.limitCount || 5;
     let limitStart = String(req.params.limitStart).trim();
@@ -58,6 +64,31 @@ app.get('/articles/:limitCount?/:limitStart?', (req, res, next) => {
         }
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));
+  } catch (err){
+    next(new Error(err));
+  }
+});
+
+app.get('/api/metadata', (req, res, next) => {
+  try {
+    const response = {
+      error: '',
+      status: 'metadata-found',
+      payload: storedMtdt,
+    };
+    res.status(200).json(response);
+  } catch (err){
+    next(new Error(err));
+  }
+});
+
+app.get('/api/teasers/:type', (req, res, next) => {
+  try {
+    const type = req.params.type || 'all';
+
+    if (type !== 'all' || type !== 'section'){}
+
+    if (type === 'all'){}
   } catch (err){
     next(new Error(err));
   }
@@ -78,5 +109,5 @@ app.use((err, req, res, next) => {
 
 http.createServer(app).listen(port, function(){
   const addr = this.address(), host = addr.address, cport = addr.port;
-  console.log('[TheScroll: Article API] listening at http://%s:%s', host, cport);
+  console.log('[TheScroll: Main API] listening at http://%s:%s', host, cport);
 });

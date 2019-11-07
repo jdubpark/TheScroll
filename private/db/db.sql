@@ -56,6 +56,13 @@ create table if not exists `TheScroll`.`Sections`(
   primary key (`id`)
 ) ENGINE = InnoDB;
 
+create table if not exists `TheScroll`.`Metadata`(
+  `id` int(8) unsigned not null auto_increment,
+  `key` varchar(191) not null,
+  `value` varchar(191) not null,
+  primary key (`id`)
+) ENGINE = InnoDB;
+
 --
 -- Metadata table (T1 = type 1 --> original, normal stuff)
 -- NOTE: allow author, author_display, and category

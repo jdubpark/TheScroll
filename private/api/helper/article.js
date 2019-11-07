@@ -12,10 +12,10 @@ const dbcon = mysql.createConnection({
 });
 dbcon.connect(err => {
   if (err){
-    console.error('[TheScroll: Article API] MySQL Error Connecting: ' + err.stack);
+    console.error('[TheScroll: Main API - Article] MySQL Error Connecting: ' + err.stack);
     return;
   }
-  console.log('[TheScroll: Article API] MySQL Connected as id ' + dbcon.threadId);
+  console.log('[TheScroll: Main API - Article] MySQL Connected as id ' + dbcon.threadId);
 });
 
 module.exports = class Article{
@@ -30,7 +30,7 @@ module.exports = class Article{
         } else {
           // only show published articles
           const query =
-            'SELECT t1.id, t1.author_display, t1.time_published, t2.summary, t3.content, t4.link as image_link, t4.caption as image_caption,'+
+            'SELECT t1.id, t1.author_display, t1.title, t1.time_published, t2.summary, t3.content, t4.link as image_link, t4.caption as image_caption,'+
             ' t5.link as video_link, t5.caption as video_caption, GROUP_CONCAT(NULLIF(t6.section_name, "") separator ",") as section FROM ArticleT1 t1'+
             ' LEFT JOIN SummaryT1 t2 ON t2.article_id = t1.id'+
             ' LEFT JOIN ContentT1 t3 ON t3.article_id = t1.id'+
@@ -76,7 +76,7 @@ module.exports = class Article{
           // only show published articles
           // in case of tied time published, order by time created (desc)
           const query =
-            'SELECT t1.id, t1.author_display, t1.time_published, t2.summary, t3.content, t4.link as image_link, t4.caption as image_caption,'+
+            'SELECT t1.id, t1.author_display, t1.title, t1.time_published, t2.summary, t3.content, t4.link as image_link, t4.caption as image_caption,'+
             ' t5.link as video_link, t5.caption as video_caption, GROUP_CONCAT(t6.section_name separator ",") as section FROM ArticleT1 t1'+
             ' LEFT JOIN SummaryT1 t2 ON t2.article_id = t1.id'+
             ' LEFT JOIN ContentT1 t3 ON t3.article_id = t1.id'+
@@ -115,16 +115,18 @@ module.exports = class Article{
   static syntaxT1(article){
     return {
       id: article.id,
+      title: article.title,
       author: article.author_display,
       section: article.section.split(','),
       summary: article.summary,
       content: article.content,
       coverImage: {
+        exists: article.image_link !== null,
         link: article.image_link,
         caption: article.image_caption,
       },
       coverVideo: {
-        exists: article.video_link !== '',
+        exists: article.video_link !== null,
         link: article.video_link,
         caption: article.video_caption,
       },
