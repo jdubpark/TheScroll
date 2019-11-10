@@ -64,23 +64,23 @@
     }
 
     function article($data){
-      $paramsArticle = ['title', 'author', 'author_display', 'title', 'pubtime'];
+      $paramsArticle = ['title', 'author', 'author_display', 'title', 'section', 'pubtime'];
       $bindArticle = [];
-      $sections = $data['section'];
+      // $sections = $data['section'];
       foreach ($paramsArticle as $param){$bindArticle[":$param"] = $data[$param];}
       // query
       $queryArticle = 'INSERT INTO ArticleT1 (
-        title, author, author_display, time_published
+        title, author, author_display, section_id, time_published
       ) VALUES (
-        :title, :author, :author_display, :pubtime
+        :title, :author, :author_display, :section, :pubtime
       );';
-      $querySection = 'INSERT INTO SectionT1 (
-        article_id, section_id
-      ) VALUES (?, ?)';
-      if (!is_array($sections)) $sections = [$sections];
-      for ($i = 1; $i < count(array_keys($sections)); $i++) $querySection .= ', (?, ?)';
+      // $querySection = 'INSERT INTO SectionT1 (
+      //   article_id, section_id
+      // ) VALUES (?, ?)';
+      // if (!is_array($sections)) $sections = [$sections];
+      // for ($i = 1; $i < count(array_keys($sections)); $i++) $querySection .= ', (?, ?)';
       $sectionData = [];
-      $querySection .= ';';
+      // $querySection .= ';';
       $querySummary = 'INSERT INTO SummaryT1 (article_id, summary) VALUES (?, ?);';
       $queryContent = 'INSERT INTO ContentT1 (article_id, content) VALUES (?, ?);';
       $queryImage = 'INSERT INTO ImageCoverT1 (article_id, link, caption) VALUES (?, ?, ?);';
@@ -93,12 +93,12 @@
         $stmt->execute($bindArticle);
         $articleID = $this->pdo->lastInsertId();
         // section
-        $stmt = $this->pdo->prepare($querySection);
-        foreach ($sections as $section){
-          $sectionData[] = $articleID;
-          $sectionData[] = $section;
-        }
-        $stmt->execute($sectionData);
+        // $stmt = $this->pdo->prepare($querySection);
+        // foreach ($sections as $section){
+        //   $sectionData[] = $articleID;
+        //   $sectionData[] = $section;
+        // }
+        // $stmt->execute($sectionData);
         // summary
         $stmt = $this->pdo->prepare($querySummary);
         $stmt->execute([$articleID, $data['summary']]);

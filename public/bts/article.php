@@ -117,7 +117,7 @@
 
         const postData = {
           req: 'new_article',
-          payload: {title, section: [section], pubtime, summary, content, cover, dAuthor},
+          payload: {title, section, pubtime, summary, content, cover, dAuthor},
         };
 
         console.log(postData);

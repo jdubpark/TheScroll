@@ -12,6 +12,7 @@ const
   // dbcon = require('./helper/mysql'),
   Article = require('./helper/article'),
   Metadata = require('./helper/metadata'),
+  Teaser = require('./helper/teaser'),
   port = env.port.main;
 
 const
@@ -27,7 +28,7 @@ const
 let storedMtdt = {};
 
 app.use(helmet());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -40,7 +41,7 @@ app.get('/api/article/:id', (req, res, next) => {
 
     Article.find(articleId)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 'article-found') response.payload = Article.syntaxT1(response.payload);
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));
@@ -82,13 +83,33 @@ app.get('/api/metadata', (req, res, next) => {
   }
 });
 
-app.get('/api/teasers/:type', (req, res, next) => {
+app.get('/api/teasers/all', (req, res, next) => {
   try {
-    const type = req.params.type || 'all';
+    Teaser.all()
+      .then(response => {
+        if (response.status === 'teaser-generated'){
+          response.payload = Teaser.organizeColumns(response.payload);
+        }
+        res.status(200).json(response);
+      }).catch(err => next(new Error(err)));
+  } catch (err){
+    next(new Error(err));
+  }
+});
 
-    if (type !== 'all' || type !== 'section'){}
+app.get('/api/teasers/section/:sectionId/:limitCount?/:limitStart?', (req, res, next) => {
+  try {
+    const {sectionId, limitCount} = req.params || {sectionId: 1, limitCount: 5};
+    let limitStart = String(req.params.limitStart).trim();
+    if (limitStart === 'undefined') limitStart = 0;
 
-    if (type === 'all'){}
+    Teaser.section(sectionId, limitCount, limitStart)
+      .then(response => {
+        if (response.status === 'teaser-generated'){
+          response.payload = Teaser.organizeArticles(response.payload);
+        }
+        res.status(200).json(response);
+      }).catch(err => next(new Error(err)));
   } catch (err){
     next(new Error(err));
   }

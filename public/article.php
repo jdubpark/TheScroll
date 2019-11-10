@@ -192,7 +192,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-    axios.get('http://localhost:1289/api/article/22')
+    axios.get('http://localhost:1289/api/article/24')
       .then(res => {
         console.log(res);
         const article = res.data.payload;
