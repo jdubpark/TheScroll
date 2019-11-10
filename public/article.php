@@ -54,21 +54,21 @@
             <div class="header-nav-container">
               <div class="header-nav-list">
                 <div class="header-nav-item"><a href="./">Home</a></div>
-                <div class="header-nav-item"><a href="./">News</a></div>
-                <div class="header-nav-item"><a href="./">Features</a></div>
-                <div class="header-nav-item"><a href="./">Opinion</a></div>
-                <div class="header-nav-item"><a href="./">Editorial</a></div>
-                <div class="header-nav-item"><a href="./">Arts</a></div>
-                <div class="header-nav-item"><a href="./">Sports</a></div>
-                <div class="header-nav-item"><a href="./">Buzz</a></div>
+                <div class="header-nav-item"><a href="./section.php">News</a></div>
+                <div class="header-nav-item"><a href="./section.php">Features</a></div>
+                <div class="header-nav-item"><a href="./section.php">Opinion</a></div>
+                <div class="header-nav-item"><a href="./section.php">Editorial</a></div>
+                <div class="header-nav-item"><a href="./section.php">Arts</a></div>
+                <div class="header-nav-item"><a href="./section.php">Sports</a></div>
+                <div class="header-nav-item"><a href="./section.php">Buzz</a></div>
               </div>
               <!-- <div class="header-nav-vd"></div> -->
               <div class="header-nav-list">
-                <div class="header-nav-item"><a href="./">Archives</a></div>
-                <div class="header-nav-item"><a href="./">About</a></div>
+                <div class="header-nav-item"><a href="./section.php">Archives</a></div>
+                <div class="header-nav-item"><a href="./section.php">About</a></div>
               </div>
               <div class="header-nav-list">
-                <div class="header-nav-item"><a href="./">Vol. XCVII</a></div>
+                <div class="header-nav-item"><a href="./section.php">Vol. XCVII</a></div>
               </div>
             </div>
           </div>

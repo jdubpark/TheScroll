@@ -28,7 +28,7 @@ const
 let storedMtdt = {};
 
 app.use(helmet());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -99,7 +99,7 @@ app.get('/api/teasers/all', (req, res, next) => {
 
 app.get('/api/teasers/section/:sectionId/:limitCount?/:limitStart?', (req, res, next) => {
   try {
-    const {sectionId, limitCount} = req.params || {sectionId: 1, limitCount: 5};
+    const sectionId = req.params.sectionId, limitCount = req.params.limitCount || 20;
     let limitStart = String(req.params.limitStart).trim();
     if (limitStart === 'undefined') limitStart = 0;
 
@@ -107,6 +107,8 @@ app.get('/api/teasers/section/:sectionId/:limitCount?/:limitStart?', (req, res, 
       .then(response => {
         if (response.status === 'teaser-generated'){
           response.payload = Teaser.organizeArticles(response.payload);
+          response.payload.section = Object.keys(response.payload.bySection)[0];
+          delete response.payload.bySection;
         }
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));

@@ -37,6 +37,6 @@ module.exports = class Metadata{
   }
 
   static load(){
-    
+    // mysql.
   }
 };
