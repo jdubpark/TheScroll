@@ -11,7 +11,7 @@ const
   app = express(),
   // dbcon = require('./helper/mysql'),
   Article = require('./helper/article'),
-  Metadata = require('./helper/metadata'),
+  // Metadata = require('./helper/metadata'),
   Teaser = require('./helper/teaser'),
   port = env.port.main;
 
@@ -28,7 +28,7 @@ const
 let storedMtdt = {};
 
 app.use(helmet());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

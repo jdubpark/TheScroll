@@ -92,7 +92,7 @@
             <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
           </div>
           <div id="content-main-focus1" class="layout-block layout-block-t1 layout-3--5-12">
-            <div class="article article-t1b"><div class="article-t1b-cover-image ar-loading ar-ld-nb"></div><div class="article-t1b-content"><div class="article-t1b-section ar-loading ar-ld-t1-st center"></div><div class="article-t1b-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1b-summary ar-loading ar-ld-t2-sm"></div></div></div>
+            <div class="article article-t1b"><div class="article-t1b-cover-image ar-loading ar-ld-nb"></div><div class="article-t1b-content"><div class="article-t1b-section ar-loading ar-ld-t1-st center"></div><div class="article-t1b-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1b-summary ar-loading ar-ld-t1-hl"></div></div></div>
           </div>
           <div id="content-main-focus2" class="layout-block layout-block-t1 layout-4-12">
             <div class="article article-t1c"><div class="article-t1c-cover-image-wrapper"><div class="article-t1c-cover-image ar-loading ar-ld-nb center"></div></div><div class="article-t1c-content"><div class="article-t1c-section ar-loading ar-ld-t1-st center"></div><div class="article-t1c-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1c-summary ar-loading ar-ld-t1-sm"></div></div></div>
@@ -112,10 +112,10 @@
         </div>
 
         <div id="content-main-step1" class="layout-row">
-          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t2-sm"></div></div></div></div>
-          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t2-sm"></div></div></div></div>
-          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t2-sm"></div></div></div></div>
-          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t2-sm"></div></div></div></div>
+          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t1-hl"></div></div></div></div>
+          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t1-hl"></div></div></div></div>
+          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t1-hl"></div></div></div></div>
+          <div class="layout-block layout-3-12"><div class="article article-t2"><div class="article-t2-cover-image ar-loading ar-ld-nb"></div><div class="article-t2-content"><div class="article-t2-section ar-loading ar-ld-t1-st"></div><div class="article-t2-headline ar-loading ar-ld-t2-hl"></div><div class="article-t2-summary ar-loading ar-ld-t1-hl"></div></div></div></div>
         </div>
 
         <div id="content-main-step2" class="layout-row">
@@ -134,53 +134,19 @@
               <div class="layout-meta-block layout-4-12"></div>
               <div class="layout-meta-block layout-4-12"></div>
             </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4a">
-                <div class="article-t4a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-                <div class="article-t4a-content">
-                  <div class="article-t4a-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+            <div id="content-section-news" class="layout-blocks">
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4a"><div class="article-t4a-cover-image ar-loading ar-ld-nb"></div><div class="article-t4a-content"><div class="article-t4a-section ar-loading ar-ld-t1-st"></div><div class="article-t4a-headline ar-loading ar-ld-t2-hl"></div><div class="article-t4a-summary ar-loading ar-ld-t2-hl"></div></div></div>
               </div>
-            </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
               </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-            </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
               </div>
             </div>
           </div>
@@ -195,53 +161,19 @@
               <div class="layout-meta-block layout-4-12"></div>
               <div class="layout-meta-block layout-4-12"></div>
             </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4a">
-                <div class="article-t4a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-                <div class="article-t4a-content">
-                  <div class="article-t4a-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+            <div id="content-section-features" class="layout-blocks">
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4a"><div class="article-t4a-cover-image ar-loading ar-ld-nb"></div><div class="article-t4a-content"><div class="article-t4a-section ar-loading ar-ld-t1-st"></div><div class="article-t4a-headline ar-loading ar-ld-t2-hl"></div><div class="article-t4a-summary ar-loading ar-ld-t2-hl"></div></div></div>
               </div>
-            </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
               </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-            </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
               </div>
             </div>
           </div>
@@ -256,53 +188,19 @@
               <div class="layout-meta-block layout-4-12"></div>
               <div class="layout-meta-block layout-4-12"></div>
             </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4a">
-                <div class="article-t4a-cover-image"><img src="./lib/img/random-img.jpg" /></div>
-                <div class="article-t4a-content">
-                  <div class="article-t4a-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4a-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+            <div id="content-section-opinion" class="layout-blocks">
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4a"><div class="article-t4a-cover-image ar-loading ar-ld-nb"></div><div class="article-t4a-content"><div class="article-t4a-section ar-loading ar-ld-t1-st"></div><div class="article-t4a-headline ar-loading ar-ld-t2-hl"></div><div class="article-t4a-summary ar-loading ar-ld-t2-hl"></div></div></div>
               </div>
-            </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
               </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-            </div>
-            <div class="layout-block layout-4-12">
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
-              </div>
-              <div class="article article-t4b">
-                <div class="article-t4b-content">
-                  <div class="article-t4b-headline">Celebrating Margarita Curtis, 55th HOS</div>
-                  <div class="article-t4b-summary">For the past thirteen years, Margarita Curtis, Deerfield’s first female Head of School, has left an unforgettable legacy within the Deerfield community. Dr. Curtis’ belief in the importance of listening is seen</div>
-                </div>
+              <div class="layout-block layout-4-12">
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+                <div class="article article-t4b"><div class="article-t4b-content"><div class="article-t4b-section ar-loading ar-ld-t1-st"></div><div class="article-t4b-headline ar-loading ar-ld-t2-sm"></div><div class="article-t4b-summary ar-loading ar-ld-t1-hl"></div></div></div>
               </div>
             </div>
           </div>
@@ -329,6 +227,32 @@
       .catch(err => {
         console.error(err);
       })
+
+    function loadEachSection(section, list, articles){
+      section = section.toLowerCase();
+      const focus = articles[list.focus], $section = $(`#content-section-${section}`);
+      $section.html('');
+      let template = '<div class="article article-t4a">'
+        `<div class="article-t4a-cover-image"></div>`+
+        '<div class="article-t4a-content">'+
+          `<div class="article-t4a-section"></div>`+
+          `<div class="article-t4a-headline"></div>`+
+          `<div class="article-t4a-summary"></div>`+
+        '</div>'+
+      '</div>';
+      $section.append(template);
+      list.textonly.forEach(id => {
+        const article = articles[id];
+        template = '<div class="article article-t4b">'+
+          '<div class="article-t4b-content">'+
+            `<div class="article-t4a-section">${article.section}</div>`+
+            `<div class="article-t4b-headline">${article.title}</div>`+
+            `<div class="article-t4b-summary">${article.summary}</div>`+
+          '</div>'+
+        '</div>';
+        $section.append(template);
+      });
+    }
 
     function loadMainTextonly(list, articles){
       $('#content-main-textonly').html('');

@@ -23,22 +23,25 @@ module.exports = class HelperShared{
     };
   }
 
-  static syntax(raw){
-    const coverLink = raw.content.jetpack_featured_media_url;
-
+  static syntaxT1(article){
     return {
-      id: raw.id,
-      title: raw.title.rendered,
-      author: 'author', // need author meta support
-      section: raw.categories[0],
-      summary: raw.excerpt.rendered,
-      content: raw.content.rendered,
+      id: article.id,
+      title: article.title,
+      author: article.author_display,
+      section: article.section,
+      summary: article.summary,
+      content: article.content,
       coverImage: {
-        exists: coverLink !== null,
-        link: coverLink,
-        caption: '',
+        exists: article.image_link !== null,
+        link: article.image_link,
+        caption: article.image_caption,
       },
-      published: this.formatDate(raw.date),
+      coverVideo: {
+        exists: article.video_link !== null,
+        link: article.video_link,
+        caption: article.video_caption,
+      },
+      published: this.formatDate(article.time_published),
     };
   }
 };

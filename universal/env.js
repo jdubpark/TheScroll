@@ -13,5 +13,10 @@ module.exports = {
     name: process.env.DAS_DB_NAME,
     user: process.env.DAS_DB_USER,
     pass: process.env.DAS_DB_PASS,
-  }
+  },
+  wp: {
+    endpoint: process.env.DAS_WP_ENDPOINT,
+    user: process.env.DAS_WP_USER,
+    pass: process.env.DAS_WP_PASS,
+  },
 };
