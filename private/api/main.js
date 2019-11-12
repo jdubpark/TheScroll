@@ -25,10 +25,10 @@ const
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   };
 
-let storedMtdt = {};
+// let storedMtdt = {};
 
 app.use(helmet());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -87,9 +87,9 @@ app.get('/api/teasers/all', (req, res, next) => {
   try {
     Teaser.all()
       .then(response => {
-        if (response.status === 'teaser-generated'){
-          response.payload = Teaser.organizeColumns(response.payload);
-        }
+        // if (response.status === 'teaser-generated'){
+        //   response.payload = Teaser.organizeColumns(response.payload);
+        // }
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));
   } catch (err){

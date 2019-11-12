@@ -152,6 +152,15 @@ create table if not exists `TheScroll`.`CommentT1`(
 --       on delete cascade
 -- ) ENGINE = InnoDB;
 
+create table if not exists `TheScroll`.`DataT1`(
+  `id` int(5) unsigned not null auto_increment,
+  `key` varchar(191) not null,
+  `value` longtext not null,
+  `time_updated` datetime not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key (`key`)
+) ENGINE = InnoDB;
+
 create table if not exists `TheScroll`.`TagsT1`(
 
 ) ENGINE = InnoDB;

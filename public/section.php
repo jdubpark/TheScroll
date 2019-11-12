@@ -41,7 +41,7 @@
                 <div class="header-top-col mini header-top-col-right">
                   <div class="header-mini-actions">
                     <div class="header-mini-action-btn header-mini-action-subscribe"><a>Subscribe</a></div>
-                    <div class="header-mini-action-btn"><a href="./login.php">Login</a></div>
+                    <!-- <div class="header-mini-action-btn"><a href="./login.php">Login</a></div> -->
                   </div>
                 </div>
               </div>
@@ -67,13 +67,13 @@
             <div class="header-nav-container">
               <div class="header-nav-list">
                 <div class="header-nav-item"><a href="./">Home</a></div>
-                <div class="header-nav-item"><a href="./section.php">News</a></div>
-                <div class="header-nav-item"><a href="./section.php">Features</a></div>
-                <div class="header-nav-item"><a href="./section.php">Opinion</a></div>
-                <div class="header-nav-item"><a href="./section.php">Editorial</a></div>
-                <div class="header-nav-item"><a href="./section.php">Arts</a></div>
-                <div class="header-nav-item"><a href="./section.php">Sports</a></div>
-                <div class="header-nav-item"><a href="./section.php">Buzz</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=12">News</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=9">Features</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=13">Opinion</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=7">Editorial</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=2">Arts</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=14">Sports</a></div>
+                <div class="header-nav-item"><a href="./section.php?id=3">Buzz</a></div>
               </div>
               <!-- <div class="header-nav-vd"></div> -->
               <div class="header-nav-list">

@@ -21,7 +21,7 @@ module.exports = class Article extends HelperShared{
           });
           wp.posts().id(articleId)
             .then(article => {
-              console.log(article);
+              // console.log(article);
               const
                 cleaned = this.syntax(article),
                 related = article['jetpack-related-posts'].map(article => this.syntaxRelated(article));
@@ -37,24 +37,5 @@ module.exports = class Article extends HelperShared{
         reject(err);
       }
     });
-  }
-
-  static syntaxRelated(raw){
-    const
-      coverImage = raw.img || {src: ''},
-      section = /\“(\w.*?)\”/g.exec(raw.context) || ['', ''];
-    return {
-      id: raw.id,
-      title: raw.title,
-      // author: '',
-      section: section[1],
-      summary: raw.excerpt,
-      coverImage: {
-        exists: coverImage.src !== null,
-        link: coverImage.src,
-        caption: '',
-      },
-      published: this.formatDate(raw.date),
-    };
   }
 };

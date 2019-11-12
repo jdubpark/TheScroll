@@ -163,7 +163,7 @@ module.exports = class Teaser extends HelperShared{
         else {
           // check if step2.focus is filled
           if (columns.main.step2.focus === null) columns.main.step2.focus = id;
-          else columns.main.step2.focus.else.push(id);
+          else columns.main.step2.else.push(id);
         }
       }
       needMainWC -= 1;

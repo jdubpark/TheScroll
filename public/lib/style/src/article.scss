@@ -18,11 +18,11 @@
   // content
   &-content{font-size:0;}
   // article
-  &-article{display:inline-block;width:33.333333%;padding:15px;font-size:19px;}
+  &-article{display:inline-block;width:33.333333%;padding:15px;font-size:19px;vertical-align:top;}
 }
 .arv-mr-ar{
   &-img{
-    height:150px;width:100%;margin-bottom:10px;background-color:#eee;background-repeat:no-repeat;background-position:center center;background-size:cover;text-align:center;
+    display:block;height:150px;width:100%;margin-bottom:10px;background-color:#eee;background-repeat:no-repeat;background-position:center center;background-size:cover;text-align:center;
     .no-img &{display:none;}
   }
   &-section,&-published{font-size:15px;}

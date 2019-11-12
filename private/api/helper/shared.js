@@ -17,14 +17,15 @@ module.exports = class HelperShared{
       year = dateObj.getFullYear();
     return {
       dateObj,
-      extended: `${dateNames[date]}, ${monthNames.short[monthIndex]} ${day}${dayExt}, ${year}`,
-      readable: `${day} ${monthNames.long[monthIndex]} ${year}`,
+      extended: `${dateNames[date]}, ${monthNames.short[monthIndex]} ${day+dayExt}, ${year}`,
+      readable: `${monthNames.long[monthIndex]} ${day+dayExt}, ${year}`,
+      short: `${monthNames.short[monthIndex]} ${day+dayExt}, ${year}`,
       code: `${year}-${monthIndex+1}-${day}`,
     };
   }
 
   static syntax(raw){
-    const coverLink = raw.content.jetpack_featured_media_url;
+    const coverLink = raw['jetpack_featured_media_url'];
 
     return {
       id: raw.id,
@@ -34,8 +35,46 @@ module.exports = class HelperShared{
       summary: raw.excerpt.rendered,
       content: raw.content.rendered,
       coverImage: {
-        exists: coverLink !== null,
+        exists: coverLink !== '',
         link: coverLink,
+        caption: '',
+      },
+      published: this.formatDate(raw.date),
+    };
+  }
+
+  static syntaxTeaser(raw){
+    const coverLink = raw['jetpack_featured_media_url'];
+    return {
+      id: raw.id,
+      title: raw.title.rendered,
+      author: 'author', // need author meta support
+      section: raw.categories[0],
+      summary: raw.excerpt.rendered,
+      coverImage: {
+        exists: coverLink !== '',
+        link: coverLink,
+        caption: '',
+      },
+      published: this.formatDate(raw.date),
+    };
+  }
+
+  static syntaxRelated(raw){
+    const
+      coverImage = raw.img || {src: ''},
+      section = /\“(\w.*?)\”/g.exec(raw.context) || ['', ''];
+
+    if (coverImage.src !== '' && coverImage.src.slice(0, 4) !== 'http') coverImage.src = 'http://deerfieldscroll.com'+coverImage.src;
+    return {
+      id: raw.id,
+      title: raw.title,
+      // author: '',
+      section: section[1],
+      summary: raw.excerpt,
+      coverImage: {
+        exists: coverImage.src !== '',
+        link: coverImage.src,
         caption: '',
       },
       published: this.formatDate(raw.date),

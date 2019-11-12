@@ -29,6 +29,7 @@
 }
 // article
 .article{
+  & p{margin:0;}
   &-t1a-section,&-t1b-section,&-t1c-section,&-t2-section,&-t3a-section,&-t3b-section,&-t4a-section,&-t4b-section{
     @extend %article-teaser-section;
     display:block;font-size:12px;
@@ -51,7 +52,7 @@
   &-t1c-summary,&-t2-summary,&-t3a-summary,&-t4b-summary{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;}
   &-t1b-summary,&-t3b-summary,&-t4a-summary{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;padding-top:6px;max-height:80px;}
   &-t1b-cover-image,&-t1c-cover-image,&-t2-cover-image,&-t3a-cover-image,&-t3b-cover-image{
-    background-repeat:no-repeat;background-position:top center;background-size:cover;
+    display:block;background-repeat:no-repeat;background-position:center center;background-size:cover;
   }
   // individuals
   &-t1a{

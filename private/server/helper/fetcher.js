@@ -1,5 +1,6 @@
 const
   env = require('../../../universal/env'),
+  APIHelper = require('../../api/helper/shared'),
   WPAPI = require('wpapi');
 
 const wp = new WPAPI({
@@ -9,7 +10,7 @@ const wp = new WPAPI({
   auth: true,
 });
 
-module.exports = class Fetcher{
+module.exports = class Fetcher extends APIHelper{
   static categories(){
     return new Promise((resolve, reject) => {
       // just set it to 100 to get all categories
@@ -31,20 +32,34 @@ module.exports = class Fetcher{
     });
   }
 
-  static posts(num, categories){
+  static posts(categories, num=100, cleanup=true){
     return new Promise((resolve, reject) => {
-      wp.posts().perPage(50)
+      wp.posts().perPage(num)
         .then(articles => {
+          delete articles._paging;
           // console.log(articles);
           // console.log(categories);
-          const cleaned = articles.map(article => {
-            const {date, title: {rendered: title}} = article;
-            let category = article.categories[0];
-            // console.log(title, category, categories[String(category)]);
-            if (categories) category = categories[String(category)];
-            return {date, title, category};
+          const final = {};
+          articles.forEach(article => {
+            const {id} = article;
+            let inSyntax = article;
+
+            if (cleanup){
+              const related = article['jetpack-related-posts'].map(article => this.syntaxRelated(article));
+
+              inSyntax = this.syntax(article);
+              inSyntax.related = related;
+            }
+
+            if (categories){
+              const category = categories[String(article.categories[0])];
+              // console.log(id, category);
+              article.categories = [category.name];
+            }
+
+            final[id] = inSyntax;
           });
-          resolve(cleaned);
+          resolve(final);
         })
         .catch(err => {
           console.log(err);
