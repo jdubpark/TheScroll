@@ -37,6 +37,8 @@ class TeaserFetch extends APIHelper{
               delete articles[id].related;
             });
 
+            // console.log(articles);
+
             const
               organized = this.organizeColumns(articles),
               query1 = 'UPDATE DataT1 SET `value` = ? WHERE `key` = "teasers";',
@@ -110,10 +112,6 @@ class TeaserFetch extends APIHelper{
           },
         },
         sections: {},
-      },
-      sectionSyntax = {
-        focus: null,
-        textonly: [],
       };
     // wc: with cover, woc: without cover
     let needMainWC = 10, needMainWOC = 3;
@@ -147,8 +145,10 @@ class TeaserFetch extends APIHelper{
 
     // MUST BE LAST - organize section columns
     Object.keys(articles.bySection).forEach(sectionName => {
-      const ids = articles.bySection[sectionName];
-      let section = {...sectionSyntax}, needSection = 7;
+      const
+        ids = articles.bySection[sectionName],
+        section = {focus: null, textonly: []};
+      let needSection = 7;
       // console.log(sectionName, ids);
       for (let i = 0; i < ids.length && needSection > 0; i++){
         const id = ids[i];
@@ -164,7 +164,7 @@ class TeaserFetch extends APIHelper{
         this.removeId(idsLeft, id);
       }
       // lazy, just loop all and cut any extra
-      // if (section.textonly.length > needSection) section.textonly = section.textonly.slice(0, needSection);
+      if (section.textonly.length > needSection) section.textonly.splice(0, needSection);
       // assign the value back
       columns.sections[sectionName] = section;
     });

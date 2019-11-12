@@ -34,15 +34,17 @@ module.exports = class Fetcher extends APIHelper{
 
   static posts(categories, num=100, cleanup=true){
     return new Promise((resolve, reject) => {
-      wp.posts().perPage(num)
+      wp.posts().perPage(num).order('desc').orderby('date')
         .then(articles => {
           delete articles._paging;
           // console.log(articles);
           // console.log(categories);
           const final = {};
+          // console.log(articles);
           articles.forEach(article => {
             const {id} = article;
             let inSyntax = article;
+            // console.log(article.id, article.date);
 
             if (cleanup){
               const related = article['jetpack-related-posts'].map(article => this.syntaxRelated(article));
@@ -57,8 +59,10 @@ module.exports = class Fetcher extends APIHelper{
               article.categories = [category.name];
             }
 
-            final[id] = inSyntax;
+            // add space at the front to prevent automatic numeric key sorting
+            final['i'+id] = inSyntax;
           });
+          // console.log(final);
           resolve(final);
         })
         .catch(err => {
