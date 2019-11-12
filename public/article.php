@@ -131,7 +131,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-    axios.get('http://localhost:1289/api/article/<?php echo $_GET['id'];?>')
+
+    // axios.get('http://localhost:1289/api/article/<?php echo $_GET['id'];?>')
+    axios.get('http://beta.deerfieldscroll.com/api/article/<?php echo $_GET['id'];?>')
       .then(res => {
         console.log(res);
         const article = res.data;
@@ -156,7 +158,7 @@
           const template = '<div class="arv-mr-article">'+
             `${coverImage}`+
             `<div class="arv-mr-ar-section">${relArticle.section}</div>`+
-            `<a href="./article?id=${id}" class="arv-mr-ar-headline">${relArticle.title}</a>`+
+            `<a href="./article.php?id=${id}" class="arv-mr-ar-headline">${relArticle.title}</a>`+
             `<div class="arv-mr-ar-published">${relArticle.published.short}</div>`+
           '</div>';
           $('#article-related').append(template);

@@ -4,7 +4,8 @@ const
   env = require('../../universal/env'),
   express = require('express'),
   isNodeProd = env.NODE_ENV === 'production',
-  http = isNodeProd ? require('https') : require('http'),
+  // http = isNodeProd ? require('https') : require('http'),
+  http = require('http'),
   helmet = require('helmet'),
   Promise = require('bluebird'),
   cors = require('cors'),
@@ -16,7 +17,7 @@ const
   port = env.port.main;
 
 const
-  corsWhitelist = ['http://localhost', 'http://localhost:3000', 'http://localhost:3000/website/TheScroll/public/', 'https://deerfieldscroll.com'],
+  corsWhitelist = ['http://localhost', 'http://localhost:3000', 'http://localhost:3000/website/TheScroll/public/', 'https://deerfieldscroll.com', 'http://deerfieldscroll.com', 'http://beta.deerfieldscroll.com'],
   corsOptions = {
     origin: (origin, callback) => {
       if (corsWhitelist.indexOf(origin) !== -1) callback(null, true);

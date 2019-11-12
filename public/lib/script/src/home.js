@@ -1,6 +1,7 @@
 const pako = require('pako');
 
-axios.get('http://localhost:1289/api/teasers/all')
+// axios.get('http://localhost:1289/api/teasers/all')
+axios.get('http://beta.deerfieldscroll.com/api/teasers/all')
   .then(res => {
     const data = JSON.parse(pako.inflate(res.data, {to: 'string'}));
     console.log(data);
