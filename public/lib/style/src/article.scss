@@ -1,5 +1,16 @@
 @import '_vars';
 
+// article loading
+.ar-ld{
+  &-title{height:60px;}
+  &-summary{height:40px;}
+  &-cover{
+    &-image{height:400px;margin-top:20px}
+    &-caption{height:40px;}
+  }
+  &-meta-row{height:40px;}
+  &-content{height:600px;}
+}
 // article viewer
 .arv{
   &-body{padding-bottom:50px;border-bottom:1px solid #aaa;}

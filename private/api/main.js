@@ -29,7 +29,7 @@ const
 // let storedMtdt = {};
 
 app.use(helmet());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions)); // only for prod (blocks Postman)
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -51,38 +51,38 @@ app.get('/api/article/:id', (req, res, next) => {
   }
 });
 
-app.get('/api/articles/:limitCount?/:limitStart?', (req, res, next) => {
-  try {
-    const limitCount = req.params.limitCount || 5;
-    let limitStart = String(req.params.limitStart).trim();
-    if (limitStart === 'undefined') limitStart = 0;
+// app.get('/api/articles/:limitCount?/:limitStart?', (req, res, next) => {
+//   try {
+//     const limitCount = req.params.limitCount || 5;
+//     let limitStart = String(req.params.limitStart).trim();
+//     if (limitStart === 'undefined') limitStart = 0;
+//
+//     Article.findMany(limitCount, limitStart)
+//       .then(response => {
+//         if (response.status === 'articles-found'){
+//           response.payload = response.payload.map((article, key) => {
+//             return Article.syntaxT1(article);
+//           });
+//         }
+//         res.status(200).json(response);
+//       }).catch(err => next(new Error(err)));
+//   } catch (err){
+//     next(new Error(err));
+//   }
+// });
 
-    Article.findMany(limitCount, limitStart)
-      .then(response => {
-        if (response.status === 'articles-found'){
-          response.payload = response.payload.map((article, key) => {
-            return Article.syntaxT1(article);
-          });
-        }
-        res.status(200).json(response);
-      }).catch(err => next(new Error(err)));
-  } catch (err){
-    next(new Error(err));
-  }
-});
-
-app.get('/api/metadata', (req, res, next) => {
-  try {
-    const response = {
-      error: '',
-      status: 'metadata-found',
-      payload: storedMtdt,
-    };
-    res.status(200).json(response);
-  } catch (err){
-    next(new Error(err));
-  }
-});
+// app.get('/api/metadata', (req, res, next) => {
+//   try {
+//     const response = {
+//       error: '',
+//       status: 'metadata-found',
+//       payload: storedMtdt,
+//     };
+//     res.status(200).json(response);
+//   } catch (err){
+//     next(new Error(err));
+//   }
+// });
 
 app.get('/api/teasers/all', (req, res, next) => {
   try {
@@ -98,19 +98,22 @@ app.get('/api/teasers/all', (req, res, next) => {
   }
 });
 
-app.get('/api/teasers/section/:sectionId/:limitCount?/:limitStart?', (req, res, next) => {
+app.get('/api/teasers/section/:sectionId', (req, res, next) => {
   try {
-    const sectionId = req.params.sectionId, limitCount = req.params.limitCount || 20;
-    let limitStart = String(req.params.limitStart).trim();
-    if (limitStart === 'undefined') limitStart = 0;
+    const
+      sectionId = req.params.sectionId,
+      pageNum = req.body.pageNum || 1,
+      perPage = req.body.perPage || 20;
+    // console.log(req.body);
 
-    Teaser.section(sectionId, limitCount, limitStart)
+    Teaser.section(sectionId, pageNum, perPage)
       .then(response => {
-        if (response.status === 'teaser-generated'){
-          response.payload = Teaser.organizeArticles(response.payload);
-          response.payload.section = Object.keys(response.payload.bySection)[0];
-          delete response.payload.bySection;
-        }
+        // if (response.status === 'teaser-generated'){
+        //   response.payload = Teaser.organizeArticles(response.payload);
+        //   response.payload.section = Object.keys(response.payload.bySection)[0];
+        //   delete response.payload.bySection;
+        // }
+        // console.log(response);
         res.status(200).json(response);
       }).catch(err => next(new Error(err)));
   } catch (err){

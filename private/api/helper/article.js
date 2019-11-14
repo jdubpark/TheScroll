@@ -1,7 +1,7 @@
 const
   env = require('../../../universal/env'),
   HelperShared = require('./shared'),
-  WPAPI = require('wpapi');
+  WPAPI = require('wpapi'); // http://wp-api.org/node-wpapi/using-the-client/
 
 module.exports = class Article extends HelperShared{
   static find(articleId){

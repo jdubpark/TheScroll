@@ -26,6 +26,15 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146912859-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-146912859-2');
+    </script>
   </head>
 
   <body>
@@ -85,33 +94,34 @@
       <div id="content" class="layout-container layout-content layout-article">
         <div id="article-viewer" class="arf arf-fluid">
           <div class="arf-container">
-            <div class="arv-header arf-header">
+            <div id="article-header" class="arv-header arf-header">
               <div class="arf-block">
-                <div id="article-title" class="arf-hd-title"></div>
-                <div id="article-summary" class="arf-hd-summary"></div>
+                <div id="article-title" class="arf-hd-title ar-loading ar-ld-title"></div>
+                <div id="article-summary" class="arf-hd-summary ar-loading ar-ld-summary"></div>
               </div>
               <div id="article-hd-cover" class="arf-hd-cover">
-                <div id="article-cover-image" class="arf-hd-cover-image"></div>
-                <div class="arf-hd-cover-caption"></div>
+                <div id="article-cover-image" class="arf-hd-cover-image ar-loading ar-ld-cover-image"></div>
+                <div class="arf-hd-cover-caption ar-loading ar-ld-cover-caption"></div>
               </div>
             </div>
             <div class="arv-body arf-body">
-              <div class="arf-meta arf-mt">
-                <div class="arf-mt-row">
+              <div id="article-meta" class="arf-meta arf-mt">
+                <div id="article-meta-one" class="arf-mt-row ar-loading ar-ld-meta-row">
                   <div id="article-author" class="arf-mt-item arf-mt-author"></div>
-                  <div class="arf-mt-item arf-mt-published">Published <span id="article-published"></span></div>
+                  <div class="arf-mt-item arf-mt-published"><span id="article-published"></span></div>
                 </div>
-                <div class="arf-mt-row">
-                </div>
+                <!-- <div class="arf-mt-row">
+                </div> -->
               </div>
               <div id="article-content" class="arf-content arf-ct">
+                <div class="ar-loading ar-ld-content"></div>
               </div>
             </div>
-            <div class="arv-more arf-short">
+            <div id="article-related-wrapper" class="arv-more arf-short">
               <div class="arv-mr-header arv-mr-hd">
-                <div class="arv-mr-hd-title">More to read</div>
+                <div class="arv-mr-hd-title ar-loading ar-ld-summary"></div>
               </div>
-              <div id="article-related" class="arv-mr-content arv-mr-ct">
+              <div id="article-related" class="arv-mr-content arv-mr-ct ar-loading ar-ld-cover-image">
                 <!-- <div class="arv-mr-article">
                   <div class="arv-mr-ar-img" style=""></div>
                   <div class="arv-mr-ar-section"></div>
@@ -131,42 +141,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-
-    // axios.get('http://localhost:1289/api/article/<?php echo $_GET['id'];?>')
-    axios.get('http://beta.deerfieldscroll.com/api/article/<?php echo $_GET['id'];?>')
-      .then(res => {
-        console.log(res);
-        const article = res.data;
-        $('#article-title').html(article.title);
-        $('#article-summary').html(article.summary);
-        $('#article-content').html(article.content);
-        $('#article-author').html(article.author);
-        $('#article-published').html(article.published.extended);
-
-        if (article.coverImage.exists){
-          $('#article-cover-image').html(`<img src="${article.coverImage.link}" />`);
-        } else {
-          $('#article-hd-cover').remove();
-        }
-
-        article.related.forEach(relArticle => {
-          const id = relArticle.id;
-          let coverImage;
-          if (relArticle.coverImage.exists) coverImage = `<a href="./article?id=${id}" class="arv-mr-ar-img" style="background-image:url(${relArticle.coverImage.link});"></a>`;
-          else coverImage = '';
-
-          const template = '<div class="arv-mr-article">'+
-            `${coverImage}`+
-            `<div class="arv-mr-ar-section">${relArticle.section}</div>`+
-            `<a href="./article.php?id=${id}" class="arv-mr-ar-headline">${relArticle.title}</a>`+
-            `<div class="arv-mr-ar-published">${relArticle.published.short}</div>`+
-          '</div>';
-          $('#article-related').append(template);
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      })
+    const articleId = <?php echo $_GET['id'];?>;
     </script>
+    <script src="./lib/script/dist/article.bundle.js<?php echo "?v=".filemtime("./lib/script/dist/article.bundle.js"); ?>"></script>
 	</body>
 </html>

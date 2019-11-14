@@ -80,4 +80,38 @@ module.exports = class HelperShared{
       published: this.formatDate(raw.date),
     };
   }
+
+  static organizeWPArticles(articles, cleanup=false, categories=null, getRelated=false){
+    delete articles._paging;
+    // console.log(articles);
+    // console.log(categories);
+    const final = {};
+    // console.log(articles);
+    articles.forEach(article => {
+      const {id} = article;
+      let inSyntax = article;
+      // console.log(article.id, article.date);
+
+      if (cleanup){
+        if (getRelated){
+          const related = article['jetpack-related-posts'].map(article => this.syntaxRelated(article));
+          inSyntax = this.syntax(article);
+          inSyntax.related = related;
+        } else {
+          inSyntax = this.syntax(article);
+        }
+      }
+
+      if (categories !== null){
+        const category = categories[String(article.categories[0])];
+        // console.log(id, category);
+        article.categories = [category.name];
+      }
+
+      // add space at the front to prevent automatic numeric key sorting
+      final['i'+id] = inSyntax;
+    });
+    // console.log(final);
+    return final;
+  }
 };

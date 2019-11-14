@@ -4,24 +4,37 @@ const
   env = require('../../universal/env'),
   WPAPI = require('wpapi'),
   mysql = require('mysql2'),
-  pako = require('pako'),
+  // pako = require('pako'),
   CronJob = require('cron').CronJob,
   Fetcher = require('./helper/fetcher'),
   APIHelper = require('../api/helper/shared');
 
-const dbcon = mysql.createConnection({
-  host: env.db.host,
-  user: env.db.user,
-  password: env.db.pass,
-  database: env.db.name,
-});
-dbcon.connect(err => {
-  if (err){
-    console.error('[TheScroll: Server - Teaser] MySQL Error Connecting: ' + err.stack);
-    return;
-  }
-  console.log('[TheScroll: Server - Teaser] MySQL Connected as id ' + dbcon.threadId);
-});
+let dbcon;
+
+function handleMysql(){
+  // Recreate the connection, since the old one cannot be reused.
+  dbcon = mysql.createConnection({
+    host: env.db.host,
+    user: env.db.user,
+    password: env.db.pass,
+    database: env.db.name,
+  });
+
+  dbcon.connect(err => {
+    if (err){
+      console.error('[TheScroll: Server - Teaser] MySQL Error Connecting: ' + err.stack);
+      setTimeout(handleMysql, 2000);
+    }
+    console.log('[TheScroll: Server - Teaser] MySQL Connected as id ' + dbcon.threadId);
+  });
+
+  dbcon.on('error', err => {
+    console.error('[TheScroll: Server - Teaser] MySQL Error: ' + err.stack);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') handleMysql();
+  });
+}
+
+handleMysql();
 
 class TeaserFetch extends APIHelper{
   static fetchAll(){
@@ -52,9 +65,9 @@ class TeaserFetch extends APIHelper{
             delete organized.idsLeft;
 
             // console.log(Object.keys(organized.articles.articles).length);
-            const binaryString = pako.deflate(JSON.stringify(organized), {to: 'string'});
+            // const binaryString = pako.deflate(JSON.stringify(organized), {to: 'string'});
             // console.log(binaryString);
-            dbcon.query(query1, [binaryString], (err, result, fields) => {
+            dbcon.query(query1, [JSON.stringify(organized)], (err, result, fields) => {
               if (err) console.log(err);
             });
             dbcon.query(query2, [JSON.stringify(categories)], (err, result, fields) => {

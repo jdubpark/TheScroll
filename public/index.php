@@ -17,6 +17,15 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146912859-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-146912859-2');
+    </script>
   </head>
 
   <body>
@@ -86,16 +95,18 @@
       </div>
       <div id="content" class="layout-container layout-content layout-blocks">
         <div class="layout-row">
-          <div id="content-main-textonly" class="layout-block layout-block-t1 layout-2--5-12">
-            <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
-            <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
-            <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
-          </div>
-          <div id="content-main-focus1" class="layout-block layout-block-t1 layout-3--5-12">
-            <div class="article article-t1b"><div class="article-t1b-cover-image ar-loading ar-ld-nb"></div><div class="article-t1b-content"><div class="article-t1b-section ar-loading ar-ld-t1-st center"></div><div class="article-t1b-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1b-summary ar-loading ar-ld-t1-hl"></div></div></div>
-          </div>
-          <div id="content-main-focus2" class="layout-block layout-block-t1 layout-4-12">
-            <div class="article article-t1c"><div class="article-t1c-cover-image-wrapper"><div class="article-t1c-cover-image ar-loading ar-ld-nb center"></div></div><div class="article-t1c-content"><div class="article-t1c-section ar-loading ar-ld-t1-st center"></div><div class="article-t1c-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1c-summary ar-loading ar-ld-t1-sm"></div></div></div>
+          <div id="content-main" class="layout-block layout-block-t1 layout-10-12">
+            <div id="content-main-textonly" class="layout-block layout-block-t1 layout-3--5-12">
+              <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
+              <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
+              <div class="article article-t1a"><div class="article-t1a-content"><div class="article-t1a-section ar-loading ar-ld-t1-st"></div><div class="article-t1a-headline ar-loading ar-ld-t1-hl"></div><div class="article-t1a-summary ar-loading ar-ld-t1-sm"></div></div></div>
+            </div>
+            <div id="content-main-focus1" class="layout-block layout-block-t1 layout-4-12">
+              <div class="article article-t1b"><div class="article-t1b-cover-image ar-loading ar-ld-nb"></div><div class="article-t1b-content"><div class="article-t1b-section ar-loading ar-ld-t1-st center"></div><div class="article-t1b-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1b-summary ar-loading ar-ld-t1-hl"></div></div></div>
+            </div>
+            <div id="content-main-focus2" class="layout-block layout-block-t1 layout-4--5-12">
+              <div class="article article-t1c"><div class="article-t1c-cover-image-wrapper"><div class="article-t1c-cover-image ar-loading ar-ld-nb center"></div></div><div class="article-t1c-content"><div class="article-t1c-section ar-loading ar-ld-t1-st center"></div><div class="article-t1c-headline ar-loading ar-ld-t2-hl"></div><div class="article-t1c-summary ar-loading ar-ld-t1-sm"></div></div></div>
+            </div>
           </div>
           <div class="layout-block layout-block-t1 layout-2-12">
             <!-- <div class="specialbox-t1">
