@@ -21,7 +21,7 @@ const options = {
     // 'polyfill': path.resolve(__dirname, dir.js.src, 'polyfill.js'),
     'home': path.resolve(__dirname, dir.js.src, 'home.js'),
     'article': path.resolve(__dirname, dir.js.src, 'article.js'),
-    // 'start': path.resolve(__dirname, dir.js.src, 'start.js'),
+    'section': path.resolve(__dirname, dir.js.src, 'section.js'),
     // 'auth': path.resolve(__dirname, dir.js.src, 'auth.js'),
     // 'dashboard': path.resolve(__dirname, dir.js.src, 'dashboard.js'),
   },

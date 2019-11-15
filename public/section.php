@@ -1,3 +1,11 @@
+<?php
+
+  if (isset($_GET['id']) && !ctype_digit($_GET['id']) || $_GET['id'] < 0){
+    header('HTTP/1.0 404 Not Found', TRUE, 403);
+    die(header('Location: ./'));
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -132,13 +140,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-    axios.get('http://localhost:1289/api/teasers/section/1')
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
+    const sectionId = <?php echo $_GET['id']; ?>;
     </script>
+    <script src="./lib/script/dist/section.bundle.js<?php echo "?v".filetime('./lib/script/dist/section.bundle.js'); ?>"></script>
 	</body>
 </html>
