@@ -12,23 +12,26 @@ const
 sass.compiler = require('node-sass');
 
 function sassBundle(){
-  return src('public/lib/style/src/**/*.scss')
+  // return src('public/lib/style/src/**/*.scss')
+  return src('wordpress/wp-content/themes/deerfieldscroll/assets/scss/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('./map'))
-    .pipe(dest('public/lib/style/dist/'));
+    .pipe(dest('wordpress/wp-content/themes/deerfieldscroll/assets/css/'));
+  // .pipe(dest('public/lib/style/dist/'));
 }
 
 function sassWatch(){
-  watch('public/lib/style/src/**/*.scss', sassBundle);
+  watch('wordpress/wp-content/themes/deerfieldscroll/assets/scss/*.scss', sassBundle);
 }
 
 function bsInit(){
   browserSync.init({
     proxy: 'http://localhost/', // will be node app running on port 6757
     files: [
-      'public/**/*.*', '!**/src/*.*', '!**/src/**/*.*',
+      'public/**/*.*', 'wordpress/wp-content/themes/deerfieldscroll/*.*',
+      'wordpress/wp-content/themes/deerfieldscroll/**/*.*', '!**/src/*.*', '!**/src/**/*.*',
     ],
     // server: {
     //   baseDir: 'public/',

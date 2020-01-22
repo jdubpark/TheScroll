@@ -2,3 +2,9 @@ node_modules/
 .DS_Store
 .env*
 vendor/
+wordpress/*
+!wordpress/wp-content/
+wordpress/wp-content/*
+!wordpress/wp-content/themes/
+wordpress/wp-content/themes/*
+!wordpress/wp-content/themes/deerfieldscroll
