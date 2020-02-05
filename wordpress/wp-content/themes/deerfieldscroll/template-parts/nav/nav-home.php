@@ -28,7 +28,7 @@
         <li><a href="<?php echo get_site_url().'/category/arts-and-entertainment'; ?>">Arts</a></li>
         <li><a href="<?php echo get_site_url().'/category/sports'; ?>">Sports</a></li>
         <li><a href="<?php echo get_site_url().'/category/buzz'; ?>">Buzz</a></li>
-        <li><a href="<?php echo get_site_url().'/archives'; ?>">Archives</a></li>
+        <!-- <li><a href="<?php echo get_site_url().'/archive'; ?>">Archive</a></li> -->
       </ul>
     </div>
   </div>

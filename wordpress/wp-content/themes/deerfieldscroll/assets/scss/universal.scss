@@ -22,7 +22,7 @@ a{
 }
 
 .container,.hfront__container{
-  max-width:1330px;margin:0 auto;padding-left:50px;padding-right:50px;
+  max-width:1360px;margin:0 auto;padding-left:50px;padding-right:50px;
 }
 
 #site{
@@ -30,7 +30,7 @@ a{
     // font-family:'Libre Baskerville', Arial, sans-serif;
   }
   &-content{
-    padding-top:20px;
+    padding-top:20px;padding-bottom:30px;
     &.nopad{padding-top:0;}
   }
 }
@@ -98,10 +98,48 @@ a{
 // article
 //
 .article{
-  display:block;position:relative;
-  &__image{width:100%;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:9;}
+  &,&__wrapper{display:block;position:relative;}
+  &__image{
+    display:block;width:100%;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:9;overflow:hidden;
+    &:hover,&:active ~ .article__content .article__title{text-decoration:underline;}
+  }
   &__content{position:relative;z-index:10;}
   &__category{color:#cd2653;font-size:15px;font-weight:300;font-family:'Cormorant Garamond', sans-serif;text-transform:uppercase;}
-  &__title{font-size:20px;font-weight:bold;font-family:'Spectral', sans-serif;}
+  &__title{
+    font-size:20px;font-weight:bold;font-family:'Spectral', sans-serif;
+    & a{
+      display:inline-block;
+      &:hover,&:active{text-decoration:underline;}
+    }
+  }
   &__excerpt{color:#8c8c8c;font-size:13px;line-height:1.2;}
+}
+
+//
+// footer
+//
+.site-footer{
+  color:#eee;background-color:#2f2f2f;font-size:0;font-family:'Spectral', sans-serif;
+  &__wrapper{padding:40px 0;}
+  &__head{padding-bottom:15px;border-bottom:1px solid #555;}
+  &__body{display:flex;padding-top:25px;}
+  &__block{
+    display:inline-block;padding-right:50px;font-size:17px;
+    &:last-child{padding-right:0;}
+    &-alpha{width:40%;}
+    &-beta{width:20%;}
+  }
+  // custom
+  &__logo,&__list-title{font-weight:900;letter-spacing:-0.5px;}
+  &__logo{font-size:26px;}
+  &__desc{color:#d5d5d5;font-size:15px;line-height:1.4;letter-spacing:0.5px;}
+  &__list{
+    &-title{font-size:24px;line-height:1.2;}
+    &-content{padding-top:10px;color:#d5d5d5;}
+    & li{display:block}
+    & a{
+      display:inline-block;padding:1px;
+      &:hover,&:active{text-decoration:underline;}
+    }
+  }
 }
