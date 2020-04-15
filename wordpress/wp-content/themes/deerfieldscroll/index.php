@@ -34,13 +34,14 @@
   //   // 'category_name' => 'news',
   //   'posts_per_page' => 3,
   // ));
+  $numLast = 7;
   $postsLast = get_posts(array(
-    'numberposts' => 4,
+    'numberposts' => $numLast,
   ));
 
   $postsQuick = get_posts(array(
     'numberposts' => 10,
-    'exclude' => $excludeLast,
+    'offset' => $numLast,
   ));
 
   $excludeLast = [];
@@ -57,7 +58,7 @@
     $homePosts[$fetchCat] = get_posts(array(
       'numberposts' => 4,
       'category' => get_cat_ID($fetchCat),
-      'exclude' => $excludeLast,
+      // 'exclude' => $excludeLast, // don't exclude for now
     ));
   }
 ?>
@@ -65,46 +66,99 @@
 <main id="site-content" class="nopad">
 
   <div id="home-top" class="stack hero">
-    <div class="stack-section">
-      <div class="stack-col left">
-        <div class="stack-col-head">
-          <div class="stack-col-head-name"><span>Quick</span> Browse</div>
-        </div>
-        <div class="stack-col-body quick">
-          <?php
-            foreach ($postsQuick as $post){
-              setup_postdata($post);
-              hm_get_template_part('template-parts/post/article-preview.php', [
-                'type' => 'hero-quick',
-                'opts' => ['excerpt_trim' => 20],
-              ]);
-            }
-          ?>
-        </div>
-      </div>
-      <div class="stack-col center">
-        <div class="stack-col-head">
-          <div class="stack-col-head-name"><span>Headlines</span></div>
-        </div>
-        <div class="stack-col-body headlines">
-          <?php
-            $post = $postsLast[0];
-            setup_postdata($post);
-            hm_get_template_part('template-parts/post/article-preview.php', ['type' => 'hero-top']);
-          ?>
-          <?php
-            $post = $postsLast[1];
-            setup_postdata($post);
-            get_template_part('template-parts/post/article-preview');
-          ?>
+    <div class="stack-wrapper">
+      <div class="stack-section side">
+        <div class="stack-row">
+          <div class="stack-col fluid">
+            <div class="stack-col-head">
+              <div class="stack-col-head-name"><span>Quick</span> Browse</div>
+            </div>
+            <div class="stack-col-body quick">
+              <?php
+                foreach ($postsQuick as $post){
+                  setup_postdata($post);
+                  hm_get_template_part('template-parts/post/article-preview', [
+                    'type' => 'hero-quick',
+                    'opts' => ['excerpt_trim' => 20],
+                  ]);
+                }
+              ?>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="stack-col right">
-        <div class="stack-col-body">
-          <a class="weatherwidget-io" href="https://forecast7.com/en/42d54n72d61/deerfield/?unit=us" data-label_1="DEERFIELD" data-days="5" data-theme="pure" >DEERFIELD</a>
-          <script>
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-          </script>
+      <div class="stack-section main">
+        <div class="stack-row mod">
+          <div class="stack-col fluid">
+            <div class="stack-col-head">
+              <div class="stack-col-head-name"><span>Latest</span> Headlines</div>
+            </div>
+          </div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-col left">
+            <div class="stack-col-body headlines-1">
+              <div class="stack-item">
+                <?php
+                  $post = $postsLast[0];
+                  setup_postdata($post);
+                  hm_get_template_part('template-parts/post/article-preview', ['type' => 'hero-top']);
+                ?>
+              </div>
+              <div class="stack-item">
+                <?php
+                  $post = $postsLast[1];
+                  setup_postdata($post);
+                  hm_get_template_part('template-parts/post/article-preview', ['type' => 'image-top-no-excerpt']);
+                ?>
+                <?php
+                  $posts = array_slice($postsLast, 4, 2); // 5, 6
+                  foreach ($posts as $post){
+                    setup_postdata($post);
+                    get_template_part('template-parts/post/article-preview');
+                  }
+                ?>
+              </div>
+            </div>
+          </div>
+          <div class="stack-col right">
+            <div class="stack-col-body headlines-2">
+              <?php
+                $posts = array_slice($postsLast, 1, 3); // 2, 3, 4
+                foreach ($posts as $post){
+                  setup_postdata($post);
+                  get_template_part('template-parts/post/article-preview');
+                }
+              ?>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack-row">
+          <div class="stack-col left">
+            <div class="stack-col-head">
+              <div class="stack-col-head-name"><span>More</span> Headlines</div>
+            </div>
+            <div class="stack-col-body">
+
+            </div>
+          </div>
+          <div class="stack-col right">
+            <div class="stack-col-head">
+              <div class="stack-col-head-name"><span>Deerfield, MA</span></div>
+            </div>
+            <div class="stack-col-body">
+              <div class="stack-block">
+                <a class="weatherwidget-io" href="https://forecast7.com/en/42d54n72d61/deerfield/?unit=us" data-label_1="DEERFIELD" data-days="5" data-theme="pure" >DEERFIELD</a>
+                <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+              </div>
+              <div class="stack-block">
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -46,6 +46,13 @@
 
         case 'hero-quick':
           $layers = array_slice($layers, 1);
+          $layers['content']['category'] = false;
+          // $layers['content']['excerpt'] = false;
+          break;
+
+        case 'image-top-no-excerpt':
+          $layers['content']['excerpt'] = false;
+          break;
 
         default: break;
       }

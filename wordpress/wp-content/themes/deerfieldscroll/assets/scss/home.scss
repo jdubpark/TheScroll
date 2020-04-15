@@ -10,54 +10,71 @@
     stack
 */
 .stack{
-  &-section{
-    display:flex;flex-flow:column wrap;
+  &-wrapper,&-section,&-row{display:flex;flex-flow:column wrap;}
+  &-wrapper,&-row{
     @media (min-width: $screen-m){flex-flow:row nowrap;}
   }
   //
   // style name: hero
   //
-  &.hero &-section{
+  &.hero &-wrapper{
     border-bottom:1px solid $bdc-m;
   }
-  &.hero &-col{
+  &.hero &-section{
     flex:1 1;
+    // top-level: main, side
+    &.main{
+      min-width:100%;
+      @media (min-width: $screen-m){min-width:auto;}
+    }
+    &.side{
+      display:none;
+      @media (min-width: $screen-m){display:block;max-width:25%;border-right:1px solid $bdc-m;}
+    }
+  }
+  &.hero &-row{
+    border-bottom:1px solid $bdc-m;
+    &:last-child,&.mod{border-bottom:0;}
+  }
+  &.hero &-col{
+    flex:1 1;border-right:0;
     @media (min-width: $screen-m){border-right:1px solid $bdc-m;}
-    &.center,&.right{
+    &.fluid,&.right{
+      @media (min-width: $screen-m){border-right:0;}
+    }
+    // sub-level (of main): left, right
+    &.left,&.right{
       min-width:100%;
       @media (min-width: $screen-m){min-width:auto;}
     }
     &.left{
-      display:none;
-      @media (min-width: $screen-m){display:block;max-width:25%;}
-    }
-    &.center{
-      @media (min-width: $screen-m){max-width:50%;}
+      @media (min-width: $screen-m){max-width:60%;}
     }
     &.right{
-      @media (min-width: $screen-m){max-width:25%;border-right:0;}
+      @media (min-width: $screen-m){max-width:40%;}
     }
     //
     // mix
     &-head,&-body{
-      padding:1rem 2rem 0.5rem;
-      @media (min-width: $screen-m){padding:2rem 3.5rem 0.7rem;}
+      padding-left:2rem;padding-right:2rem;
+      @media (min-width: $screen-m){padding-left:3.5rem;padding-right:3.5rem;}
     }
     //
     // head
     &-head{
-      border-bottom:1px solid $bdc-m;
+      padding-top:0.8rem;padding-bottom:0.6rem;border-bottom:1px solid $bdc-m;
+      @media (min-width: $screen-m){padding-top:1.2rem;padding-bottom:1rem;}
       &-name{
-        color:$dagreen;font-size:1.4rem;font-weight:400;font-family:'Noto Sans', sans-serif;text-transform:uppercase;letter-spacing:-0.1px;
-        @media (min-width: $screen-m){font-size:1.5rem;}
+        color:$dagreen;font-size:1.4rem;font-weight:400;font-family:'Noto Sans', sans-serif;text-transform:uppercase;text-align:center;letter-spacing:-0.1px;
+        @media (min-width: $screen-m){font-size:1.5rem;text-align:left;}
         & span{font-weight:bold;}
       }
     }
     //
     // body
     &-body{
-      display:flex;flex-flow:column wrap;padding-bottom:1rem;
-      @media (min-width: $screen-m){padding-bottom:2rem;}
+      display:flex;flex-flow:column wrap;padding-top:1rem;padding-bottom:1rem;
+      @media (min-width: $screen-m){padding-top:2rem;padding-bottom:2rem;}
       & .article{
         flex:1 1;
       }
@@ -76,29 +93,51 @@
         }
       }
       // headlines
-      &.headlines .article{
-        &__category{
-          font-size:1.4rem;
-          @media (min-width: $screen-m){font-size:1.6rem;}
+      &.headlines-1{
+        .article{
+          &__category{
+            font-size:1.4rem;
+            @media (min-width: $screen-m){font-size:1.6rem;}
+          }
+          &__title{line-height:1.3;}
+          &__image{margin:1.5rem 0;}
         }
-        &__title{line-height:1.3;}
-        &__image{margin:1.5rem 0;}
-        &:first-child{
-          width:100%;margin-bottom:1rem;
-          @media (min-width: $screen-m){margin-bottom:2rem;}
-          .article__title,.article__excerpt{line-height:1.3;}
-          .article__title{
-            margin:0.5rem 0;font-size:2.6rem;letter-spacing:0;
+        & .stack-item:first-child .article{
+          width:100%;margin-bottom:0.5rem;padding-bottom:0.5rem;border-bottom:1px solid $bdc-m;text-align:center;
+          @media (min-width: $screen-m){margin-bottom:1rem;padding-bottom:1rem;}
+          &__title,&__excerpt{line-height:1.3;}
+          &__title{
+            // font-family:Georgia, serif;
+            max-width:80%;margin:0.5rem auto;font-size:2.6rem;
             @media (min-width: $screen-m){font-size:3.4rem;}
           }
-          .article__excerpt{
-            font-size:1.8rem;
-            @media (min-width: $screen-m){font-size:2rem;}
+          &__excerpt{
+            font-size:1.6rem;
+            @media (min-width: $screen-m){font-size:1.8rem;}
           }
-          .article__image{height:40rem;}
+          &__image{height:40rem;}
+        }
+        & .stack-item:nth-child(2) .article{
+
+        }
+      }
+      &.headlines-2{
+        .article{
+          margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid $bdc-m;
+          &:last-child(border-bottom:0;)
+          @media (min-width: $screen-m){margin-bottom:2rem;padding-bottom:2rem;}
+          &__image{
+            height:15rem;margin-bottom:1rem;
+            @media (min-width: $screen-m){height:20rem;}
+          }
+          &__title{margin:0.5rem 0;}
         }
       }
     }
+  }
+  &.hero &-block{
+    margin-bottom:1rem;
+    @media (min-width: $screen-m){margin-bottom:2rem;}
   }
 }
 
