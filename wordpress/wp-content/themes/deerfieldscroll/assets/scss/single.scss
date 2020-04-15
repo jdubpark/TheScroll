@@ -19,7 +19,7 @@
   }
   &__title{padding-top:20px;font-size:5rem;font-weight:800;font-family:'Spectral', serif;line-height:1.1;letter-spacing:-2px;}
   &__info{
-    padding-top:30px;color:#555;font-size:0;
+    padding-top:20px;color:#555;font-size:0;
     &-row{
       padding-bottom:15px;
       &:last-child{padding-bottom:0;}
@@ -36,9 +36,13 @@
     }
     &-value{font-size:18px;}
   }
+  &__image{
+    height:400px;width:100%;max-width:600px;margin:0 auto;
+    &-wrapper{padding-top:30px;}
+  }
   // body
   &__content{
-    padding:50px 0;font-size:20px;font-family:'Spectral', serif;line-height:1.4;
+    padding:30px 0 50px;font-size:20px;font-family:'Spectral', serif;line-height:1.4;
     &::before,&::after{content:'';display:table;clear:both;}
     & > p{
       margin:24px 0;
@@ -55,4 +59,8 @@
       margin-top:8px;color:#555;font-size:14px;line-height:1;
     }
   }
+}
+
+.articles{
+  &-related{}
 }

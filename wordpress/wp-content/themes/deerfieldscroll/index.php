@@ -38,6 +38,11 @@
     'numberposts' => 4,
   ));
 
+  $postsQuick = get_posts(array(
+    'numberposts' => 10,
+    'exclude' => $excludeLast,
+  ));
+
   $excludeLast = [];
   if ($postsLast):
     foreach ($postsLast as $postLast):
@@ -57,11 +62,57 @@
   }
 ?>
 
-<main id="site-content">
+<main id="site-content" class="nopad">
 
-  <div class="hfront__stack hfront__stack-alpha hfront__container">
-    <div class="hfront__stack-col left">
-      <div class="hfront__stack-articles hfront__stack-articles-alpha">
+  <div id="home-top" class="stack hero">
+    <div class="stack-section">
+      <div class="stack-col left">
+        <div class="stack-col-head">
+          <div class="stack-col-head-name"><span>Quick</span> Browse</div>
+        </div>
+        <div class="stack-col-body quick">
+          <?php
+            foreach ($postsQuick as $post){
+              setup_postdata($post);
+              hm_get_template_part('template-parts/post/article-preview.php', [
+                'type' => 'hero-quick',
+                'opts' => ['excerpt_trim' => 20],
+              ]);
+            }
+          ?>
+        </div>
+      </div>
+      <div class="stack-col center">
+        <div class="stack-col-head">
+          <div class="stack-col-head-name"><span>Headlines</span></div>
+        </div>
+        <div class="stack-col-body headlines">
+          <?php
+            $post = $postsLast[0];
+            setup_postdata($post);
+            hm_get_template_part('template-parts/post/article-preview.php', ['type' => 'hero-top']);
+          ?>
+          <?php
+            $post = $postsLast[1];
+            setup_postdata($post);
+            get_template_part('template-parts/post/article-preview');
+          ?>
+        </div>
+      </div>
+      <div class="stack-col right">
+        <div class="stack-col-body">
+          <a class="weatherwidget-io" href="https://forecast7.com/en/42d54n72d61/deerfield/?unit=us" data-label_1="DEERFIELD" data-days="5" data-theme="pure" >DEERFIELD</a>
+          <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="hfront-top" class="hfstack hfstack-alpha hfcontainer">
+    <div class="hfstack-col left">
+      <div class="hfstack-articles hfstack-articles-alpha">
         <?php
           $post = $postsLast[0];
           setup_postdata($post);
@@ -74,7 +125,7 @@
           get_template_part('template-parts/post/article-preview');
         ?>
       </div>
-      <div class="hfront__stack-articles hfront__stack-articles-beta">
+      <div class="hfstack-articles hfstack-articles-beta">
         <?php
           $post = $postsLast[1];
           setup_postdata($post);
@@ -88,30 +139,31 @@
         ?>
       </div>
     </div>
-    <div class="hfront__stack-col right">
-      <div class="hfront__stack-item hfront__weather">
+    <div class="hfstack-col right">
+      <div class="hfstack-item hfweather">
         <a class="weatherwidget-io" href="https://forecast7.com/en/42d54n72d61/deerfield/?unit=us" data-label_1="DEERFIELD" data-days="5" data-theme="pure" >DEERFIELD</a>
         <script>
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
         </script>
       </div>
-      <div class="hfront__stack-item">
-        <div class="hfront__subscribe">
-          <div class="hfront__subscribe-title">Subscribe to the Scroll</div>
+      <div class="hfstack-item">
+        <div class="hfsubscribe">
+          <div class="hfsubscribe-desc">Receive the latest updates and issues (email only)</div>
+          <div class="hfsubscribe-btn"><a href="subscribe">Subscribe to the Scroll</a></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="hfront__padding sm"></div>
+  <div class="hfpadding sm"></div>
 
-  <div id="posts-news" class="hfront__block">
-    <div class="hfront__prefmt">
-      <div class="hfront__section-header">
-        <div class="hfront__section-title">Latest News</div>
+  <div id="posts-news" class="hfblock">
+    <div class="hfprefmt">
+      <div class="hfsection-header">
+        <div class="hfsection-title">Latest News</div>
       </div>
-      <div class="hfront__section hfront__section-alpha hfront__container">
-        <div class="hfront__section-articles hfront__section-articles-alpha">
+      <div class="hfsection hfsection-alpha hfcontainer">
+        <div class="hfsection-articles hfsection-articles-alpha">
           <?php
           if ($homePosts['news']):
             foreach ($homePosts['news'] as $post):
@@ -126,13 +178,13 @@
     </div>
   </div>
 
-  <div id="posts-features" class="hfront__block">
-    <div class="hfront__prefmt">
-      <div class="hfront__section-header">
-        <div class="hfront__section-title">The Scroll Features</div>
+  <div id="posts-features" class="hfblock">
+    <div class="hfprefmt">
+      <div class="hfsection-header">
+        <div class="hfsection-title">The Scroll Features</div>
       </div>
-      <div class="hfront__section hfront__section-alpha hfront__container">
-        <div class="hfront__section-articles hfront__section-articles-alpha">
+      <div class="hfsection hfsection-alpha hfcontainer">
+        <div class="hfsection-articles hfsection-articles-alpha">
           <?php
           if ($homePosts['features']):
             foreach ($homePosts['features'] as $post):
@@ -147,29 +199,29 @@
     </div>
   </div>
 
-  <div class="hfront__container">
-    <div class="hfront__divider"></div>
+  <div class="hfcontainer">
+    <div class="hfdivider"></div>
   </div>
 
   <div id="posts-opinion">
-    <div class="hfront__prefmt">
-      <div class="hfront__section hfront__section-beta hfront__container">
-        <div class="hfront__section-articles hfront__section-articles-alpha">
+    <div class="hfprefmt">
+      <div class="hfsection hfsection-beta hfcontainer">
+        <div class="hfsection-articles hfsection-articles-alpha">
           <?php
           if ($homePosts['opinion']):
             $post = $homePosts['opinion'][0];
             setup_postdata($post);
-            get_template_part('template-parts/post/article-preview');
+            get_template_part('template-parts/post/article-preview', 'big');
             wp_reset_postdata();
           endif;
           ?>
         </div>
-        <div class="hfront__section-articles hfront__section-articles-beta">
+        <div class="hfsection-articles hfsection-articles-beta">
           <?php
           if ($homePosts['opinion']):
             foreach (array_slice($homePosts['opinion'], 1) as $post):
               setup_postdata($post);
-              get_template_part('template-parts/post/article-preview');
+              get_template_part('template-parts/post/article-preview', 'textonly');
             endforeach;
             wp_reset_postdata();
           endif;
@@ -179,13 +231,13 @@
     </div>
   </div>
 
-  <div id="posts-editorial" class="hfront__block">
-    <div class="hfront__prefmt">
-      <div class="hfront__section-header">
-        <div class="hfront__section-title">Editorials</div>
+  <div id="posts-editorial" class="hfblock">
+    <div class="hfprefmt">
+      <div class="hfsection-header">
+        <div class="hfsection-title">Editorials</div>
       </div>
-      <div class="hfront__section hfront__section-alpha hfront__container">
-        <div class="hfront__section-articles hfront__section-articles-alpha">
+      <div class="hfsection hfsection-alpha hfcontainer">
+        <div class="hfsection-articles hfsection-articles-alpha">
           <?php
           if ($homePosts['editorial']):
             foreach ($homePosts['editorial'] as $post):
@@ -201,14 +253,14 @@
   </div>
 
   <div id="posts-ae">
-    <div class="hfront__prefmt">
-      <div class="hfront__section hfront__section-charlie hfront__container">
-        <div class="hfront__section-articles hfront__section-articles-alpha">
+    <div class="hfprefmt">
+      <div class="hfsection hfsection-charlie hfcontainer">
+        <div class="hfsection-articles hfsection-articles-alpha">
           <?php
           if ($homePosts['a&e']):
             foreach (array_slice($homePosts['a&e'], 1) as $post):
               setup_postdata($post);
-              get_template_part('template-parts/post/article-preview');
+              get_template_part('template-parts/post/article-preview', 'ae');
             endforeach;
             wp_reset_postdata();
           endif;
@@ -218,26 +270,51 @@
     </div>
   </div>
 
-  <div id="posts-ae">
-    <div class="hfront__prefmt">
-      <div class="hfront__section hfront__section-beta hfront__container">
-        <div class="hfront__section-articles hfront__section-articles-beta switch">
+  <div id="posts-sports">
+    <div class="hfprefmt">
+      <div class="hfsection hfsection-beta hfcontainer">
+        <div class="hfsection-articles hfsection-articles-beta switch">
           <?php
           if ($homePosts['sports']):
             foreach (array_slice($homePosts['sports'], 1) as $post):
               setup_postdata($post);
-              get_template_part('template-parts/post/article-preview');
+              get_template_part('template-parts/post/article-preview', 'textonly');
             endforeach;
             wp_reset_postdata();
           endif;
           ?>
         </div>
-        <div class="hfront__section-articles hfront__section-articles-alpha">
+        <div class="hfsection-articles hfsection-articles-alpha">
           <?php
           if ($homePosts['sports']):
             $post = $homePosts['sports'][0];
             setup_postdata($post);
-            get_template_part('template-parts/post/article-preview');
+            get_template_part('template-parts/post/article-preview', 'big');
+            wp_reset_postdata();
+          endif;
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hfcontainer">
+    <div class="hfdivider"></div>
+  </div>
+
+  <div id="posts-buzz" class="hfblock">
+    <div class="hfprefmt">
+      <div class="hfsection-header">
+        <div class="hfsection-title">Deerfield Buzz</div>
+      </div>
+      <div class="hfsection hfsection-alpha hfcontainer">
+        <div class="hfsection-articles hfsection-articles-alpha">
+          <?php
+          if ($homePosts['buzz']):
+            foreach ($homePosts['buzz'] as $post):
+              setup_postdata($post);
+              get_template_part('template-parts/post/article-preview', 'switch');
+            endforeach;
             wp_reset_postdata();
           endif;
           ?>

@@ -4,7 +4,15 @@
   box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);
   &::before,&::after{@extend *;}
 }
-html, body{position:relative;margin:0;padding:0;background-color:$bgc-m;color:$cl-m;font-weight:500;font-family:'Inter var', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;line-height:1.3;-webkit-font-smoothing:antialiased;}
+:root{
+  font-size:62.5%; // pegs to 1rem = 10px
+  body{
+    margin: 0;
+    // Body font size 16px
+    font-size: 1.6rem;
+  }
+}
+html, body{position:relative;margin:0;padding:0;background-color:$bgc-m;color:$cl-m;font-weight:500;font-family:'Open Sans', 'Inter var', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;line-height:1.3;-webkit-font-smoothing:antialiased;}
 // font-family:'Libre Baskerville', Arial, sans-serif;
 body{min-height:100vh;overflow-x:hidden;}
 ul{
@@ -21,13 +29,14 @@ a{
   }
 }
 
-.container,.hfront__container{
-  max-width:1360px;margin:0 auto;padding-left:50px;padding-right:50px;
+.container{
+  max-width:1360px;margin:0 auto;padding-left:20px;padding-right:20px;
+  @media (min-width: $screen-m){padding-left:50px;padding-right:50px;}
 }
 
 #site{
   &-nav{
-    // font-family:'Libre Baskerville', Arial, sans-serif;
+    position:relative;
   }
   &-content{
     padding-top:20px;padding-bottom:30px;
@@ -42,12 +51,28 @@ a{
   font-size:0;
   &-top{
     padding:8px 0;color:#fff;background-color:#333;
-    &-item{}
   }
+  &-content,&-menu{border-bottom:1px solid $bdc-m;}
   &-content{
-    padding-top:30px;
+    padding:20px 0;
+    @media (min-width: $screen-m){padding:30px 0 20px;border-bottom:0;}
+    & .container{display:flex;justify-content:center;}
   }
-  &-icon{display:block;width:367px;height:50px;margin:0 auto;background-image:url('../images/deerfield-scroll-logo.png');background-size:100% 100%;background-position:center;background-repeat:no-repeat;}
+  &-item{
+    flex:1 1;
+    &.left{
+      @media (min-width: $screen-m){display:none;flex:0;}
+    }
+    &.center{
+      min-width:60%;text-align:center;
+      @media (min-width: $screen-m){min-width:100%;}
+    }
+    &.right{text-align:right;}
+  }
+  &-icon{
+    display:block;width:22rem;height:3rem;margin:0 auto;background-image:url('../images/deerfield-scroll-logo.png');background-size:100% 100%;background-position:center;background-repeat:no-repeat;
+    @media (min-width: $screen-m){width:33rem;height:4.5rem;}
+  }
   &-info{
     margin-top:6px;text-align:center;
     &-item{
@@ -56,17 +81,47 @@ a{
       &:last-child::after{display:none;}
     }
   }
-  &-category{
-    margin-top:10px;padding-bottom:5px;border-bottom:1px solid #d5d5d5;text-align:center;
-    & li{display:inline-block;margin-right:10px;font-size:16px;}
-    & a{display:block;padding:2px 4px;}
+  &-menu{
+    position:absolute;max-height:0;width:100vw;top:100%;left:0;background-color:#fff;border-color:transparent;text-align:center;
+    z-index:10000;overflow-y:hidden;transition:max-height 0.3s ease;
+    @media (min-width: $screen-m){position:relative;max-height:none;border-color:#d5d5d5;}
+    &.open{
+      max-height:200rem;border-color:#d5d5d5;
+      & ul{opacity:1;}
+    }
+    &-trigger{
+      display:inline-block;padding:0 0.5rem;background-color:inherit;border:1px solid transparent;cursor:pointer;
+      @media (min-width: $screen-m){display:none;}
+      &:focus{border-color:#000;outline:0;}
+      & span{
+        display:block;height:1px;width:2.2rem;margin:0.6rem 0;background-color:#000;
+      }
+    }
+    & ul{
+      display:block;padding:2rem 0 1.5rem;opacity:0;transition:opacity 0.3s ease, padding 0.3s ease;
+      @media (min-width: $screen-m){padding:0 0 0.5rem;opacity:1;}
+    }
+    & li{
+      display:inline-block;margin-right:1rem;margin-bottom:0.5rem;font-size:1.7rem;text-transform:uppercase;letter-spacing:-0.1px;
+      @media (min-width: $screen-m){margin-bottom:0;}
+    }
+    & a{
+      display:block;position:relative;padding:0.2rem 0.4rem;
+      &::after{
+        content:'\0020';display:block;position:relative;height:1px;width:0;left:50%;bottom:0;background-color:#000;transform:translateX(-50%);transition:width 200ms $gts;
+        @media (min-width: $screen-m){bottom:calc(-0.2rem - 0.5rem);}
+      }
+      &:hover::after{width:100%;}
+    }
   }
 }
+
 .stnav__stock{
-  display:flex;font-size:0;
+  display:flex;flex-flow:row nowrap;font-size:0;white-space:nowrap;overflow-x:auto;
   &-ticker{
-    flex:1 1;font-weight:400;
+    display:inline-block;margin-right:2rem;font-weight:400;
     &:last-child{margin-right:0;}
+    @media (min-width: $screen-m){flex:1 1 auto;margin-right:1rem;}
   }
   &-col{
     display:inline-block;position:relative;margin-right:5px;font-size:13px;letter-spacing:-0.3px;vertical-align:middle;
@@ -88,7 +143,7 @@ a{
   &-content{padding-top:20px;}
   &-icon{display:block;width:257px;height:35px;margin:0 auto;background-image:url('../images/deerfield-scroll-logo.png');background-size:100% 100%;background-position:center;background-repeat:no-repeat;}
   &-category{
-    margin-top:10px;padding-bottom:10px;border-bottom:1px solid #d5d5d5;text-align:center;
+    margin-top:10px;padding-bottom:10px;border-bottom:1px solid #d5d5d5;text-align:center;user-select:none;
     & li{display:inline-block;margin-right:5px;font-size:15px;}
     & a{display:block;padding:2px 4px;}
   }
@@ -101,18 +156,20 @@ a{
   &,&__wrapper{display:block;position:relative;}
   &__image{
     display:block;width:100%;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:9;overflow:hidden;
+    &.contain{background-size:contain;}
     &:hover,&:active ~ .article__content .article__title{text-decoration:underline;}
+    &.no-image{display:none;}
   }
   &__content{position:relative;z-index:10;}
-  &__category{color:#cd2653;font-size:15px;font-weight:300;font-family:'Cormorant Garamond', sans-serif;text-transform:uppercase;}
+  &__category{color:$g-red;font-size:1.2rem;font-weight:700;font-family:'Noto Sans', sans-serif;letter-spacing:0.1rem;text-transform:uppercase;}
   &__title{
-    font-size:20px;font-weight:bold;font-family:'Spectral', sans-serif;
+    font-size:2rem;font-weight:bold;font-family:'Noto Sans', sans-serif;
     & a{
       display:inline-block;
       &:hover,&:active{text-decoration:underline;}
     }
   }
-  &__excerpt{color:#8c8c8c;font-size:13px;line-height:1.2;}
+  &__excerpt{color:#696d70;font-size:1.3rem;line-height:1.2;font-family:'Times New Roman', Times, Georgia, serif;}
 }
 
 //

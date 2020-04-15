@@ -1,6 +1,9 @@
-$bgc-m: #f9f9f9; // bgc main
-// #fff
+$bgc-m: #fff; // bgc main
+// #f9f9f9
 $cl-m: #222; // color main
+$bdc-m: #d5d5d5;
+
+$screen-m: 1024px;
 
 // %font-headline{font-family:'Cormorant Garamond', serif;}
 %font-headline{font-family:'Gentium Basic', serif;}
@@ -16,9 +19,10 @@ $yellowsea: #f2a543;
 $mediumpurple: #6d64ed; // medium slate purple
 $keppel: #65b8a6;
 $avocado: #568203;
+$dagreen: #235628;
 
 // most names are from (sipapp.io)
-$google-red: #db4437;
+$g-red: #db4437;
 $google-blue: #4285f4;
 $google-yellow: #f4b400;
 $google-green: #0f9d58;

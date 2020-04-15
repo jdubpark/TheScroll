@@ -110,11 +110,11 @@ rules:
   - 1
   -
     include: true
-#
-#   nesting-depth:
-#   - 1
-#   -
-#     max-depth: 4
+
+  nesting-depth:
+  - 3
+  -
+    max-depth: 5
 #
 #   property-units:
 #     - 1

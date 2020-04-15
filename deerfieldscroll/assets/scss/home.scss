@@ -1,0 +1,125 @@
+@import '_vars';
+
+#posts-news{background-color:#eee;}
+#posts-editorial{background-color:#f0f0f0;}
+
+// home front
+.hfront{}
+.hfront__stack{
+  &-alpha{font-size:0;}
+  &-alpha &-col{
+    display:inline-block;vertical-align:top;
+    &.left{width:80%;padding-right:10px;}
+    &.right{width:20%;padding-left:5px;}
+  }
+  &-alpha &-articles{
+    display:inline-block;vertical-align:top;
+    & .article{
+      padding:18px 0;border-bottom:1px solid #ddd;
+      &:first-child{padding-top:0;}
+      &:last-child{padding-bottom:0;border-bottom:0;}
+      &__image{height:250px;}
+      &__category{position:absolute;padding:12px 16px 4px 12px;background-color:$bgc-m;font-size:12px;transform:translateY(-100%);}
+      &__title,&__excerpt{padding:8px 10px 0;}
+      &.textonly .article__category{position:relative;padding:6px 10px 2px;transform:none;}
+      &.textonly .article__title{padding-top:0;}
+    }
+  }
+  &-alpha &-articles-alpha{
+    width:60%;padding-right:15px;border-right:1px solid #ddd;
+    & .article{
+      &:first-child .article__image{height:300px;}
+      &__title{font-size:26px;}
+    }
+  }
+  &-alpha &-articles-beta{
+    width:40%;padding-left:15px;
+  }
+  &-item{
+    padding-bottom:10px;
+    &:last-child{padding-bottom:0;}
+  }
+}
+.hfront__padding{
+  padding:20px 0;
+  &.xs{padding:10px 0;}
+  &.sm{padding:15px 0;}
+  &.lg{padding:25px 0;}
+}
+// preformat
+.hfront__prefmt{
+  padding:25px 0;
+  &.beta{padding:20px 0;}
+}
+.hfront__divider{display:block;border-top:1px solid #ddd;}
+.hfront__section{
+  &-header{
+    padding-bottom:20px;text-align:center;
+    // &.beta{text-align:left;}
+  }
+  &-title{@extend %font-article;color:$punch;font-size:26px;font-weight:bolder;}
+  &-beta,&-charlie,&-articles{font-size:0;}
+  &-alpha &-articles{
+    & .article{
+      display:inline-block;width:25%;padding:0 4px;vertical-align:top;
+    }
+    & .article:nth-child(1){padding-left:0;padding-right:8px;}
+    & .article:nth-child(2){padding-right:6px;}
+    & .article:nth-child(3){padding-left:6px;}
+    & .article:nth-child(4){padding-left:8px;padding-right:0;}
+  }
+  &-alpha &-articles-alpha .article{
+    &__image{height:200px;width:100%;}
+    &__content{padding:8px 3px 5px;}
+    &__title{line-height:1.2;}
+    &__excerpt{padding-top:5px;}
+    &__category{display:none;}
+  }
+  &-beta &-articles{
+    &-alpha,&-beta{display:inline-block;vertical-align:top;}
+    &-alpha{width:40%;}
+    &-beta{
+      width:60%;padding-left:20px;
+      &.switch{padding-left:0;padding-right:20px;}
+    }
+  }
+  &-beta &-articles-alpha .article{
+    position:relative;
+    &__image{position:absolute;height:200px;width:100%;max-width:350px;top:-100px;left:50%;border:1px solid #f8f9fa;transform:translateX(-50%);}
+    &__content{margin-top:100px;padding:120px 20px 25px;background-color:#f2f2f2;z-index:2;}
+    &__category,&__title{text-align:center;}
+    &__category{padding-bottom:5px;}
+    &__excerpt{max-width:400px;margin:0 auto;padding-top:10px;}
+  }
+  &-beta &-articles-beta .article{
+    padding-top:15px;padding-bottom:15px;border-bottom:1px solid #ddd;
+    &:first-child{padding-top:0;}
+    &:last-child{padding-bottom:0;border-bottom:0;}
+    &__image{display:none;}
+    &__content{padding:0 10px;}
+    &__category{padding-bottom:5px;color:$carmine-pink;}
+    &__excerpt{padding:10px 5px 0 0;}
+  }
+  &-charlie &-articles-alpha .article{
+    display:inline-block;position:relative;width:33.333333%;padding:0 10px;vertical-align:top;
+    &__image{
+      position:relative;height:300px;
+      &::before{
+        content:'';position:absolute;height:170px;bottom:0;right:0;left:0;
+        background-image: linear-gradient(to top, rgba(30, 30, 30, 190), rgba(30, 30, 30, 0));
+      }
+      &::after{content:'';display:block;height:9999px;}
+    }
+    &__content{position:absolute;bottom:0;left:0;right:0;padding:10px 20px;}
+    &__category{color:$carnation;}
+    &__title{color:#fff;}
+    &__excerpt{display:none;}
+  }
+}
+.hfront__block{
+}
+.hfront__subscribe{
+  padding:20px 15px;background-color:$dagreen;font-size:15px;
+  &-desc{padding-bottom:10px;color:#f2f2f2;}
+  &-btn{@extend %font-article;padding:10px;color:#333;background-color:#f2f2f2;font-weight:bold;text-align:center;}
+}

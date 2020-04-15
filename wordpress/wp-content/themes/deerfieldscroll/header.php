@@ -30,8 +30,10 @@
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/assets/css/single.min.css" />
 		<?php elseif (is_category()): ?>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/assets/css/category.min.css" />
+		<?php elseif (is_page('about') or is_page('subscribe') or is_page('contact-us')): ?>
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/assets/css/trivial.min.css" />
 		<?php endif; ?>
-		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600|Spectral:400,400i,700,700i|Libre+Baskerville:400,400i|Open+Sans:800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Open+Sans:400,600,700|Spectral:400,700&display=swap" rel="stylesheet">
 		<!-- Gentium+Basic:400 -->
 		<noscript>
 			You need to enable JavaScript to run this app.

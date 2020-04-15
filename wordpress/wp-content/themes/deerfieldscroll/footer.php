@@ -28,7 +28,7 @@
               <li><a href="<?php echo get_site_url().'/category/arts-and-entertainment'; ?>">Arts</a></li>
               <li><a href="<?php echo get_site_url().'/category/sports'; ?>">Sports</a></li>
               <li><a href="<?php echo get_site_url().'/category/buzz'; ?>">Buzz</a></li>
-              <li><a href="<?php echo get_site_url().'/archive'; ?>">Archive</a></li>
+              <li><a href="<?php echo get_site_url().'/archive/'; ?>">Archive</a></li>
             </ul>
           </div>
         </div>
@@ -36,8 +36,9 @@
           <div class="site-footer__list">
             <div class="site-footer__list-title">The Scroll</div>
             <ul class="site-footer__list-content">
-              <li><a href="<?php echo get_site_url().'/about'; ?>">About</a></li>
-              <li><a href="<?php echo get_site_url().'/contact'; ?>">Contact</a></li>
+              <li><a href="<?php echo get_site_url().'/about/'; ?>">About</a></li>
+              <li><a href="<?php echo get_site_url().'/contact-us/'; ?>">Contact</a></li>
+              <li><a href="<?php echo get_site_url().'/subscribe/'; ?>">Subscribe</a></li>
               <li><a href="https://deerfield.edu" target="_blank">DA website</a></li>
             </ul>
           </div>
@@ -46,6 +47,10 @@
     </div>
   </div>
 </footer>
+
+<?php if (is_category()): ?>
+<script>const wpPageCategory = <?php echo $cat; ?>;</script>
+<?php endif; ?>
 
 <?php wp_footer(); ?>
 

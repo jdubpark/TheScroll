@@ -58,7 +58,11 @@
             </div>
           </div>
         </div>
-        <?php echo get_the_post_thumbnail_url(); ?>
+        <?php if (get_the_post_thumbnail_url()): ?>
+        <div class="viewer__image-wrapper">
+          <div class="viewer__image" style="background-image:url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
     <div class="viewer__body">
@@ -77,8 +81,15 @@
     </div>
   </article>
 
-  <div class="article-related">
-
+  <div class="articles-related">
+    <?php
+      // foreach ($post as $key => $val){
+      //   echo "$key -- ".gettype($val)."<br />";
+      // }
+      // echo class_exists('Jetpack_RelatedPosts');
+      // if (class_exists('Jetpack_RelatedPosts')) echo do_shortcode('[jetpack-related-posts]');
+      // echo do_shortcode( '[labnol_related]' );
+    ?>
   </div>
 
 </main>

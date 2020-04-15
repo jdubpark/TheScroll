@@ -28,7 +28,7 @@
  ));
 
  // for dev
- $get_posts = array_merge($get_posts, $get_posts, $get_posts, $get_posts);
+ // $get_posts = array_merge($get_posts, $get_posts, $get_posts, $get_posts);
  // end dev
 
  $posts_main = array_slice($get_posts, 0, 3);
@@ -56,14 +56,14 @@
             <?php
               $post = $posts_main[1];
               setup_postdata($post);
-              get_template_part('template-parts/post/article-preview');
+              get_template_part('template-parts/post/article-preview', 'feature-beta');
             ?>
           </div>
           <div class="category__articles-main category__articles-main-beta">
               <?php
                 $post = $posts_main[2];
                 setup_postdata($post);
-                get_template_part('template-parts/post/article-preview');
+                get_template_part('template-parts/post/article-preview', 'feature-beta');
               ?>
           </div>
         </div>
@@ -74,15 +74,17 @@
         </div>
         <div class="category__body">
           <div class="category__block category__block-left">
-            <div class="category__articles-long">
+            <div id="category__articles-long" class="category__articles-long">
               <?php
-              foreach ($posts_long as $_post):
-                $post = $_post;
+              foreach ($posts_long as $post):
                 setup_postdata($post);
                 get_template_part('template-parts/post/article-preview', 'section-long');
               endforeach;
               wp_reset_postdata();
               ?>
+            </div>
+            <div class="category__articles-loadmore">
+              <div id="category-loadmore" class="category__articles-loadmore-btn">Load More Articles</div>
             </div>
           </div>
           <div class="category__block category__block-right">

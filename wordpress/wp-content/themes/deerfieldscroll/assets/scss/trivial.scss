@@ -1,0 +1,16 @@
+@import '_vars';
+
+#about,#subscribe,#contact-us{max-width:700px;margin:0 auto;padding:10px 20px;text-align:center;}
+
+.triv{
+  &-block{padding:10px 0;}
+  &-head{padding-bottom:15px;}
+  // head
+  &-img img{height:400px;width:auto;}
+  &-title{padding-top:10px;font-size:30px;font-weight:bold;}
+  // body
+  &-desc{
+    line-height:1.5;
+    & p:first-child{margin-top:0;}
+  }
+}

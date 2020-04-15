@@ -29,13 +29,14 @@
       &:first-child{padding-top:0;}
       &:last-child{padding-bottom:0;border-bottom:0;}
       &__category{display:none;}
-      &:not(.textonly) .article__image{height:250px;}
+      &__image{height:300px;}
       &__content{padding:10px;}
       &__title{font-size:18px;letter-spacing:-0.5px;line-height:1.2;}
       &__excerpt{padding-top:5px;line-height:1.3;}
     }
     &-alpha .article{
       &__title{font-size:22px;}
+      &__image{height:370px;}
     }
   }
   &__articles-long{
@@ -55,6 +56,13 @@
       }
       &__title{font-size:22px;letter-spacing:-0.3px;}
       &__excerpt{padding-top:10px;}
+    }
+  }
+  &__articles-loadmore{
+    text-align:center;
+    &-btn{
+      display:inline-block;padding:8px 20px;background-color:#ddd;border-radius:2px;font-size:18px;cursor:pointer;
+      &:hover,&:active{background-color:#eee;}
     }
   }
 }

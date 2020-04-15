@@ -1,7 +1,7 @@
 <div id="mini-nav" class="mini-nav">
   <div id="mini-nav-content" class="mini-nav-content">
     <div class="container">
-      <a class="mini-nav-icon" href="./" title="The Deerfield Scroll"></a>
+      <a class="mini-nav-icon" href="<?php echo get_site_url(); ?>" title="The Deerfield Scroll"></a>
     </div>
   </div>
   <div id="mini-nav-bottom">

@@ -8,18 +8,24 @@
   </div>
   <div id="site-nav-content" class="site-nav-content">
     <div class="container">
-      <a class="site-nav-icon" href="./" title="The Deerfield Scroll"></a>
-      <div class="site-nav-info">
-        <div class="site-nav-info-item"><?php echo date('l, M j, Y'); ?></div>
-        <div class="site-nav-info-item"><i>Be Worthy of Your Heritage</i></div>
-        <div class="site-nav-info-item">Print Edition</div>
-        <div class="site-nav-info-item">About</div>
+      <div class="site-nav-item left">
+        <button id="site-nav-menu-trigger" class="site-nav-menu-trigger">
+          <span class="a"></span>
+          <span class="b"></span>
+          <span class="c"></span>
+        </button>
+      </div>
+      <div class="site-nav-item center">
+        <a class="site-nav-icon" href="<?php echo get_site_url(); ?>" title="The Deerfield Scroll"></a>
+      </div>
+      <div class="site-nav-item right">
+
       </div>
     </div>
   </div>
-  <div id="site-nav-bottom">
-    <div class="site-nav-category">
-      <ul class="container">
+  <div id="site-nav-menu" class="site-nav-menu">
+    <div class="container">
+      <ul>
         <li><a href="<?php echo get_site_url(); ?>">Home</a></li>
         <li><a href="<?php echo get_site_url().'/category/news'; ?>">News</a></li>
         <li><a href="<?php echo get_site_url().'/category/features'; ?>">Features</a></li>
