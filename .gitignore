@@ -8,3 +8,5 @@ wordpress/wp-content/*
 !wordpress/wp-content/themes/
 wordpress/wp-content/themes/*
 !wordpress/wp-content/themes/deerfieldscroll
+sage-deerfieldscroll/
+bulma-0.9.0/
