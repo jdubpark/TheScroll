@@ -34,8 +34,8 @@
   //   // 'category_name' => 'news',
   //   'posts_per_page' => 3,
   // ));
-  $numLast = 11;
-  $numQuick = 11;
+  $numLast = 8;
+  $numQuick = 12;
   $postsLast = get_posts(array(
     'numberposts' => $numLast,
   ));
@@ -52,135 +52,246 @@
     endforeach;
   endif;
 
-  $fetchCats = ['news', 'features', 'opinion', 'editorial', 'a&e', 'sports', 'buzz'];
+  $fetchCats = [
+    'news' => 5,
+    'features' => 5,
+    'opinion' => 6, 'editorial' => 5, 'a&e' => 5, 'sports' => 5, 'buzz' => 5];
   $homePosts = [];
 
-  foreach ($fetchCats as $fetchCat){
+  foreach ($fetchCats as $fetchCat => $numpost){
     $homePosts[$fetchCat] = get_posts(array(
-      'numberposts' => 4,
+      'numberposts' => $numpost,
       'category' => get_cat_ID($fetchCat),
       'exclude' => $excludeLast,
     ));
   }
 ?>
 
-<main id="site-content" class="nopad">
+<main id="site-content" class="site-content home">
+  <section>
+    <div class="container hero front-cover">
+      <div class="columns is-multiline">
+        <section class="column is-3 is-topmost front-cover-quick front-cover-level">
+          <div class="front-cover-head">
+            <div class="front-cover-title"><strong>Quick</strong> browse</div>
+          </div>
 
-  <div id="home-top" class="stack hero">
-    <div class="stack-wrapper">
-      <div class="stack-section side">
-        <div class="stack-row">
-          <div class="stack-col fluid">
-            <div class="stack-col-head">
-              <div class="stack-col-head-name"><span>Quick</span> Browse</div>
-            </div>
-            <div class="stack-col-body quick">
-              <?php
-                foreach ($postsQuick as $post){
-                  setup_postdata($post);
-                  hm_get_template_part('template-parts/post/article-preview', [
-                    'type' => 'hero-quick',
-                    'opts' => ['excerpt_trim' => 20],
-                  ]);
-                }
-              ?>
-            </div>
+          <div class="front-cover-body">
+            <?php
+            foreach ($postsQuick as $post){
+              setup_postdata($post);
+              hm_get_template_part('template-parts/post/article-preview', [
+                'type' => 'hero-quick',
+                'opts' => ['excerpt_trim' => 22],
+              ]);
+            }
+            ?>
           </div>
-        </div>
-      </div>
-      <div class="stack-section main">
-        <div class="stack-row mod">
-          <div class="stack-col fluid">
-            <div class="stack-col-head">
-              <div class="stack-col-head-name"><span>Latest</span> Headlines</div>
+        </section>
+
+        <section class="column is-9 is-topmost front-cover-main front-cover-level">
+          <section class="columns is-multiline front-cover-wrap">
+            <div class="column is-12 front-cover-head">
+              <div class="front-cover-title"><strong>Latest</strong> headlines</div>
             </div>
-          </div>
-        </div>
-        <div class="stack-row">
-          <div class="stack-col left">
-            <div class="stack-col-body headlines-1">
-              <div class="stack-item">
-                <?php
+
+            <div class="column is-7 front-cover-focus front-cover-level">
+              <div class="front-cover-body">
+                <div class="front-cover-ftop">
+                  <?php
                   $post = $postsLast[0];
                   setup_postdata($post);
                   hm_get_template_part('template-parts/post/article-preview', ['type' => 'hero-top']);
-                ?>
-              </div>
-              <div class="stack-item">
-                <?php
-                  $post = $postsLast[1];
-                  setup_postdata($post);
-                  hm_get_template_part('template-parts/post/article-preview');
-                ?>
-                <?php
-                  $posts = array_slice($postsLast, 5, 2); // 6, 7
-                  foreach ($posts as $post){
+                  ?>
+                </div>
+
+                <div class="front-cover-fsup">
+                  <?php
+                  $posts = [$postsLast[2], $postsLast[4]];
+                  foreach ($posts as $idx => $post){
                     setup_postdata($post);
-                    hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-image-no-excerpt']);
+                    if ($idx % 2 == 1) hm_get_template_part('template-parts/post/article-preview', ['type' => 'flip-image']);
+                    else hm_get_template_part('template-parts/post/article-preview');
                   }
-                ?>
+                  ?>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="stack-col right">
-            <div class="stack-col-body headlines-2">
-              <?php
-                $posts = array_slice($postsLast, 2, 3); // 3, 4, 5
+
+            <div class="column is-5 front-cover-side front-cover-level">
+              <div class="front-cover-body">
+                <?php
+                $posts = [$postsLast[1], $postsLast[3], $postsLast[5]];
                 foreach ($posts as $post){
                   setup_postdata($post);
                   hm_get_template_part('template-parts/post/article-preview');
                 }
-              ?>
+                ?>
+              </div>
             </div>
-          </div>
-        </div>
+          </section>
 
-        <div class="stack-row">
-          <div class="stack-col left">
-            <div class="stack-col-head">
-              <div class="stack-col-head-name"><span>More</span> Headlines</div>
-            </div>
-            <div class="stack-col-body headlines-3">
-              <div class="stack-item">
-                <?php
-                  $posts = array_slice($postsLast, 7, 2); // 8, 9
-                  foreach ($posts as $post){
-                    setup_postdata($post);
-                    hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-excerpt']);
-                  }
-                ?>
+          <section class="columns is-multiline front-cover-wrap">
+            <div class="column is-7 front-cover-more front-cover-level">
+              <div class="front-cover-head">
+                <div class="front-cover-title"><strong>Look</strong> through</div>
               </div>
-              <div class="stack-item">
-                <?php
-                  $posts = array_slice($postsLast, 9, 2); // 10, 111
-                  foreach ($posts as $post){
-                    setup_postdata($post);
-                    hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-image-no-excerpt']);
-                  }
-                ?>
+
+              <section class="columns is-multiline front-cover-body">
+                <div class="column is-6 is-last">
+                  <?php
+                  $post = $postsLast[6];
+                  setup_postdata($post);
+                  hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-excerpt']);
+                  ?>
+                </div>
+
+                <div class="column is-6 is-last">
+                  <?php
+                  $post = $postsLast[7];
+                  setup_postdata($post);
+                  hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-excerpt']);
+                  ?>
+                </div>
+              </section>
+            </div>
+
+            <div class="column is-5 front-cover-deerfield front-cover-level">
+              <div class="front-cover-head">
+                <div class="front-cover-title"><strong>Deerfield, MA</strong></div>
               </div>
-            </div>
-          </div>
-          <div class="stack-col right">
-            <div class="stack-col-head">
-              <div class="stack-col-head-name"><span>Deerfield, MA</span></div>
-            </div>
-            <div class="stack-col-body">
-              <div class="stack-block">
+
+              <div class="front-cover-body">
                 <a class="weatherwidget-io" href="https://forecast7.com/en/42d54n72d61/deerfield/?unit=us" data-label_1="DEERFIELD" data-days="5" data-theme="pure" >DEERFIELD</a>
                 <script>
                 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
                 </script>
               </div>
-              <!-- <div class="stack-block">
-
-              </div> -->
             </div>
+          </section>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container cover-news cover-divi news">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/news"><strong>Latest</strong> news <span></span></a>
+          </div>
+        </div>
+        <?php
+        if ($homePosts['news']):
+          foreach ($homePosts['news'] as $post):
+            setup_postdata($post);
+            echo '<div class="column is-one-fifth">';
+            hm_get_template_part('template-parts/post/article-preview', [
+              'type' => 'no-category',
+              'opts' => ['excerpt_trim' => 20],
+            ]);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container cover-opinion cover-divi opinion">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/opinion"><strong>Opinion</strong> columns <span></span></a>
+          </div>
+        </div>
+        <?php
+        if ($homePosts['opinion']):
+          foreach ($homePosts['opinion'] as $post):
+            setup_postdata($post);
+            echo '<div class="column is-4">';
+            hm_get_template_part('template-parts/post/article-preview', [
+              'type' => 'plain-text',
+              'opts' => ['excerpt_trim' => 30],
+            ]);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container cover-features cover-divi features">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/features"><strong>The Scroll</strong> features <span></span></a>
+          </div>
+        </div>
+        <?php
+        if ($homePosts['features']):
+          foreach ($homePosts['features'] as $post):
+            setup_postdata($post);
+            echo '<div class="column is-one-fifth">';
+            hm_get_template_part('template-parts/post/article-preview', [
+              'type' => 'no-category',
+              'opts' => ['excerpt_trim' => 20],
+            ]);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section>
+    <div class="container cover-opinion opinion">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/opinion"><strong>Deerfield</strong> Buzz <span></span></a>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="column is-5">
+      <?php
+      if ($homePosts['opinion']):
+        $post = $homePosts['opinion'][0];
+        setup_postdata($post);
+        hm_get_template_part('template-parts/post/article-preview');
+        wp_reset_postdata();
+      endif;
+      ?>
+    </div>
+
+    <div class="column is-7">
+      <div class="columns is-multiline">
+        <?php
+        if ($homePosts['opinion']):
+          foreach (array_slice($homePosts['opinion'], 1) as $post):
+            setup_postdata($post);
+            echo '<div class="column is-12">';
+            hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-image']);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section> -->
+</main>
+
+<!-- <main id="site-content" class="nopad">
 
   <div id="posts-news" class="hfblock">
     <div class="hfprefmt container">
@@ -348,7 +459,7 @@
     </div>
   </div>
 
-</main>
+</main> -->
 
 <?php
 get_footer();

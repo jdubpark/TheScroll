@@ -1,0 +1,26 @@
+@mixin not($selector)
+  &:not(#{$selector})
+    @content
+
+@mixin not-first-child($selector)
+  & #{$selector}:not(:first-child)
+    @content
+
+@mixin not-last-child($selector)
+  & #{$selector}:not(:last-child)
+    @content
+
+@mixin odd-child($selector)
+  & #{$selector}:nth-child(2n-1)
+    @content
+
+@mixin even-child($selector)
+  & #{$selector}:nth-child(2n)
+    @content
+
+@mixin transition($duration: 0.3s, $properties...)
+  // @if list.is-bracketed($properties)
+  transition:
+    property: #{$properties}
+    duration: $duration
+    timing-function: $ts-cubic

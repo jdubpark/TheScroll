@@ -15,7 +15,7 @@
     'excerpt' => true,
   ];
 
-  // order matters
+  // ORDER MATTERS!!
   $layers = [
     'image' => $layer_image,
     'content' => $layer_content,
@@ -40,14 +40,22 @@
     if (isset($type)){
       switch ($type) {
         case 'hero-top':
+        case 'flip-image':
+          # swap image to after
           $layers = array_slice($layers, 1);
           $layers['image'] = $layer_image;
           break;
 
         case 'hero-quick':
+        case 'plain-text':
+          # no image, no category
           $layers = array_slice($layers, 1);
           $layers['content']['category'] = false;
           // $layers['content']['excerpt'] = false;
+          break;
+
+        case 'no-category':
+          $layers['content']['category'] = false;
           break;
 
         case 'no-excerpt':
@@ -89,7 +97,7 @@
 
   $prop_image = [
     'class' => 'article__image',
-    'href' => get_the_permalink(),
+    'url' => get_the_permalink(),
     'style' => 'background-image:url('.get_the_post_thumbnail_url().')',
   ];
 
@@ -122,10 +130,11 @@
     $content = $props[$root];
 
     if ($root == 'image' && $is_enabled['image']){
-      $propagated = $propagated.'<a class="'.$content['class'].'"'
-        .' href="'.$content['href'].'"'
-        .' style="'.$content['style'].'"'
-        .'></a>';
+      $propagated = $propagated
+      .'<a class="'.$content['class'].'"'
+      .' href="'.$content['url'].'"'
+      .' style="'.$content['style'].'">'
+      .'</a>';
     } else if ($root == 'content'){
       $propagated = $propagated.'<div class="'.$content['class'].'">';
 

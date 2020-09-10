@@ -1,0 +1,62 @@
+.article
+  line-height: 1.2
+
+  &__content
+    position: relative
+    z-index: 10
+
+  &__image
+    @extend .bg-img
+    display: block
+    // default height
+    height: 15rem
+    width: 100%
+    margin: 1rem 0
+    z-index: 9
+    overflow: hidden
+
+    @include breakpoint($desktop)
+      margin: 1.5rem 0
+
+    &-wrapper
+      position: relative
+
+    &-blur
+      @extend .bg-img
+      content: ''
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      z-index: -1
+      filter: blur(5px)
+
+  &__category
+    color: $punch
+    font:
+      weight: 700
+      family: $ff-noto
+      size: 0.85em
+    // letter-spacing: -0.1rem
+    text-transform: uppercase
+
+  &__title
+    margin: 0.5rem 0
+    font:
+      weight: 600
+      family: $ff-noto-serif
+      size: 1.1em
+
+    a
+      display: inline-block
+
+      &:hover
+        text-decoration: underline
+
+  &__excerpt
+    color: #696d70
+    font:
+      family: 'Times New Roman', Times, Georgia, serif
+      size: 1.4rem
+    line-height: 1.2

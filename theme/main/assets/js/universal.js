@@ -72,20 +72,20 @@ function updateStockTicker(symbol, data){
   console.log('universal script loaded');
   // http://coinwis.com/api/trivial/composite-indice
 
-  $(document).ready(function(){
-    const targets = Object.keys(stockIndiceTargets);
-    targets.forEach(symbol => {
-      const target = stockIndiceTargets[symbol];
-      const $parent = $(`[stock-ticker="${target}"]`);
-      $stockIndiceTargets[symbol] = {
-        parent: $parent,
-        value: $parent.children('.stock-ticker-value'),
-        change: $parent.children('.stock-ticker-change'),
-      };
-    });
-
-    updateStocks($);
-  });
+  // $(document).ready(function(){
+  //   const targets = Object.keys(stockIndiceTargets);
+  //   targets.forEach(symbol => {
+  //     const target = stockIndiceTargets[symbol];
+  //     const $parent = $(`[stock-ticker="${target}"]`);
+  //     $stockIndiceTargets[symbol] = {
+  //       parent: $parent,
+  //       value: $parent.children('.stock-ticker-value'),
+  //       change: $parent.children('.stock-ticker-change'),
+  //     };
+  //   });
+  //
+  //   updateStocks($);
+  // });
 
   $(document).on('click', '#site-nav-menu-trigger', function(){
     const $t = $(this);

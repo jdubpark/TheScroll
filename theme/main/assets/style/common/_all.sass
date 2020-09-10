@@ -1,0 +1,19 @@
+// built in modules // https://sass-lang.com/documentation/modules
+// @use 'sass:list'
+
+// font awesome
+// solid -> .fas // regular -> .far // light -> .fal // duotone -> .fad
+// variable -> $fa-var-{name}, e.g. $fa-var-search
+@import '../fa/content/fontawesome'
+// @import '../fa/content/solid'
+@import '../fa/content/regular'
+
+// https://github.com/at-import/breakpoint/wiki/
+// order does matter
+@import 'breakpoint'
+
+@import 'variables'
+@import 'extends'
+@import 'functions'
+@import 'mixins'
+@import 'app'

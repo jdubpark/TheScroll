@@ -1,0 +1,55 @@
+
+\:root
+  // pegs to 1rem = 10px
+  font-size: 62.5%
+  body
+    margin: 0
+    // Body font size 16px
+    font-size: 1.6rem
+
+// @font-face
+//   font:
+//     family: 'Nevis'
+//     style: serif
+//   src: url('../../fonts/nevis/nevis.ttf') format('truetype')
+
+// @font-face
+//   font:
+//     family: 'Jura'
+//     style: serif
+//   src: url('../../fonts/jura/jura.ttf') format('truetype')
+//
+// @font-face
+//   font:
+//     family: 'Jura'
+//     style: serif
+//     weight: bold
+//   src: url('../../fonts/jura/jura-bold.ttf') format('truetype')
+
+a
+  &, &:focus, &:hover, &:active
+    @include transition(0.3s, 'color', 'border', 'border-color')
+
+    color: inherit
+    text-decoration: none
+
+  &.proper-a
+    color: #118fb6
+    border-bottom: 1px dotted #118fb6
+
+    &:hover, &:active
+      color: #0c7393
+      border-bottom: 1px solid #0e7d9f
+
+
+.container
+  $pad-m: 1rem
+  $pad-l: 2rem
+  padding:
+    left: $pad-m
+    right: $pad-m
+
+  @include breakpoint($desktop)
+    padding:
+      left: $pad-l
+      right: $pad-l
