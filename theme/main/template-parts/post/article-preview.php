@@ -1,7 +1,7 @@
 <?php
 
   //
-  //  Constructing layers
+  //  Constructing layers - ORDER MATTERS
   //
 
   $layer_opts = [
@@ -11,6 +11,7 @@
   $layer_image = ['image' => true];
   $layer_content = [
     'category' => true,
+    'pubdate' => false,
     'title' => true,
     'excerpt' => true,
   ];
@@ -46,12 +47,24 @@
           $layers['image'] = $layer_image;
           break;
 
+        case 'image-main':
+          # no category & excerpt
+          $layers['content']['category'] = false;
+          $layers['content']['excerpt'] = false;
+          break;
+
         case 'hero-quick':
         case 'plain-text':
-          # no image, no category
+          # no image & category
           $layers = array_slice($layers, 1);
           $layers['content']['category'] = false;
           // $layers['content']['excerpt'] = false;
+          break;
+
+        case 'search':
+          # no image, add date
+          $layers = array_slice($layers, 1);
+          $layers['content']['pubdate'] = true;
           break;
 
         case 'no-category':
@@ -79,13 +92,14 @@
   // var_dump($layers);
 
   //
-  //  Propagating layers
+  //  Propagating layers - ORDER MATTERS
   //
   $is_enabled = [ // mostly just for readability
     // enabled AND thumbnail url is valid
     'image' => $layers['image']['image'] && get_the_post_thumbnail_url(),
     'content' => [
       'category' => $layers['content']['category'],
+      'pubdate' => $layers['content']['pubdate'],
       'title' => $layers['content']['title'],
       'excerpt' => $layers['content']['excerpt'],
     ],
@@ -106,7 +120,11 @@
     'children' => [
       'category' => [
         'class' => 'article__category',
-        'value' => get_the_category()[0]->name,
+        'value' => get_the_category()[0]->name, // [0] for safety
+      ],
+      'pubdate' => [
+        'class' => 'article__pubdate',
+        'value' => get_the_date('F j, Y'), # e.g. January 1, 2020
       ],
       'title' => [
         'class' => 'article__title',

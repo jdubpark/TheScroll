@@ -61,19 +61,27 @@
 		<div id="header">
 			<?php
         // $menus = wp_get_nav_menus();
-        $menu_slug = 'main-menu';
-        $menu_items = wp_get_nav_menu_items($menu_slug, array('update_post_term_cache' => false));
-        $cleaned_list = array();
-        if ($menu_items){
-          foreach ($menu_items as $menu_item){
-            if ($menu_item->post_type !== 'nav_menu_item') continue;
-            $cleaned_list[] = array(
-              'title' => $menu_item->title,
-              'url' => $menu_item->url
-            );
+        $menus = ['main' => [], 'scroll' => [], 'more' => []];
+        $menus_slug = [
+          'main' => 'main-menu',
+          'scroll' => 'scroll-menu',
+          'more' => 'more-menu',
+        ];
+        foreach ($menus_slug as $menu_key => $menu_slug){
+          $menu_items = wp_get_nav_menu_items($menu_slug, array('update_post_term_cache' => false));
+          if ($menu_items){
+            foreach ($menu_items as $menu_item){
+              if ($menu_item->post_type !== 'nav_menu_item') continue;
+              $title = trim($menu_item->title);
+              if (strtolower($title) == 'home') continue;
+              $menus[$menu_key][] = array(
+                'title' => $title,
+                'url' => $menu_item->url
+              );
+            }
           }
         }
 
-        hm_get_template_part('template-parts/nav/nav-main', ['list' => $cleaned_list])
+        hm_get_template_part('template-parts/nav/nav-main', ['menus' => $menus])
 			?>
 		</div>

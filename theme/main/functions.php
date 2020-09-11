@@ -38,12 +38,12 @@ function dascroll_setup(){
 	// Default content width
 	$GLOBALS['content_width'] = 525;
 
-	register_nav_menus(
-		array(
-			'top' => __('Top Menu', 'dascroll'),
-			'social' => __('Social Links Menu', 'dascroll'),
-		)
-	);
+	// register_nav_menus(
+	// 	array(
+	// 		'top' => __('Top Menu', 'dascroll'),
+	// 		'social' => __('Social Links Menu', 'dascroll'),
+	// 	)
+	// );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -101,8 +101,11 @@ add_filter( 'wp_resource_hints', 'dascroll_resource_hints', 10, 2 );
 
 function dascroll_custom_menus(){
 	register_nav_menus(array(
-		'main-menu' => 'Main Menu',
+		'main-menu' => 'Top Main Menu',
+		'scroll-menu' => 'Top Scroll Menu',
+		'more-menu' => 'Top More Menu',
 		'side-post-menu' => 'Side Post Menu',
+		'footer-menu' => 'Footer Menu'
 		// 'tertiary' => 'Tertiary menu',
 	));
 }

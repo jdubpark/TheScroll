@@ -32,14 +32,22 @@
       z-index: -1
       filter: blur(5px)
 
+  &__category, &__pubdate
+    font:
+      family: $ff-noto
+      size: 0.85em
+
   &__category
     color: $punch
     font:
       weight: 700
       family: $ff-noto
-      size: 0.85em
     // letter-spacing: -0.1rem
     text-transform: uppercase
+
+  &__pubdate
+    color: #666
+    margin-top: 0.4rem
 
   &__title
     margin: 0.5rem 0
@@ -55,7 +63,7 @@
         text-decoration: underline
 
   &__excerpt
-    color: #696d70
+    color: $excerpt
     font:
       family: 'Times New Roman', Times, Georgia, serif
       size: 1.4rem

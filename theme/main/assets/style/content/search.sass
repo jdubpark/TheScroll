@@ -1,0 +1,79 @@
+$search-cover-bdr-bot: 3px solid #333
+
+.search-cover
+  $p: &
+
+  max-width: 100rem
+  margin: 0 auto
+  padding-top: 1rem
+
+  .column
+    &.is-non-post
+      padding:
+        top: 0
+        bottom: 0
+
+  &-head
+    padding-bottom: 1rem
+    border-bottom: $search-cover-bdr-bot
+
+    #{$p}-title
+      font-size: 1.2em
+      line-height: 1.3
+
+      span
+        font-size: 1.1em
+
+    #{$p}-amnt
+      padding-top: 0.2rem
+      // text-align: right
+      font-size: 0.9em
+
+  &-content
+    width: 100%
+
+    .column
+      margin-bottom: 1.5rem
+
+    .article
+      &__category, &__title
+        font-weight: 400
+
+      &__title, &__excerpt
+        max-width: 65rem
+
+      &__category
+        font-size: 0.8em
+
+      &__title
+        margin-bottom: 0.8rem
+        font:
+          weight: 400
+          size: 1.2em
+
+  &-pagination
+    width: 100%
+    padding: 1.2rem 1rem 1rem
+    text-align: center
+    cursor: default
+    user-select: none
+
+    &.at-top
+      border-bottom: 2px solid #777
+
+    &.at-bottom
+      border-top: 2px solid #777
+      border-bottom: $search-cover-bdr-bot
+
+    .page-numbers
+      margin: 0 0.1rem
+      padding: 0.3rem 0.7rem
+      color: #444
+
+      &.current
+        color: $da-mono
+        font-weight: bold
+
+      @include not('.current')
+        &:hover, &:active
+          color: $da-mono

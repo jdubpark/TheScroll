@@ -1,0 +1,303 @@
+// @import '../colors/_all'
+// @import '../common/_all'
+// @use '../common/_all' as com // @use is not supported yet
+
+$hdr-col-space: 0.4rem
+
+.site-nav
+  // $p -> .site-nav
+  $p: &
+
+  &-main
+    position: relative
+    background-color: #fff
+    z-index: 99999
+
+    &.full
+      background-color: #eee
+
+      @include breakpoint($desktop)
+        box-shadow: 0 4px 6px 0 rgba(30, 30, 30, 0.1)
+
+      #{$p}-dropdown
+        display: block
+
+    &.search
+      #{$p}-search
+        display: block
+
+    #{$p}-bar
+      color: #fff
+      background-color: #3a3b3c
+      height: 30px
+      width: 100vw
+
+    #{$p}-icon
+      display: inline-block
+      padding: 0 1.3rem
+
+      @include breakpoint($desktop)
+        padding: 0 1.8rem
+
+      a
+        @extend .bg-img
+        display: block
+        width: 25rem
+        height: 3.4rem
+        background-image: url(get-img('deerfield-scroll-logo.png'))
+
+    .columns
+      width: 100%
+
+  &-content
+    padding: 2rem 0 1.5rem
+
+    &, .container, .columns, .column
+      background-color: inherit
+
+    @include breakpoint($desktop)
+      padding-top: 3rem
+
+    .columns
+      &:last-child
+        margin: 0
+
+      .content
+        &-left, &-right
+          position: relative
+          padding: 1.5rem 0 1.3rem
+          border:
+            top: 1px solid
+            bottom: 1px solid
+
+          @include breakpoint($desktop)
+            padding: 2.3rem 0 2.1rem
+
+        &-left
+          flex-grow: 0
+          margin-right: 2rem
+          border-color: $clr-nav-divi
+
+        &-right
+          border-color: $da-light
+
+  &-menu
+    // parent concise, parent full
+    $pc: &
+    $pf: &-full
+
+    height: 100%
+    padding-left: 2rem
+    margin: 0
+    font-family: $ff-open
+    letter-spacing: 0.2px
+
+    @include breakpoint($desktop)
+      font-size: 1.8rem
+
+    &-full
+      position: fixed
+      top: 0
+      left: 0
+      right: 0
+      padding: 3rem 1.5rem 2rem
+
+      @include breakpoint($desktop)
+        padding: 7rem 3rem 3rem
+
+    .column
+      display: flex
+      position: relative
+      flex-direction: row
+      padding: 0
+      margin: $hdr-col-space 0
+
+      // @include not('.stretch')
+      //   flex-grow: 0
+
+      @include not('.top')
+        margin: 0
+
+      li
+        margin: 0 1rem
+        padding: 0.2rem
+        justify-content: center
+        // align-items: center
+        align-self: center
+        white-space: nowrap
+        cursor: pointer
+
+        @include breakpoint($desktop)
+          margin: 0 1.5rem
+
+        a, &.with-icon
+          &:hover, &:active
+            color: $da-dark
+
+        a
+          border-bottom: 1px solid transparent
+
+          &:hover, &:active
+            border-color: $da-mono
+
+        &.with-icon::before
+          @extend %fa-icon
+          @extend .far
+          padding-right: 1rem
+          font-size: 0.95em
+
+        &#{$p}-item-menu::before
+          content: fa-content($fa-var-bars)
+
+        &#{$p}-item-search::before
+          content: fa-content($fa-var-search)
+          font-size: 0.9em
+
+        &#{$p}-item-subscribe::before
+          content: fa-content($fa-var-envelope)
+
+    $sep-m: 1rem
+    $sep-l: 1.5rem
+
+    @include not-first-child('.column')
+      padding-left: $sep-m
+
+      @include breakpoint($desktop)
+        padding-left: $sep-l
+
+    @include not-last-child('.column')
+      padding-right: $sep-m
+      border-right: 1px solid $clr-nav-divi
+
+      @include breakpoint($desktop)
+        padding-right: $sep-l
+
+  &-search
+    display: none
+    position: absolute
+    // manual top adjustment for alignment
+    top: -0.2rem
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: inherit
+    font-family: $ff-noto
+    z-index: 10
+
+    .container, .columns, .column
+      height: 100%
+
+    .container
+      padding-left: 0
+
+    .column
+      position: relative
+      padding:
+        top: $hdr-col-space
+        // bottom: $hdr-col-space / 2
+
+    &-close
+      padding-top: 0.1rem
+      white-space: nowrap
+      cursor: pointer
+
+      &::before
+        @extend %fa-icon
+        @extend .far
+        padding-right: 1rem
+        font-size: 0.95em
+        content: fa-content($fa-var-times-octagon)
+
+      &:hover, &:active
+        color: $da-mono
+
+    #search-form
+      position: absolute
+      width: 100%
+      top: 50%
+      left: 0
+      transform: translateY(-50%)
+
+      .columns
+        align-items: center
+
+      .column
+        border: 0
+
+        @include not('.is-narrow')
+          max-width: 35rem
+          padding-right: 0.5rem
+
+    .search
+      &-field, &-btn
+        border-radius: 4px
+
+      &-field
+        width: 100%
+        padding: 0.8rem 1.2rem
+        background-color: inherit
+        border: 1px solid $da-mono
+
+      &-btn
+        padding: 0.6rem
+        background-color: transparent
+        border: 0
+        cursor: pointer
+
+        span
+          display: block
+
+          &::before
+            @extend %fa-icon
+            @extend .far
+            font-size: 1.05em
+            content: fa-content($fa-var-search)
+
+          &:hover
+            color: $da-mono
+
+  &-dropdown
+    display: none
+    position: absolute
+    right: 0
+    left: 0
+    padding: 0.5rem 0
+    background-color: #eee
+    font-family: $ff-noto
+
+    @include breakpoint($desktop)
+      padding: 1rem 0 1.5rem
+
+    .columns
+      margin: 0
+
+    section
+      @include breakpoint($desktop)
+        padding: 0 2.5rem
+        border-right: 1px solid $clr-nav-divi
+
+      &:last-child
+        @include breakpoint($desktop)
+          border-right: 0
+
+    ul
+      padding-top: 0
+
+      &.is-12
+        padding-bottom: 0
+
+      li
+        margin: 0.6rem 0
+        padding: 0.2rem
+
+        &.strong
+          font:
+            size: 1.1em
+            weight: bold
+
+        a
+          border-bottom: 1px solid transparent
+
+          &:hover, &:active
+            color: $da-mono
+            border-color: $da-mono

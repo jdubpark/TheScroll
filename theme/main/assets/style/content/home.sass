@@ -1,4 +1,5 @@
 $home-div-bdr: 3px solid #222
+$home-no-img-bdr: 5px solid $da-dark
 
 .site-content
   > section
@@ -280,7 +281,7 @@ $home-div-bdr: 3px solid #222
       font-size: 1.4em
 
     strong
-      color: #111
+      color: $da-mono
       transition: inherit
 
     a
@@ -289,13 +290,13 @@ $home-div-bdr: 3px solid #222
       padding-right: 0.1rem
 
       &:hover, &:active
-        color: $da-dark
+        color: $da-mono
 
         strong
           color: $da-dark
 
         span
-          border-left-color: $da-dark
+          border-left-color: $da-mono
 
       & span
         @include transition(0.3s, 'border-color')
@@ -337,8 +338,73 @@ $home-div-bdr: 3px solid #222
 
       &__excerpt
         padding-top: 0.3rem
-        color: #7a7e81
+        color: $excerpt-light
 
-  &-opinion
+  &-opinion, &-sports, &-buzz
     .column
       padding: 1.2rem 1rem
+
+  &-sports
+    .cover-full-title a strong
+      color: $da-mono
+
+  &-editorial
+    .column
+      padding: 0.8rem 1rem
+
+  &-ae
+    .article
+      &__wrapper, &__image
+        position: relative
+
+      &__image::before, &__content
+        position: absolute
+        right: 0
+        bottom: 0
+        left: 0
+
+      &__image
+        height: 22rem
+
+        @include breakpoint($desktop)
+          height: 30rem
+
+        &::before
+          content: ''
+          height: 55%
+          background-image: linear-gradient(to top, #1e1e1e, rgba(30,30,30,0))
+
+      &__content
+        padding: 1rem 2rem
+
+      &__title
+        position: relative
+        padding-left: 1rem
+        color: #fff
+        border-left: 3px solid #f76262
+
+        // &::before
+        //   content: ''
+        //   position: absolute
+        //   height: 2px
+        //   width: 2rem
+        //   top: -7px
+        //   background-color: #f76262
+
+      &.no-image
+        .article
+          &__content
+            position: relative
+            border-top: $home-no-img-bdr
+
+          &__title
+            color: #222
+
+#editorial
+  &-wrapper
+    color: #444
+    background-color: #f5f5f5
+    border-top: $home-no-img-bdr
+
+    @include breakpoint($desktop)
+      padding: 2rem 0 3rem

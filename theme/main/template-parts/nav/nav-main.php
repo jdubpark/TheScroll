@@ -1,12 +1,9 @@
-<div id="site-nav" class="site-nav-main">
-
-  <!-- <div id="site-nav-bar" class="site-nav-bar">
-    <div class="container">
-      <div class="columns">
-      </div>
-    </div>
-  </div> -->
-
+<?php
+$menu_ok = (isset($template_args) and isset($template_args['menus']));
+$menus = [];
+if ($menu_ok) $menus = $template_args['menus'];
+?>
+<div id="site-nav-main" class="site-nav-main">
   <div id="site-nav-content" class="site-nav-content <?php echo is_home() ? 'home' : 'mini'; ?>">
     <div class="container">
       <div class="columns">
@@ -15,19 +12,37 @@
             <a href="<?php echo get_site_url(); ?>" title="The Deerfield Scroll"></a>
           </div>
         </div>
+
         <div class="column content-right">
-          <div id="site-nav-menu" class="site-nav-menu columns">
-            <ul class="column">
-              <li><a href="<?php echo get_site_url(); ?>">Home</a></li>
-              <li><a href="<?php echo get_site_url(); ?>/editions">Latest edition</a></li>
-            </ul>
-            <ul class="column stretch">
-              <li class="with-icon site-nav-item-menu"><span>Menu</span></li>
-            </ul>
-            <ul class="column">
-              <li class="with-icon site-nav-item-search"><span>Search</span></li>
-            </ul>
-            <ul class="column">
+          <div id="site-nav-menu" class="columns site-nav-menu">
+            <div class="column top">
+              <div class="columns">
+                <!-- place this first (for ordering) -->
+                <div id="site-nav-search" class="site-nav-search">
+                  <div class="container">
+                    <div class="columns">
+                      <div class="column">
+                        <?php get_search_form(); ?>
+                      </div>
+                      <div class="column is-narrow">
+                        <div class="site-nav-search-close site-nav-search-trigger">Close</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="column is-narrow">
+                  <li><a href="<?php echo get_site_url(); ?>">Home</a></li>
+                  <li><a href="<?php echo get_site_url(); ?>/editions">Latest edition</a></li>
+                </ul>
+                <ul class="column">
+                  <li class="with-icon site-nav-item-menu site-nav-menu-trigger"><span>Menu</span></li>
+                </ul>
+                <ul class="column is-narrow">
+                  <li class="with-icon site-nav-item-search site-nav-search-trigger"><span>Search</span></li>
+                </ul>
+              </div>
+            </div>
+            <ul class="column top is-narrow">
               <li class="with-icon site-nav-item-subscribe"><span>Subscribe</span></li>
             </ul>
           </div>
@@ -35,9 +50,68 @@
       </div>
     </div>
   </div>
-  <!-- <div id="site-nav-menu-full" class="site-nav-menu-full">
 
-  </div> -->
+  <div id="site-nav-dropdown" class="site-nav-dropdown">
+    <div class="container">
+      <div class="columns is-multiline">
+        <section class="column is-6">
+          <div class="columns is-multiline">
+            <ul class="column is-12">
+              <li class="strong">Sections</li>
+            </ul>
+            <?php
+            if ($menu_ok and isset($menus['main'])):
+              $rows = 3;
+              $per_col = ceil(count($menus['main']) / $rows);
+              for ($i = 0; $i < $rows; $i++):
+                $menu_items = array_slice($menus['main'], $i*$per_col, $per_col);
+            ?>
+              <ul class="column is-4">
+                <?php foreach ($menu_items as $item): ?>
+                <li><a href="<?php echo $item['url'] ?>"><?php echo $item['title'] ?></a></li>
+                <?php endforeach; ?>
+              </ul>
+            <?
+              endfor;
+            endif;
+            ?>
+          </div>
+        </section>
+        <section class="column is-3">
+          <div class="columns is-multiline">
+            <ul class="column is-12">
+              <li class="strong">The Scroll</li>
+              <?php
+              if ($menu_ok and isset($menus['scroll'])):
+                foreach ($menus['scroll'] as $item):
+              ?>
+              <li><a href="<?php echo $item['url'] ?>"><?php echo $item['title'] ?></a></li>
+              <?php
+                endforeach;
+              endif;
+              ?>
+            </ul>
+          </div>
+        </section>
+        <section class="column is-3">
+          <div class="columns is-multiline">
+            <ul class="column is-12">
+              <li class="strong">More</li>
+              <?php
+              if ($menu_ok and isset($menus['more'])):
+                foreach ($menus['more'] as $item):
+              ?>
+              <li><a href="<?php echo $item['url'] ?>"><?php echo $item['title'] ?></a></li>
+              <?php
+                endforeach;
+              endif;
+              ?>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
   <!-- <div id="site-nav-search" class="site-nav-search">
 
   </div> -->
@@ -46,7 +120,7 @@
     <div class="container is-vcentered is-gapless">
       <ul>
         <?php
-          if (isset($template_args)):
+          if (isset($template_args) and isset($template_args['list'])):
             foreach ($template_args['list'] as $item):
         ?>
         <li><a href="<?php echo $item['url'] ?>"><?php echo $item['title'] ?></a></li>

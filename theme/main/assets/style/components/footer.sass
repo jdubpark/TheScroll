@@ -1,0 +1,52 @@
+.site-footer
+  margin-top: 2rem
+  padding: 1rem 0 1.5rem
+  color: #eee
+  background-color: #373c40
+  font-family: $ff-noto
+
+  section
+    padding: 1rem 0
+    border-bottom: 1px solid $excerpt
+
+    @include breakpoint($desktop)
+      padding: 2rem 0
+
+    &:last-child
+      border-bottom: 0
+
+  .footer
+    &-menu
+      padding-bottom: 2rem
+
+      @include breakpoint($desktop)
+        padding-bottom: 0
+
+      &:last-child
+        padding-bottom: 0
+
+        @include breakpoint($desktop)
+          padding-right: 0
+
+      li
+        padding: 0.6rem 0
+
+        &.strong
+          padding: 0.9rem 0
+          font:
+            weight: bold
+
+    &-brief
+      font-family: $ff-noto-serif
+      line-height: 1.4
+
+  .small
+    font-size: 0.8em
+
+  .madeby
+    color: $da-light
+    border-bottom: 1px dashed $da-light
+
+    &:hover, &:active
+      color: $da-mono
+      border-bottom: 1px dashed $da-mono

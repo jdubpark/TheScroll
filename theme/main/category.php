@@ -36,7 +36,17 @@
 
 ?>
 
-<main id="site-content" class="nopad">
+<main id="site-content" class="site-content category">
+
+  <section>
+    <div class="container category-cover">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="category-title"><?php echo single_cat_title(); ?></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="container">
     <div class="category__wrapper">

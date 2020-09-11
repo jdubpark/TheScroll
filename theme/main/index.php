@@ -53,9 +53,9 @@
   endif;
 
   $fetchCats = [
-    'news' => 5,
-    'features' => 5,
-    'opinion' => 6, 'editorial' => 5, 'a&e' => 5, 'sports' => 5, 'buzz' => 5];
+    'news' => 5, 'features' => 5, 'opinion' => 6,
+    'editorial' => 5, 'a&e' => 6, 'sports' => 6,
+    'buzz' => 5];
   $homePosts = [];
 
   foreach ($fetchCats as $fetchCat => $numpost){
@@ -65,6 +65,24 @@
       'exclude' => $excludeLast,
     ));
   }
+
+  # for buzz, get a post with image and then query the rest
+  // $buzz_thumbs = array(
+  //   'posts_per_page' => 2,
+  //   'meta_query' => array(array('key' => '_thumbnail_id')) ,
+  //   'cat' => get_cat_ID('buzz'),
+  // );
+  // $buzz_posts = (new WP_Query($buzz_thumbs))->posts;
+  // foreach ($buzz_posts as $buzz_post){
+  //   $excludeLast[] = $buzz_post->ID;
+  // }
+  //
+  // $homePosts['buzz'] = get_posts(array(
+  //   'numberposts' => 3,
+  //   'category' => get_cat_ID('buzz'),
+  //   'exclude' => $excludeLast,
+  // ));
+  // array_merge($buzz_posts, $homePosts['buzz']);
 ?>
 
 <main id="site-content" class="site-content home">
@@ -175,7 +193,7 @@
   </section>
 
   <section>
-    <div class="container cover-news cover-divi news">
+    <div id="news" class="container cover-news cover-divi">
       <div class="columns is-multiline">
         <div class="column is-12">
           <div class="cover-full-title">
@@ -201,7 +219,7 @@
   </section>
 
   <section>
-    <div class="container cover-opinion cover-divi opinion">
+    <div id="opinion" class="container cover-opinion cover-divi">
       <div class="columns is-multiline">
         <div class="column is-12">
           <div class="cover-full-title">
@@ -227,7 +245,7 @@
   </section>
 
   <section>
-    <div class="container cover-features cover-divi features">
+    <div id="features" class="container cover-features">
       <div class="columns is-multiline">
         <div class="column is-12">
           <div class="cover-full-title">
@@ -252,35 +270,23 @@
     </div>
   </section>
 
-  <!-- <section>
-    <div class="container cover-opinion opinion">
+  <section id="editorial-wrapper">
+    <div id="editorial" class="container cover-editorial">
       <div class="columns is-multiline">
         <div class="column is-12">
           <div class="cover-full-title">
-            <a href="//category/opinion"><strong>Deerfield</strong> Buzz <span></span></a>
+            <a href="//category/editorial"><strong>Editorials</strong> <span></span></a>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="column is-5">
-      <?php
-      if ($homePosts['opinion']):
-        $post = $homePosts['opinion'][0];
-        setup_postdata($post);
-        hm_get_template_part('template-parts/post/article-preview');
-        wp_reset_postdata();
-      endif;
-      ?>
-    </div>
-
-    <div class="column is-7">
-      <div class="columns is-multiline">
         <?php
-        if ($homePosts['opinion']):
-          foreach (array_slice($homePosts['opinion'], 1) as $post):
+        if ($homePosts['editorial']):
+          foreach ($homePosts['editorial'] as $post):
             setup_postdata($post);
-            echo '<div class="column is-12">';
-            hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-image']);
+            echo '<div class="column is-one-fifth">';
+            hm_get_template_part('template-parts/post/article-preview', [
+              'type' => 'plain-text',
+              'opts' => ['excerpt_trim' => 30],
+            ]);
             echo '</div>';
           endforeach;
           wp_reset_postdata();
@@ -288,178 +294,83 @@
         ?>
       </div>
     </div>
-  </section> -->
+  </section>
+
+  <section>
+    <div id="ae" class="container cover-ae cover-divi">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/arts-and-entertainment"><strong>Arts</strong> and <strong>Entertainment</strong> <span></span></a>
+          </div>
+        </div>
+        <?php
+        if ($homePosts['a&e']):
+          foreach ($homePosts['a&e'] as $post):
+            setup_postdata($post);
+            echo '<div class="column is-4">';
+            hm_get_template_part('template-parts/post/article-preview', ['type' => 'image-main']);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div id="sports" class="container cover-sports cover-divi">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/sports"><strong>DA</strong> Sports <span></span></a>
+          </div>
+        </div>
+        <?php
+        if ($homePosts['sports']):
+          foreach ($homePosts['sports'] as $post):
+            setup_postdata($post);
+            echo '<div class="column is-4">';
+            hm_get_template_part('template-parts/post/article-preview', [
+              'type' => 'plain-text',
+              'opts' => ['excerpt_trim' => 30],
+            ]);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div id="buzz" class="container cover-buzz">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="cover-full-title">
+            <a href="//category/buzz"><strong>Deerfield</strong> buzz <span></span></a>
+          </div>
+        </div>
+        <?php
+        if ($homePosts['buzz']):
+          foreach ($homePosts['buzz'] as $post):
+            setup_postdata($post);
+            echo '<div class="column is-4">';
+            hm_get_template_part('template-parts/post/article-preview', [
+              'type' => 'plain-text',
+              'opts' => ['excerpt_trim' => 30],
+            ]);
+            echo '</div>';
+          endforeach;
+          wp_reset_postdata();
+        endif;
+        ?>
+      </div>
+    </div>
+  </section>
 </main>
-
-<!-- <main id="site-content" class="nopad">
-
-  <div id="posts-news" class="hfblock">
-    <div class="hfprefmt container">
-      <div class="hfsection-header">
-        <div class="hfsection-title">Latest News</div>
-      </div>
-      <div class="hfsection hfsection-alpha hfcontainer">
-        <div class="hfsection-articles hfsection-articles-alpha">
-          <?php
-          if ($homePosts['news']):
-            foreach ($homePosts['news'] as $post):
-              setup_postdata($post);
-              get_template_part('template-parts/post/article-preview', 'switch');
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="posts-features" class="hfblock">
-    <div class="hfprefmt container">
-      <div class="hfsection-header">
-        <div class="hfsection-title">The Scroll Features</div>
-      </div>
-      <div class="hfsection hfsection-alpha hfcontainer">
-        <div class="hfsection-articles hfsection-articles-alpha">
-          <?php
-          if ($homePosts['features']):
-            foreach ($homePosts['features'] as $post):
-              setup_postdata($post);
-              get_template_part('template-parts/post/article-preview', 'switch');
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hfcontainer">
-    <div class="hfdivider"></div>
-  </div>
-
-  <div id="posts-opinion">
-    <div class="hfprefmt container">
-      <div class="hfsection hfsection-beta hfcontainer">
-        <div class="hfsection-articles hfsection-articles-alpha">
-          <?php
-          if ($homePosts['opinion']):
-            $post = $homePosts['opinion'][0];
-            setup_postdata($post);
-            get_template_part('template-parts/post/article-preview', 'big');
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-        <div class="hfsection-articles hfsection-articles-beta">
-          <?php
-          if ($homePosts['opinion']):
-            foreach (array_slice($homePosts['opinion'], 1) as $post):
-              setup_postdata($post);
-              hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-image']);
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="posts-editorial" class="hfblock">
-    <div class="hfprefmt container">
-      <div class="hfsection-header">
-        <div class="hfsection-title">Editorials</div>
-      </div>
-      <div class="hfsection hfsection-alpha hfcontainer">
-        <div class="hfsection-articles hfsection-articles-alpha">
-          <?php
-          if ($homePosts['editorial']):
-            foreach ($homePosts['editorial'] as $post):
-              setup_postdata($post);
-              get_template_part('template-parts/post/article-preview', 'switch');
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="posts-ae">
-    <div class="hfprefmt container">
-      <div class="hfsection hfsection-charlie hfcontainer">
-        <div class="hfsection-articles hfsection-articles-alpha">
-          <?php
-          if ($homePosts['a&e']):
-            foreach (array_slice($homePosts['a&e'], 1) as $post):
-              setup_postdata($post);
-              get_template_part('template-parts/post/article-preview', 'ae');
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="posts-sports">
-    <div class="hfprefmt container">
-      <div class="hfsection hfsection-beta hfcontainer">
-        <div class="hfsection-articles hfsection-articles-beta switch">
-          <?php
-          if ($homePosts['sports']):
-            foreach (array_slice($homePosts['sports'], 1) as $post):
-              setup_postdata($post);
-              hm_get_template_part('template-parts/post/article-preview', ['type' => 'no-image']);
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-        <div class="hfsection-articles hfsection-articles-alpha right">
-          <?php
-          if ($homePosts['sports']):
-            $post = $homePosts['sports'][0];
-            setup_postdata($post);
-            get_template_part('template-parts/post/article-preview', 'big');
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hfcontainer">
-    <div class="hfdivider"></div>
-  </div>
-
-  <div id="posts-buzz" class="hfblock">
-    <div class="hfprefmt container">
-      <div class="hfsection-header">
-        <div class="hfsection-title">Deerfield Buzz</div>
-      </div>
-      <div class="hfsection hfsection-alpha hfcontainer">
-        <div class="hfsection-articles hfsection-articles-alpha">
-          <?php
-          if ($homePosts['buzz']):
-            foreach ($homePosts['buzz'] as $post):
-              setup_postdata($post);
-              get_template_part('template-parts/post/article-preview', 'switch');
-            endforeach;
-            wp_reset_postdata();
-          endif;
-          ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</main> -->
 
 <?php
 get_footer();
