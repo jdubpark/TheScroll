@@ -1,6 +1,195 @@
 .category
+  &-cover
+    // &-level
+    //   padding: 1rem
 
-  &-title
-    color: $da-mono
-    font:
-      size: 2em
+    &-head
+      padding-top: 1.5rem
+      border-top: 4px solid #333
+
+    &-title
+      color: $da-mono
+      font:
+        weight: bold
+        size: 1.4em
+
+      @include breakpoint($desktop)
+        font-size: 1.7em
+
+    &-ftop, &-fsup
+      &, .column
+        padding: 0
+
+      .article.no-image
+        .article__wrapper
+          margin-top: 1rem
+          padding: 1.5rem 0
+          border-top: 2px solid $da-mono
+
+    &-ftop
+      padding-bottom: 2rem
+
+      @include breakpoint($desktop)
+        padding:
+          right: 2rem
+          bottom: 0
+
+      .article
+        &__image
+          height: 24rem
+
+          @include breakpoint($desktop)
+            height: 29rem
+
+    &-fsup
+      .article
+        &:first-child
+          padding-bottom: 1.5rem
+
+          @include breakpoint($desktop)
+            padding:
+              right: 1rem
+              bottom: 0
+
+        &__image
+          height: 20rem
+
+          @include breakpoint($desktop)
+            height: 25rem
+
+  &-headlines
+    // &-level
+    //   > .column
+    //     @include breakpoint($desktop)
+    //       padding:
+    //         left: 1.5rem
+    //         right: 1.5rem
+
+    &-head
+      padding: 0
+      padding-top: 1.5rem
+      border-top: 2px solid #333
+
+    &-title
+      color: $da-mono
+      font:
+        size: 0.9em
+        weight: bold
+        family: $ff-noto
+      text-transform: uppercase
+
+    &-all
+      padding:
+        top: 1rem
+        right: 0
+        left: 0
+
+      @include breakpoint($desktop)
+        padding-top: 2rem
+
+      .column
+        border-bottom: 1px solid #ddd
+
+        &:not(.is-non-post)
+          padding: 1.5rem 0 1.5rem 0.5rem
+
+          @include breakpoint($desktop)
+            padding: 2.5rem 0 2.5rem 1rem
+
+        &:first-child
+          border-top: 1px solid #ddd
+
+      .article
+        &__wrapper
+          display: flex
+          flex-wrap: wrap
+
+          @include breakpoint($desktop)
+            flex-wrap: nowrap
+
+        &__image, &__content
+          flex: 1
+          width: auto
+
+          @include breakpoint(0 $desktop)
+            // is-12
+            flex: none
+            width: 100%
+
+        &__image
+          height: 20rem
+
+          @include breakpoint($desktop)
+            flex: none
+            height: 16rem
+            // width: 40%
+            width: 25rem
+            margin: 0
+
+        &__content
+          display: flex
+          flex-direction: column
+          flex-wrap: wrap
+          padding-bottom: 0.8rem
+
+          @include breakpoint($desktop)
+            padding:
+              right: 3.5rem
+              bottom: 0
+
+        $category-pubdate-width: 16rem
+
+        &__pubdate, &__title, &__excerpt
+          @include breakpoint(0 $desktop)
+            flex: none
+
+        &__title, &__excerpt
+          @include breakpoint($desktop)
+            // diff. units (% - px) requires calc()
+            width: calc(100% - #{$category-pubdate-width})
+
+        &__pubdate
+          margin-bottom: 0.5rem
+          color: #aaa
+          font:
+            family: $ff-open
+            weight: 300
+
+          @include breakpoint($desktop)
+            // flex: 0 0 100% to take up all left area
+            // and stack remaining items on the right
+            // AA BB
+            // AA CC
+            flex: 0 0 100%
+            width: $category-pubdate-width
+            // set height: 100% for non-image posts
+            height: 100%
+            padding-right: 1rem
+            margin-bottom: 0
+
+        &__title
+          font:
+            family: $ff-noto
+            size: 1.2em
+          letter-spacing: 0
+
+          @include breakpoint($desktop)
+            margin:
+              top: 0
+              bottom: 1rem
+            font-size: 1.4em
+
+        &__excerpt
+          font-size: 1em
+
+          @include breakpoint($desktop)
+            flex: 1
+
+    &-pagination
+      width: 100%
+      padding: 1.2rem 1rem 1rem
+      text-align: center
+      cursor: default
+      user-select: none
+
+      @include pagination-page-numbers

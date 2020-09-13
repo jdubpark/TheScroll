@@ -7,6 +7,8 @@
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  *
+ * Template Name: Subscribe
+ *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
@@ -27,28 +29,27 @@
  // endif;
 ?>
 
-<main id="site-content">
+<main id="site-content" class="site-content subscribe">
 
-  <div id="contact-us">
-    <div class="triv-block">
-      <div class="triv-head">
-        <div class="triv-title">Contact Us</div>
-      </div>
-      <div class="triv-body">
-        <div class="triv-desc">
+  <section>
+    <div class="container subscribe-cover">
+      <div class="columns is-multiline">
+        <div class="column is-12 subscribe-cover-title">Subscribe</div>
+        <div class="column is-12 subscribe-cover-desc">Receive important updates. Follow up-to-date with ocassional newsletters.</div>
+
+        <div class="column is-12">
           <?php
-          // query for the staff page
-          $WPQuery = new WP_Query('pagename=contact-us');
-          while ($WPQuery->have_posts()):
-            $WPQuery->the_post();
+          $page_query = new WP_Query('pagename=subscribe');
+          if ($page_query->have_posts()){
+            $page_query->the_post();
             the_content();
-          endwhile;
+          }
           wp_reset_postdata();
           ?>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
 </main>
 

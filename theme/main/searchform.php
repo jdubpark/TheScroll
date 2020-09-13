@@ -1,5 +1,5 @@
 <form id="search-form" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-  <div class="columns">
+  <div class="columns is-mobile">
     <div class="column is-narrow">
       <span class="search-label">Search</span>
     </div>

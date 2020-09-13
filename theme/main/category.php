@@ -7,6 +7,8 @@
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  *
+ * Template Name: Category
+ *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
@@ -21,18 +23,42 @@
 
  get_header();
 
- $get_posts = get_posts(array(
-   'numberposts' => 11, // 3 main + 8 long
-   'category' => $cat,
-   'offset' => 0,
+ $num_main_posts = 3;
+ $posts_per_page = 10;
+ $posts_main = get_posts(array(
+   'numberposts' => $num_main_posts, // 3 main
+   'category' => $cat, // passed from url querystring (e.g. /category/CAT_NAME => cat_id)
  ));
+ $posts_main_ids = [];
+ foreach ($posts_main as $post) $posts_main_ids[] = $post->ID;
 
- // for dev
- // $get_posts = array_merge($get_posts, $get_posts, $get_posts, $get_posts);
- // end dev
+ $paged = (get_query_var('page')) ? absint(get_query_var('page')) : 1;
 
- $posts_main = array_slice($get_posts, 0, 3); // 1, 2, 3
- $posts_long = array_slice($get_posts, 3, 8); // 4 ~
+ $args = [
+   'post_type' => 'post',
+   'posts_per_page' => $posts_per_page,
+   'cat' => $cat,
+   'paged' => $paged,
+   'post__not_in' => $posts_main_ids,
+   // 'comment_count' => array(
+   //      'value' => 25,
+   //      'compare' => '>=',
+   //  )
+ ];
+
+ // echo 'PAGE';
+ // echo $paged;
+
+ $the_query = new WP_Query($args);
+
+ $big = 999999999; // need an unlikely integer
+ $pagination = paginate_links([
+   // don't change (default setting):
+   // 'base' => $pagenum_link (http://example.com/all_posts.php%_% : %_% is replaced by format (below).)
+   'format' => '?page=%#%', // %#% is replaced by the page number.
+   'current' => max(1, $paged),
+   'total' => $the_query->max_num_pages,
+ ]);
 
 ?>
 
@@ -40,77 +66,83 @@
 
   <section>
     <div class="container category-cover">
-      <div class="columns is-multiline">
-        <div class="column is-12">
-          <div class="category-title"><?php echo single_cat_title(); ?></div>
+      <div class="columns category-cover-level">
+        <div class="column is-12 category-cover-head">
+          <div class="category-cover-title"><?php echo single_cat_title(); ?></div>
+        </div>
+      </div>
+
+      <div class="columns category-cover-level">
+        <div class="column is-5 category-cover-ftop">
+          <div class="columns">
+            <div class="column is-12">
+              <?php
+                $post = $posts_main[0];
+                setup_postdata($post);
+                hm_get_template_part('template-parts/post/article-preview');
+              ?>
+            </div>
+          </div>
+        </div>
+        <div class="column is-7 category-cover-fsup">
+          <div class="columns is-multiline">
+            <?php
+            $posts = [$posts_main[1], $posts_main[2]];
+            foreach ($posts as $post):
+              setup_postdata($post);
+              echo '<div class="column is-6">';
+              hm_get_template_part('template-parts/post/article-preview', [
+                'opts' => ['excerpt_trim' => 20],
+              ]);
+              echo '</div>';
+            endforeach;
+            ?>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="container">
-    <div class="category__wrapper">
-      <div class="category__container">
-        <div class="category__head">
-          <div class="category__title"><?php echo single_cat_title(); ?></div>
-        </div>
-        <div class="category__body category__body-alpha">
-          <div class="category__articles-main category__articles-main-alpha">
-            <?php
-              $post = $posts_main[0];
-              setup_postdata($post);
-              hm_get_template_part('template-parts/post/article-preview');
-            ?>
-          </div>
-          <div class="category__articles-main category__articles-main-beta">
-            <?php
-              $post = $posts_main[1];
-              setup_postdata($post);
-              hm_get_template_part('template-parts/post/article-preview', [
-                'opts' => ['excerpt_trim' => 20],
-              ]);
-            ?>
-          </div>
-          <div class="category__articles-main category__articles-main-beta">
-            <?php
-              $post = $posts_main[2];
-              setup_postdata($post);
-              hm_get_template_part('template-parts/post/article-preview', [
-                'opts' => ['excerpt_trim' => 20],
-              ]);
-            ?>
-          </div>
+  <section>
+    <div class="container category-headlines">
+      <div class="columns category-headlines-level">
+        <div class="column is-12 category-headlines-head">
+          <div class="category-headlines-title">Latest <?php echo single_cat_title(); ?> headlines</div>
         </div>
       </div>
-      <div class="category__container">
-        <div class="category__head category__head-beta">
-          <div class="category__title category__title-beta">Latest <?php echo single_cat_title(); ?> Headlines</div>
-        </div>
-        <div class="category__body">
-          <div class="category__block category__block-left">
-            <div id="category__articles-long" class="category__articles-long">
-              <?php
-              foreach ($posts_long as $post):
-                setup_postdata($post);
-                get_template_part('template-parts/post/article-preview', 'section-long');
-                // hm_get_template_part('template-parts/post/article-preview', ['type' => 'section-long']);
-              endforeach;
-              wp_reset_postdata();
-              ?>
-            </div>
-            <div class="category__articles-loadmore">
-              <div id="category-loadmore" class="category__articles-loadmore-btn">Load More Articles</div>
-            </div>
-          </div>
-          <div class="category__block category__block-right">
-            <div class="category__articles-side">
 
+      <div class="columns category-headlines-level">
+        <div class="column is-9 category-headlines-all">
+          <div class="columns is-multiline">
+            <div class="column is-12 is-non-post">
+              <div class="category-headlines-pagination at-top">
+                <?php echo $pagination; ?>
+              </div>
             </div>
+            <?php
+            if ($the_query->have_posts()):
+              while ($the_query->have_posts()):
+                $the_query->the_post();
+                echo '<div class="column is-12">';
+                // get_template_part('template-parts/post/article-preview', 'section-long');
+                hm_get_template_part('template-parts/post/article-preview', ['type' => 'category-all']);
+                echo '</div>';
+              endwhile;
+            ?>
+            <div class="column is-12 is-non-post">
+              <div class="category-headlines-pagination at-bottom">
+                <?php echo $pagination; ?>
+              </div>
+            </div>
+            <?php
+            endif;
+            wp_reset_postdata();
+            ?>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
 </main>
 <?php

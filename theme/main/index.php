@@ -25,70 +25,67 @@
  // else:
  //   get_header();
  // endif;
-?>
+ $is_mobile = wp_is_mobile();
 
-<?php
-  // the query
-  // https://wordpress.stackexchange.com/questions/144343/wp-reset-postdata-or-wp-reset-query-after-a-custom-loop
-  // $the_query = new WP_Query(array(
-  //   // 'category_name' => 'news',
-  //   'posts_per_page' => 3,
-  // ));
-  $numLast = 8;
-  $numQuick = 12;
-  $postsLast = get_posts(array(
-    'numberposts' => $numLast,
-  ));
+ $numLast = 8;
+ $numQuick = 12;
+ $postsLast = get_posts(array(
+   'numberposts' => $numLast,
+ ));
 
-  $postsQuick = get_posts(array(
-    'numberposts' => $numQuick,
-    'offset' => $numLast,
-  ));
+ if (!$is_mobile){
+   $postsQuick = get_posts(array(
+     'numberposts' => $numQuick,
+     'offset' => $numLast,
+   ));
+ }
 
-  $excludeLast = [];
-  if ($postsLast):
-    foreach ($postsLast as $postLast):
-      $excludeLast[] = $post->ID;
-    endforeach;
-  endif;
+ $excludeLast = [];
+ if ($postsLast):
+   foreach ($postsLast as $postLast):
+     $excludeLast[] = $post->ID;
+   endforeach;
+ endif;
 
-  $fetchCats = [
-    'news' => 5, 'features' => 5, 'opinion' => 6,
-    'editorial' => 5, 'a&e' => 6, 'sports' => 6,
-    'buzz' => 5];
-  $homePosts = [];
+ $fetchCats = [
+   'news' => 5, 'features' => 5, 'opinion' => 6,
+   'editorial' => 5, 'a&e' => 6, 'sports' => 6,
+   'buzz' => 5,
+ ];
 
-  foreach ($fetchCats as $fetchCat => $numpost){
-    $homePosts[$fetchCat] = get_posts(array(
-      'numberposts' => $numpost,
-      'category' => get_cat_ID($fetchCat),
-      'exclude' => $excludeLast,
-    ));
-  }
+ $homePosts = [];
+ foreach ($fetchCats as $fetchCat => $numpost){
+   $homePosts[$fetchCat] = get_posts(array(
+     'numberposts' => $numpost,
+     'category' => get_cat_ID($fetchCat),
+     'exclude' => $excludeLast,
+   ));
+ }
 
-  # for buzz, get a post with image and then query the rest
-  // $buzz_thumbs = array(
-  //   'posts_per_page' => 2,
-  //   'meta_query' => array(array('key' => '_thumbnail_id')) ,
-  //   'cat' => get_cat_ID('buzz'),
-  // );
-  // $buzz_posts = (new WP_Query($buzz_thumbs))->posts;
-  // foreach ($buzz_posts as $buzz_post){
-  //   $excludeLast[] = $buzz_post->ID;
-  // }
-  //
-  // $homePosts['buzz'] = get_posts(array(
-  //   'numberposts' => 3,
-  //   'category' => get_cat_ID('buzz'),
-  //   'exclude' => $excludeLast,
-  // ));
-  // array_merge($buzz_posts, $homePosts['buzz']);
+# for buzz, get a post with image and then query the rest
+// $buzz_thumbs = array(
+//   'posts_per_page' => 2,
+//   'meta_query' => array(array('key' => '_thumbnail_id')) ,
+//   'cat' => get_cat_ID('buzz'),
+// );
+// $buzz_posts = (new WP_Query($buzz_thumbs))->posts;
+// foreach ($buzz_posts as $buzz_post){
+//   $excludeLast[] = $buzz_post->ID;
+// }
+//
+// $homePosts['buzz'] = get_posts(array(
+//   'numberposts' => 3,
+//   'category' => get_cat_ID('buzz'),
+//   'exclude' => $excludeLast,
+// ));
+// array_merge($buzz_posts, $homePosts['buzz']);
 ?>
 
 <main id="site-content" class="site-content home">
   <section>
     <div class="container hero front-cover">
       <div class="columns is-multiline">
+        <?php if (!$is_mobile): ?>
         <section class="column is-3 is-topmost front-cover-quick front-cover-level">
           <div class="front-cover-head">
             <div class="front-cover-title"><strong>Quick</strong> browse</div>
@@ -106,8 +103,9 @@
             ?>
           </div>
         </section>
+        <?php endif; ?>
 
-        <section class="column is-9 is-topmost front-cover-main front-cover-level">
+        <section class="column is-12-mobile is-9 is-topmost front-cover-main front-cover-level">
           <section class="columns is-multiline front-cover-wrap">
             <div class="column is-12 front-cover-head">
               <div class="front-cover-title"><strong>Latest</strong> headlines</div>

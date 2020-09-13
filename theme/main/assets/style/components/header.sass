@@ -42,9 +42,13 @@ $hdr-col-space: 0.4rem
       a
         @extend .bg-img
         display: block
-        width: 25rem
-        height: 3.4rem
+        width: 22rem
+        height: 3rem
         background-image: url(get-img('deerfield-scroll-logo.png'))
+
+        @include breakpoint($desktop)
+          width: 25rem
+          height: 3.4rem
 
     .columns
       width: 100%
@@ -64,19 +68,21 @@ $hdr-col-space: 0.4rem
 
       .content
         &-left, &-right
-          position: relative
-          padding: 1.5rem 0 1.3rem
+          padding: 1rem 0
           border:
             top: 1px solid
             bottom: 1px solid
 
           @include breakpoint($desktop)
+            position: relative
             padding: 2.3rem 0 2.1rem
 
         &-left
           flex-grow: 0
-          margin-right: 2rem
           border-color: $clr-nav-divi
+
+          @include breakpoint($desktop)
+            margin-right: 2rem
 
         &-right
           border-color: $da-light
@@ -87,12 +93,12 @@ $hdr-col-space: 0.4rem
     $pf: &-full
 
     height: 100%
-    padding-left: 2rem
-    margin: 0
+    margin: 0 !important
     font-family: $ff-open
     letter-spacing: 0.2px
 
     @include breakpoint($desktop)
+      padding-left: 2rem
       font-size: 1.8rem
 
     &-full
@@ -109,18 +115,21 @@ $hdr-col-space: 0.4rem
       display: flex
       position: relative
       flex-direction: row
+      height: 100%
+      margin: 0
       padding: 0
-      margin: $hdr-col-space 0
 
-      // @include not('.stretch')
-      //   flex-grow: 0
+      &.hide-mobile
+        @include breakpoint(0 $desktop)
+          display: none
 
       @include not('.top')
         margin: 0
 
       li
-        margin: 0 1rem
-        padding: 0.2rem
+        display: inline-block
+        margin: 0 auto
+        padding: 0
         justify-content: center
         // align-items: center
         align-self: center
@@ -129,6 +138,7 @@ $hdr-col-space: 0.4rem
 
         @include breakpoint($desktop)
           margin: 0 1.5rem
+          padding: 0.2rem
 
         a, &.with-icon
           &:hover, &:active
@@ -140,18 +150,47 @@ $hdr-col-space: 0.4rem
           &:hover, &:active
             border-color: $da-mono
 
+        span
+          @include breakpoint(0 $desktop)
+            display: none
+
         &.with-icon::before
           @extend %fa-icon
           @extend .far
-          padding-right: 1rem
-          font-size: 0.95em
 
-        &#{$p}-item-menu::before
-          content: fa-content($fa-var-bars)
+          @include breakpoint($desktop)
+            padding-right: 1rem
+            font-size: 0.95em
 
-        &#{$p}-item-search::before
-          content: fa-content($fa-var-search)
-          font-size: 0.9em
+        &#{$p}-menu-trigger
+          span:last-child
+            display: none
+
+          &.active
+            span:first-child
+              display: none
+
+            span:last-child
+              @include breakpoint($desktop)
+                display: inline-block
+
+        &#{$p}-item-menu, &#{$p}-item-search
+          @include breakpoint(0 $desktop)
+            font-size: 1.3em
+
+        &#{$p}-item-menu
+          &::before
+            content: fa-content($fa-var-bars)
+
+          &.active::before
+            content: fa-content($fa-var-times-octagon)
+
+        &#{$p}-item-search
+          &::before
+            content: fa-content($fa-var-search)
+
+          &.active::before
+            content: fa-content($fa-var-times-octagon)
 
         &#{$p}-item-subscribe::before
           content: fa-content($fa-var-envelope)
@@ -160,72 +199,78 @@ $hdr-col-space: 0.4rem
     $sep-l: 1.5rem
 
     @include not-first-child('.column')
-      padding-left: $sep-m
-
       @include breakpoint($desktop)
         padding-left: $sep-l
 
     @include not-last-child('.column')
-      padding-right: $sep-m
-      border-right: 1px solid $clr-nav-divi
-
       @include breakpoint($desktop)
         padding-right: $sep-l
+        border-right: 1px solid $clr-nav-divi
 
   &-search
     display: none
     position: absolute
     // manual top adjustment for alignment
-    top: -0.2rem
+    top: 100%
     right: 0
-    bottom: 0
     left: 0
+    padding: 1rem
     background-color: inherit
     font-family: $ff-noto
+    text-align: center
     z-index: 10
+    box-shadow: 0 5px 10px 0 rgba(30, 30, 30, 0.15)
 
-    .container, .columns, .column
-      height: 100%
+    @include breakpoint($desktop)
+      top: 50%
+      padding: 0
+      text-align: left
+      transform: translateY(-50%)
+      box-shadow: none
 
-    .container
-      padding-left: 0
-
-    .column
-      position: relative
-      padding:
-        top: $hdr-col-space
-        // bottom: $hdr-col-space / 2
+    .columns
+      align-items: center
 
     &-close
-      padding-top: 0.1rem
+      display: none
+      font-size: 1.1em
       white-space: nowrap
       cursor: pointer
+
+      @include breakpoint($desktop)
+        display: block
 
       &::before
         @extend %fa-icon
         @extend .far
-        padding-right: 1rem
-        font-size: 0.95em
         content: fa-content($fa-var-times-octagon)
+
+        @include breakpoint($desktop)
+          padding-right: 1rem
+          font-size: 0.95em
 
       &:hover, &:active
         color: $da-mono
 
     #search-form
-      position: absolute
       width: 100%
-      top: 50%
-      left: 0
-      transform: translateY(-50%)
 
       .columns
         align-items: center
+        justify-content: center
+
+        @include breakpoint($desktop)
+          justify-content: flex-start
 
       .column
+        padding:
+          top: 0
+          bottom: 0
         border: 0
 
+        // targeting the search field
         @include not('.is-narrow')
-          max-width: 35rem
+          max-width: 60%
           padding-right: 0.5rem
 
     .search

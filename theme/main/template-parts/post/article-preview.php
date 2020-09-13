@@ -62,10 +62,18 @@
           break;
 
         case 'search':
+        case 'archive':
           # no image, add date
           $layers = array_slice($layers, 1);
           $layers['content']['pubdate'] = true;
           break;
+
+        case 'category-all':
+          # no category, add date, image later
+          $layers = array_slice($layers, 1);
+          $layers['content']['category'] = false;
+          $layers['content']['pubdate'] = true;
+          $layers['image'] = $layer_image;
 
         case 'no-category':
           $layers['content']['category'] = false;

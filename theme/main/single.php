@@ -25,7 +25,7 @@
  $_meta = get_post_meta(get_the_id());
 ?>
 
-<main id="site-content" class="nopad">
+<main id="site-content" class="site-contact viewer">
 
   <article class="article viewer">
     <div class="viewer__head">

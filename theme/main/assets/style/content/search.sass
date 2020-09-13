@@ -65,15 +65,4 @@ $search-cover-bdr-bot: 3px solid #333
       border-top: 2px solid #777
       border-bottom: $search-cover-bdr-bot
 
-    .page-numbers
-      margin: 0 0.1rem
-      padding: 0.3rem 0.7rem
-      color: #444
-
-      &.current
-        color: $da-mono
-        font-weight: bold
-
-      @include not('.current')
-        &:hover, &:active
-          color: $da-mono
+    @include pagination-page-numbers

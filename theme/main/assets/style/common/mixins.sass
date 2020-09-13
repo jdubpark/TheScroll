@@ -24,3 +24,17 @@
     property: #{$properties}
     duration: $duration
     timing-function: $ts-cubic
+
+@mixin pagination-page-numbers
+  .page-numbers
+    margin: 0 0.1rem
+    padding: 0.3rem 0.7rem
+    color: #444
+
+    &.current
+      color: $da-mono
+      font-weight: bold
+
+    @include not('.current')
+      &:hover, &:active
+        color: $da-mono

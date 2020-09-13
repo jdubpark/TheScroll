@@ -1,3 +1,5 @@
+$footer-section-div: 1px solid #555b5e
+
 .site-footer
   margin-top: 2rem
   padding: 1rem 0 1.5rem
@@ -7,10 +9,11 @@
 
   section
     padding: 1rem 0
-    border-bottom: 1px solid $excerpt
+    border-bottom: 1px solid $excerpt-light
 
     @include breakpoint($desktop)
       padding: 2rem 0
+      border-color: $excerpt
 
     &:last-child
       border-bottom: 0
@@ -35,6 +38,40 @@
           padding: 0.9rem 0
           font:
             weight: bold
+
+          &.space
+            display: none
+
+            @include breakpoint($desktop)
+              display: inline
+
+        a
+          border-bottom: 1px solid transparent
+          &:hover, &:active
+            border-color: #eee
+
+    &-top-menu
+      .column
+        @include breakpoint(0 $desktop)
+          border-top: $footer-section-div
+
+        &:first-child
+          @include breakpoint(0 $desktop)
+            border-top: 0
+
+    &-all-menu
+      padding: 1rem 0
+
+      @include breakpoint($desktop)
+        padding: 0
+
+      .column
+        @include breakpoint(0 $desktop)
+          border-top: $footer-section-div
+
+        &:nth-child(1), &:nth-child(2)
+          @include breakpoint(0 $desktop)
+            border-top: 0
 
     &-brief
       font-family: $ff-noto-serif

@@ -1,14 +1,16 @@
-$home-div-bdr: 3px solid #222
+$home-section-div-bdr: 3px solid #222
+$home-article-div-bdr: 1px solid $clr-top-bdr
 $home-no-img-bdr: 5px solid $da-dark
 
 .site-content
   > section
     padding:
-      top: 1.5rem
-      bottom: 1.5rem
+      top: 1rem
+      bottom: 1rem
 
     @include breakpoint($desktop)
       padding:
+        top: 1.5rem
         bottom: 2rem
 
     .container
@@ -32,7 +34,7 @@ $home-no-img-bdr: 5px solid $da-dark
   $p: &
 
   > .columns
-    border-bottom: $home-div-bdr
+    border-bottom: $home-section-div-bdr
 
   .home &
     .article
@@ -42,14 +44,21 @@ $home-no-img-bdr: 5px solid $da-dark
         font-size: 1.6rem
 
     #{$p}-wrap
-      border-top: $home-div-bdr
+      border-top: $home-section-div-bdr
 
       &:first-child
         border-top: 0
 
     #{$p}-level
+      @include breakpoint(0 $desktop)
+        padding:
+          left: 1rem
+          right: 1rem
+
       > .columns
-        padding-top: 0
+        padding:
+          top: 0
+          bottom: 1rem
 
         @include breakpoint($desktop)
           padding-bottom: 2.5rem
@@ -98,10 +107,6 @@ $home-no-img-bdr: 5px solid $da-dark
             font-size: 0.8em
 
     #{$p}-main
-      padding:
-        left: 1.8rem
-        right: 0
-
       @include breakpoint($desktop)
         padding:
           left: $pad-top-main
@@ -110,13 +115,15 @@ $home-no-img-bdr: 5px solid $da-dark
         border-top-color: #555 !important
 
     #{$p}-focus, #{$p}-side
-      padding: 1.5rem 0 0
-
-    #{$p}-focus
-      border-right: 1px solid $clr-top-bdr
+      padding: 2rem 0 0
 
       @include breakpoint($desktop)
+        padding: 1.5rem 0 0
+
+    #{$p}-focus
+      @include breakpoint($desktop)
         padding-right: $pad-top-main
+        border-right: $home-article-div-bdr
 
     #{$p}-ftop
       .article
@@ -137,11 +144,12 @@ $home-no-img-bdr: 5px solid $da-dark
 
         &__title
           max-width: 90%
-          margin: 0.5rem auto
-          font-size: 1.4em
+          margin: 0.7rem auto
+          font-size: 1.5em
 
           @include breakpoint($desktop)
             max-width: 80%
+            margin: 0.5rem auto
             font-size: 1.9em
 
         &__excerpt
@@ -151,10 +159,10 @@ $home-no-img-bdr: 5px solid $da-dark
     #{$p}-fsup
       $pa: &
 
-      border-top: 1px solid $clr-top-bdr
+      border-top: $home-article-div-bdr
 
       .article
-        margin: 1rem 0
+        margin: 1.5rem 0 2rem
 
         @include breakpoint($desktop)
           margin: 1.5rem 0
@@ -167,10 +175,11 @@ $home-no-img-bdr: 5px solid $da-dark
           flex: 1
 
         &__image
-          height: 20rem
+          display: none
           margin: 0
 
           @include breakpoint($desktop)
+            display: inline
             height: 16rem
             max-width: 40%
 
@@ -179,7 +188,7 @@ $home-no-img-bdr: 5px solid $da-dark
             padding: 0 0.5rem 0 1.5rem
 
         &__category
-          font-size: 0.75em
+          font-size: 0.8em
 
       @include even-child('.article')
         .article__content
@@ -187,12 +196,15 @@ $home-no-img-bdr: 5px solid $da-dark
             padding: 0 1.5rem 0 0.5rem
 
     #{$p}-side
+      border-top: $home-section-div-bdr
+
       @include breakpoint($desktop)
         padding-left: $pad-top-main
+        border-top: 0
 
       .article
-        padding: 1.2rem 0
-        border-bottom: 1px solid $clr-top-bdr
+        padding: 1.5rem 0
+        border-bottom: $home-article-div-bdr
 
         @include breakpoint($desktop)
           padding: 1.8rem 0
@@ -204,19 +216,16 @@ $home-no-img-bdr: 5px solid $da-dark
           border-bottom: 0
 
         &__image
-          height: 17rem
-          margin-bottom: 1rem
-          margin-top: 0
+          height: 22rem
+          margin: 0 0 1.5rem
 
           @include breakpoint($desktop)
-            height: 22rem
+            margin-bottom: 1rem
 
         &__category
           font-size: 0.7em
 
         &__title
-          font-size: 1em
-
           @include breakpoint($desktop)
             font-size: 1.1em
 
@@ -229,11 +238,14 @@ $home-no-img-bdr: 5px solid $da-dark
           left: 1rem
 
       #{$p}-body
-        padding: 1rem
+        padding: 1rem 0
 
+        @include breakpoint($desktop)
+          padding: 1rem
 
     #{$p}-more
-      border-right: 1px solid $clr-top-bdr
+      @include breakpoint($desktop)
+        border-right: $home-article-div-bdr
 
       #{$p}-body
         @include breakpoint($desktop)
@@ -268,6 +280,12 @@ $home-no-img-bdr: 5px solid $da-dark
 
         &__title
           font-weight: 400
+
+    #{$p}-deerfield
+      border-top: $home-section-div-bdr
+
+      @include breakpoint($desktop)
+        border-top: 0
 
 .cover
   &-full-title
@@ -312,15 +330,25 @@ $home-no-img-bdr: 5px solid $da-dark
   &-divi
     > .columns
       padding-bottom: 1.5rem
-      border-bottom: $home-div-bdr
+      border-bottom: $home-section-div-bdr
 
       @include breakpoint($desktop)
         padding-bottom: 2rem
 
   &-news, &-features
+    .column:last-child
+      .article
+        padding-bottom: 0
+        border-bottom: 0
+
     .article
+      padding-bottom: 2rem
+      border-bottom: $home-article-div-bdr
+
       @include breakpoint($desktop)
         margin-right: 0.5rem
+        padding-bottom: 0
+        border-bottom: 0
 
       &.no-image
         padding-top: 0.7rem
@@ -343,6 +371,15 @@ $home-no-img-bdr: 5px solid $da-dark
   &-opinion, &-sports, &-buzz
     .column
       padding: 1.2rem 1rem
+
+      &.is-4
+        border-bottom: $home-article-div-bdr
+
+        @include breakpoint($desktop)
+          border-bottom: 0
+
+        &:last-child
+          border-bottom: 0
 
   &-sports
     .cover-full-title a strong

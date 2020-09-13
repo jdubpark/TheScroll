@@ -1,0 +1,90 @@
+.subscribe, .contactus
+  &-cover
+    font-family: $ff-open
+
+    .columns
+      > .column
+        width: 100%
+        max-width: 70rem
+        margin: 0 auto
+
+    &-title
+      text-align: center
+      font:
+        weight: bold
+        size: 1.4em
+
+      @include breakpoint($desktop)
+        font-size: 1.6em
+
+    &-desc
+      text-align: center
+      color: $excerpt
+
+.subscribe
+  &-cover
+    .mc4wp-form
+      padding-bottom: 1rem
+
+      &-fields
+        text-align: center
+
+        p, label
+          width: 100%
+
+        label, input
+          vertical-align: middle
+
+        p
+          margin: 1.5rem 0
+
+        label
+          margin-bottom: 0.8rem
+
+          @include breakpoint($desktop)
+            display: inline-block
+            width: 15rem
+            margin:
+              right: 1rem
+              bottom: 0
+            text-align: left
+
+        input
+          width: 60%
+          padding: 0.4rem 0.6rem
+          border: 1px solid #333
+          border-radius: 0
+
+          @include breakpoint($desktop)
+            min-width: 15rem
+            max-width: 25rem
+
+        [type='submit']
+          max-width: 15rem
+          margin-top: 0.5rem
+          padding: 1rem
+          background-color: inherit
+          border-width: 2px
+          font-weight: bold
+          cursor: pointer
+
+          &:hover, &:active
+            color: $da-mono
+            border-color: $da-mono
+
+.contactus
+  &-cover
+    text-align: center
+
+    .wp-block-jetpack
+      &-email, &-phone, &-address
+        margin: 2rem 0
+
+        a
+          &:hover, &:active
+            color: $da-mono
+
+      &-address
+        a
+          display: inline-block
+          padding: 0.5rem

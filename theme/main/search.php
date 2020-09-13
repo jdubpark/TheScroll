@@ -7,6 +7,8 @@
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  *
+ * Template Name: Search
+ *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
@@ -19,7 +21,7 @@
  global $query_string;
  wp_parse_str($query_string, $search_query);
 
-$posts_per_page = 10;
+ $posts_per_page = 10;
  // $search_query['posts_per_page'] = $posts_per_page;
 
  $results = new WP_Query($search_query);
@@ -44,7 +46,7 @@ $posts_per_page = 10;
               </div>
               <div class="column is-12 is-non-post">
                 <div class="search-cover-amnt">
-                  <i>displaying <?php echo $posts_per_page; ?> per page</i>
+                  <i>displaying <?php echo $posts_per_page; ?> per page by date</i>
                 </div>
               </div>
             </div>

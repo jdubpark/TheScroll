@@ -199,28 +199,28 @@ function hm_get_template_part( $file, $template_args = array(), $cache_args = ar
     echo $data;
 }
 
-function posts_load_more_scripts(){
-	global $wp_query;
-
-	// In most cases it is already included on the page and this line can be removed
-	// wp_enqueue_script('jquery');
-
-	// register our main script but do not enqueue it yet
-	wp_register_script('posts_load_more', get_template_directory_uri().'/assets/js/posts-loadmore.js', array('jquery'));
-
-	// now the most interesting part
-	// we have to pass parameters to js script but we can get the parameters values only in PHP
-	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
-	wp_localize_script('posts_load_more', 'postLoadmoreParams', array(
-		'ajaxurl' => admin_url('admin-ajax.php'), // WordPress AJAX
-		// 'posts' => json_encode($wp_query->query_vars), // everything about your loop is here
-		'offset' => 11, // start at first offset (initial 11 posts are fetched)
-	));
-
- 	wp_enqueue_script('posts_load_more');
-}
-
-add_action('wp_enqueue_scripts', 'posts_load_more_scripts');
+// function posts_load_more_scripts(){
+// 	global $wp_query;
+//
+// 	// In most cases it is already included on the page and this line can be removed
+// 	// wp_enqueue_script('jquery');
+//
+// 	// register our main script but do not enqueue it yet
+// 	wp_register_script('posts_load_more', get_template_directory_uri().'/assets/js/posts-loadmore.js', array('jquery'));
+//
+// 	// now the most interesting part
+// 	// we have to pass parameters to js script but we can get the parameters values only in PHP
+// 	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
+// 	wp_localize_script('posts_load_more', 'postLoadmoreParams', array(
+// 		'ajaxurl' => admin_url('admin-ajax.php'), // WordPress AJAX
+// 		// 'posts' => json_encode($wp_query->query_vars), // everything about your loop is here
+// 		'offset' => 11, // start at first offset (initial 11 posts are fetched)
+// 	));
+//
+//  	wp_enqueue_script('posts_load_more');
+// }
+//
+// add_action('wp_enqueue_scripts', 'posts_load_more_scripts');
 
 function load_universal_scripts(){
 	global $wp_query;
@@ -277,5 +277,130 @@ function post_load_more_ajax_handler(){
 // $.ajax action: post_loadmore
 add_action('wp_ajax_post_loadmore', 'post_load_more_ajax_handler');
 add_action('wp_ajax_nopriv_post_loadmore', 'post_load_more_ajax_handler');
+
+/*
+*
+* Add menu items to the admin dashboard
+* https://developer.wordpress.org/reference/functions/add_menu_page/
+*
+*/
+function register_custom_menu_pages(){
+	// KEY ORDER MATTERS!
+	$menus = [
+		[
+			'page_title' => 'Manage the Latest Edition',
+			'menu_title' => 'Latest Edition',
+			'capability' => 'add_users',
+			'menu_slug' => 'latest_edition',
+			'function' => '_latest_edition_page',
+			'icon_url' => null,
+			'position' => 50,
+		],
+	];
+	foreach ($menus as $menu){
+		add_menu_page(...array_values($menu));
+	}
+}
+add_action('admin_menu', 'register_custom_menu_pages');
+
+function _latest_edition_page(){
+   echo "Manage the Latest Edition";
+}
+
+/*
+*
+*	Custom archive retrieve
+*
+*/
+function wp_custom_archive($args = '') {
+    global $wpdb, $wp_locale;
+
+    $defaults = array(
+      'limit' => '',
+      'format' => 'html',
+			'before' => '',
+      'after' => '',
+			'show_post_count' => false,
+      'echo' => 1,
+    );
+
+    $r = wp_parse_args($args, $defaults);
+    extract($r, EXTR_SKIP);
+
+    if ($limit != '') $limit = ' LIMIT '.absint($limit);
+
+    // over-ride general date format ? 0 = no: use the date format set in Options, 1 = yes: over-ride
+    $archive_date_format_over_ride = 0;
+
+    // options for daily archive (only if you over-ride the general date format)
+    $archive_day_date_format = 'Y/m/d';
+
+    // options for weekly archive (only if you over-ride the general date format)
+    $archive_week_start_date_format = 'Y/m/d';
+    $archive_week_end_date_format   = 'Y/m/d';
+
+    if (!$archive_date_format_over_ride){
+      $archive_day_date_format = get_option('date_format');
+      $archive_week_start_date_format = get_option('date_format');
+      $archive_week_end_date_format = get_option('date_format');
+    }
+
+    //filters
+    $where = apply_filters('customarchives_where', "WHERE post_type = 'post' AND post_status = 'publish'", $r );
+    $join = apply_filters('customarchives_join', "", $r);
+
+    $output = '<ul>';
+
+    $query = "SELECT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, count(ID) as posts FROM $wpdb->posts $join $where GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC $limit";
+    $key = md5($query);
+    $cache = wp_cache_get('wp_custom_archive' , 'general');
+
+		// caching
+    if (!isset($cache[$key])){
+			$arcresults = $wpdb->get_results($query);
+			$cache[$key] = $arcresults;
+      wp_cache_set('wp_custom_archive', $cache, 'general');
+    } else {
+      $arcresults = $cache[$key];
+    }
+
+		// archive exists
+    if ($arcresults){
+      $afterafter = $after;
+			$years = [];
+
+      foreach ((array)$arcresults as $arcresult){
+				$year_num = $arcresult->year;
+				$month_num = $arcresult->month;
+
+				// $year_url = get_year_link($arcresult->year);
+        $month_url = get_month_link($year_num, $month_num);
+
+        /* translators: 1: month name, 2: 4-digit year */
+				$year_text = sprintf('%d', $year_num);
+				$month_text = sprintf(__('%s'), $wp_locale->get_month($month_num)); // get local month name
+				$month_text = $wp_locale->get_month_abbrev($month_text); // abbreviate name
+				// $month_text = sprintf('%d', $month_num); // just number
+
+				// check if year is initiated - if not, initiate it
+				if (!isset($years[$year_num])) $years[$year_num] = '<li class="archive-year-group"><ul><li class="year-num">'.$year_text.'</li>';
+
+        if ($show_post_count) $after = '&nbsp;('.$arcresult->posts.')' . $afterafter;
+
+        // $year_output = get_archives_link($year_url, $year_text, $format, $before, $after);
+				$years[$year_num] .= get_archives_link($month_url, $month_text, $format, $before, $after);
+      }
+
+			foreach ($years as $year_num => $year_output){
+				$year_output .= '</ul></li>';
+				$output .= $year_output;
+			}
+    }
+
+    $output .= '</ul>';
+
+    if ($echo) echo $output;
+    else return $output;
+}
 
 ?>

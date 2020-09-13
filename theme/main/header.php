@@ -68,7 +68,7 @@
           'more' => 'more-menu',
         ];
         foreach ($menus_slug as $menu_key => $menu_slug){
-          $menu_items = wp_get_nav_menu_items($menu_slug, array('update_post_term_cache' => false));
+          $menu_items = wp_get_nav_menu_items($menu_slug, ['update_post_term_cache' => false]);
           if ($menu_items){
             foreach ($menu_items as $menu_item){
               if ($menu_item->post_type !== 'nav_menu_item') continue;
