@@ -78,11 +78,15 @@ $home-no-img-bdr: 5px solid $da-dark
       padding-top: 1.5rem
 
     #{$p}-quick
+      display: none
       padding:
         right: 1.5rem
         bottom: 1rem
         left: 1.5rem
       background-color: #fbfbfb
+
+      @include breakpoint($desktop)
+        display: inline
 
       & #{$p}-body
         .article
